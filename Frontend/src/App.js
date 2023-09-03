@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import Playground from "./Playground";
 const App = () => {
-  return <Navbar />;
+  return <Playground />;
 };
 
 export default App;
