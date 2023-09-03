@@ -2,7 +2,7 @@ import React from "react";
 
 const index = () => {
   return (
-    <div>
+    <div style={{flex: 1}}>
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo iste quis
       veniam minus hic maiores, deleniti nihil accusamus soluta nisi nesciunt
       fugiat quidem ipsum dolor impedit amet sit animi in. Facilis et nulla

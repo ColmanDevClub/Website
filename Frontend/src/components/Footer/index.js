@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 export default function DenseAppBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static" sx={{ backgroundColor: "#222222" }}>
         <Toolbar variant="dense">
           <Typography variant="p" color="inherit" component="div">
