@@ -77,13 +77,13 @@ const index = () => {
         <h1 className={css["title"]}>פרוייקטי המועדון</h1>
 
         <Grid container>
-          <Grid xs={12} md={6} lg={4} style={{padding: "1rem"}}>
+          <Grid xs={12} md={6} lg={4} style={{padding: "1rem", justifyContent: "center", display: "flex"}}>
             <Card {...card} />
           </Grid>
-          <Grid xs={12} md={6} lg={4} style={{padding: "1rem"}}>
+          <Grid xs={12} md={6} lg={4} style={{padding: "1rem", justifyContent: "center", display: "flex"}}>
             <Card {...card} />
           </Grid>
-          <Grid xs={12} md={6} lg={4} style={{padding: "1rem"}}>
+          <Grid xs={12} md={6} lg={4} style={{padding: "1rem", justifyContent: "center", display: "flex"}}>
             <Card {...card} />
           </Grid>
         </Grid>
