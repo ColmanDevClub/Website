@@ -1,5 +1,9 @@
-section.hero {
+section.homepage {
     padding: 3rem 5rem;
+}
+
+.hero {
+    margin-bottom: 4rem;
 }
 
 .title {
