@@ -1,0 +1,25 @@
+section.home-page {
+    padding: 3rem 5rem;
+}
+
+.title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.content {
+    direction: rtl;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content p {
+    margin-bottom: 1rem;
+}
+
+.cta-btn:hover {
+    background: #00DF81 !important;
+    filter: brightness(0.75) !important;
+}
