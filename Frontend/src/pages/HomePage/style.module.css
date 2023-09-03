@@ -1,4 +1,4 @@
-section.home-page {
+section.hero {
     padding: 3rem 5rem;
 }
 
@@ -20,6 +20,5 @@ section.home-page {
 }
 
 .cta-btn:hover {
-    background: #00DF81 !important;
     filter: brightness(0.75) !important;
 }

@@ -1,13 +1,12 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import css from "./style.module.css";
-import { margin } from "@mui/system";
 
 const index = () => {
 
   const btnStyle = {
     fontSize: "1.25rem;",
-    background: "#00DF81;",
+    background: "radial-gradient(circle, rgba(0,223,129,1) 0%, rgba(0,136,79,1) 100%);",
     color: "black;",
     fontWeight: "700;",
     padding: "0.25rem 6rem;",
@@ -16,7 +15,7 @@ const index = () => {
   }
 
   return (
-    <section className={css["home-page"]} style={{ display: "flex", flexDirection:"column"}}>
+    <section className={css["hero"]} style={{ display: "flex", flexDirection:"column"}}>
       <h1 className={css["title"]}>מועדון מפתחים/ות</h1>
       <div className={css["content"]}>
         <p>
