@@ -15,9 +15,9 @@ export default function MediaCard({
   website_url,
 }) {
   return (
-      <Card sx={{ width: 345, direction: "rtl" }}>
+      <Card sx={{ width: "100%", direction: "rtl" }}>
         <CardMedia
-          sx={{ height: 140 }}
+          sx={{ height: 225 }}
           image={image_url}
           title={`${title} image`}
         />

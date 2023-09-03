@@ -75,11 +75,18 @@ const index = () => {
 
       <div style={{ display: "flex", flexDirection: "column" }}>
         <h1 className={css["title"]}>פרוייקטי המועדון</h1>
-        <div style={{display: 'flex', justifyContent:'center', gap: '3rem', margin: '0 0 1rem 0'}}>
-          <Card {...card} />
-          <Card {...card} />
-          <Card {...card} />
-        </div>
+
+        <Grid container>
+          <Grid xs={12} md={6} lg={4} style={{padding: "1rem"}}>
+            <Card {...card} />
+          </Grid>
+          <Grid xs={12} md={6} lg={4} style={{padding: "1rem"}}>
+            <Card {...card} />
+          </Grid>
+          <Grid xs={12} md={6} lg={4} style={{padding: "1rem"}}>
+            <Card {...card} />
+          </Grid>
+        </Grid>
       </div>
     </section>
   );
