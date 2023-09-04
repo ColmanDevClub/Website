@@ -1,8 +1,6 @@
 import React from "react";
 import css from "./style.module.css";
 import Button from "@mui/material/Button";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import CardList from "../../components/CardList";
 
 const index = () => {
@@ -15,14 +13,6 @@ const index = () => {
     padding: "0.25rem 6rem;",
     transition: "filter 200ms ease-in-out;",
     margin: "0 auto;",
-  };
-
-  const settings = {
-    speed: 400,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 1000,
   };
 
   const card = {
@@ -71,49 +61,10 @@ const index = () => {
           להרשמה לחצו כאן
         </Button>
       </div>
-
       <div style={{ display: "flex", flexDirection: "column" }}>
         <h1 className={css["title"]}>פרוייקטי המועדון</h1>
         {/*After using Firebase, we just need to fetch all the project into array and send to the cardlist. */}
         <CardList cards={[card, card, card]} />
-        {/* <Grid container>
-          <Grid
-            xs={12}
-            md={6}
-            lg={4}
-            style={{
-              padding: "1rem",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            <Card {...card} />
-          </Grid>
-          <Grid
-            xs={12}
-            md={6}
-            lg={4}
-            style={{
-              padding: "1rem",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            <Card {...card} />
-          </Grid>
-          <Grid
-            xs={12}
-            md={6}
-            lg={4}
-            style={{
-              padding: "1rem",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            <Card {...card} />
-          </Grid>
-        </Grid> */}
       </div>
     </section>
   );
