@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import css from "./style.module.css";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const pages = [
   { title: "Home", path: "/" },
@@ -18,6 +18,9 @@ const pages = [
 ];
 
 function ResponsiveAppBar({ children }) {
+  const { pathname } = useLocation();
+  console.log(pathname);
+  console.log(pages[0].path === pathname);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -126,6 +129,7 @@ function ResponsiveAppBar({ children }) {
                       display: "block",
                       textTransform: "none",
                     }}
+                    className={page.path === pathname ? css["text-yellow"] : ""}
                   >
                     {page.title}
                   </Button>
