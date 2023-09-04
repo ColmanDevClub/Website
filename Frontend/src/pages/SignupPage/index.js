@@ -107,7 +107,7 @@ export default function CustomizedInputsStyleOverrides() {
       >
         <span className={css["text-yellow"]}>Sign</span>up
       </Typography>
-      <div class={css["container"]}>
+      <div className={css["container"]}>
         <Box
           sx={{
             display: "grid",
@@ -120,7 +120,19 @@ export default function CustomizedInputsStyleOverrides() {
             return (
               <ThemeProvider theme={customTheme(outerTheme)} key={label.label}>
                 {label.type === "TextField" ? (
-                  <TextField label={label.label} />
+                  label.label === "Password" ? (
+                    <TextField
+                      sx={{ textAlign: "center" }}
+                      label="Password"
+                      type="password"
+                    />
+                  ) : (
+                    <TextField
+                      sx={{ textAlign: "center" }}
+                      label={label.label}
+                      type="text"
+                    />
+                  )
                 ) : (
                   <FormControl fullWidth>
                     <InputLabel id={label.label} sx={{ color: "#B2BAC2" }}>
@@ -133,7 +145,9 @@ export default function CustomizedInputsStyleOverrides() {
                       label={label.label}
                     >
                       {label.options.map((option) => (
-                        <MenuItem value={option}>{option}</MenuItem>
+                        <MenuItem value={option} key={option}>
+                          {option}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
