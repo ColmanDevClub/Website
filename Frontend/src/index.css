@@ -6,6 +6,11 @@
   font-family: "Poppins", sans-serif !important;
 }
 
+::selection {
+  background-color: #f6c927;
+  color: black;
+}
+
 body {
   min-height: 100vh;
   margin: 0;
