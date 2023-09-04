@@ -4,7 +4,14 @@ import TextField from "@mui/material/TextField";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
-import { Button, FormControl, InputLabel, Typography } from "@mui/material";
+import {
+  Button,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  Typography,
+} from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
@@ -95,7 +102,7 @@ export default function CustomizedInputsStyleOverrides() {
   };
 
   return (
-    <div style={{ padding: "3rem 5rem" }}>
+    <Container maxWidth="lg" sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
       <Typography
         variant="h3"
         sx={{
@@ -156,10 +163,21 @@ export default function CustomizedInputsStyleOverrides() {
             );
           })}
         </Box>
-        <Button variant="contained" className={css["cta-btn"]} sx={btnStyle}>
-          To Signup Press here
-        </Button>
+        <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid xs={12} md={6}>
+            <Button
+              variant="contained"
+              className={css["cta-btn"]}
+              sx={{
+                ...btnStyle,
+                marginTop: "1rem",
+              }}
+            >
+              Signup
+            </Button>
+          </Grid>
+        </Grid>
       </div>
-    </div>
+    </Container>
   );
 }
