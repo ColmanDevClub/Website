@@ -1,0 +1,7 @@
+.cta-btn:hover {
+  filter: brightness(0.75) !important;
+}
+
+.container {
+  text-align: center;
+}

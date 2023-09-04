@@ -2,20 +2,10 @@ import React from "react";
 import css from "./style.module.css";
 import Button from "@mui/material/Button";
 import CardList from "../../components/CardList";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { btnStyle } from "../../generic/CustomStyle";
 
 const index = () => {
-  const btnStyle = {
-    fontSize: "1.25rem;",
-    background:
-      "radial-gradient(circle, rgba(0,223,129,1) 0%, rgba(0,136,79,1) 100%);",
-    color: "black;",
-    fontWeight: "700;",
-    padding: "0.25rem 6rem;",
-    transition: "filter 200ms ease-in-out;",
-    margin: "0 auto;",
-  };
-
   const card = {
     image_url: `https://picsum.photos/200`,
     title: `כותרת`,

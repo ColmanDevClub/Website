@@ -4,9 +4,12 @@ import TextField from "@mui/material/TextField";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
-import { FormControl, InputLabel, Typography } from "@mui/material";
+import { Button, FormControl, InputLabel, Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+
+import css from "./style.module.css";
+import { btnStyle } from "../../generic/CustomStyle";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -99,39 +102,45 @@ export default function CustomizedInputsStyleOverrides() {
       >
         Signup
       </Typography>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { md: "1fr 1fr" },
-          gap: 2,
-        }}
-      >
-        {labels.map((label) => {
-          return (
-            <ThemeProvider theme={customTheme(outerTheme)} key={label.label}>
-              {label.type === "TextField" ? (
-                <TextField label={label.label} />
-              ) : (
-                <FormControl fullWidth>
-                  <InputLabel id={label.label} sx={{ color: "#B2BAC2" }}>
-                    {label.label}
-                  </InputLabel>
-                  <Select
-                    labelId={label.label}
-                    onChange={(event) => handleChange(event, label.setter)}
-                    value={label.value}
-                    label={label.label}
-                  >
-                    {label.options.map((option) => (
-                      <MenuItem value={option}>{option}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
-            </ThemeProvider>
-          );
-        })}
-      </Box>
+      <div class={css["container"]}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { md: "1fr 1fr" },
+            gap: 2,
+            marginBottom: "2rem",
+          }}
+        >
+          {labels.map((label) => {
+            return (
+              <ThemeProvider theme={customTheme(outerTheme)} key={label.label}>
+                {label.type === "TextField" ? (
+                  <TextField label={label.label} />
+                ) : (
+                  <FormControl fullWidth>
+                    <InputLabel id={label.label} sx={{ color: "#B2BAC2" }}>
+                      {label.label}
+                    </InputLabel>
+                    <Select
+                      labelId={label.label}
+                      onChange={(event) => handleChange(event, label.setter)}
+                      value={label.value}
+                      label={label.label}
+                    >
+                      {label.options.map((option) => (
+                        <MenuItem value={option}>{option}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
+              </ThemeProvider>
+            );
+          })}
+        </Box>
+        <Button variant="contained" className={css["cta-btn"]} sx={btnStyle}>
+          To Signup Press here
+        </Button>
+      </div>
     </div>
   );
 }
