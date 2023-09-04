@@ -3,16 +3,32 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { Container } from "@mui/material";
+import css from "./style.module.css";
 
 export default function DenseAppBar() {
   return (
     <Box>
       <AppBar position="static" sx={{ backgroundColor: "#222222" }}>
-        <Toolbar variant="dense">
-          <Typography variant="p" color="inherit" component="div">
-            ColmanDevClub
-          </Typography>
-        </Toolbar>
+        <Container maxWidth="xl">
+          <Toolbar variant="dense">
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontWeight: 700,
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              Colman<span className={css["text-yellow"]}>Dev</span>Club
+            </Typography>
+          </Toolbar>
+        </Container>
       </AppBar>
     </Box>
   );
