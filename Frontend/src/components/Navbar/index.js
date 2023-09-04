@@ -135,7 +135,7 @@ function ResponsiveAppBar({ children }) {
           </Toolbar>
         </Container>
       </AppBar>
-      <main style={{flex: "1"}}>{<Outlet />}</main>
+      <main style={{ flex: "1" }}>{<Outlet />}</main>
     </>
   );
 }
