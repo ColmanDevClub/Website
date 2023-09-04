@@ -2,6 +2,7 @@ import React from "react";
 import css from "./style.module.css";
 import Button from "@mui/material/Button";
 import CardList from "../../components/CardList";
+import { Link, NavLink } from "react-router-dom";
 
 const index = () => {
   const btnStyle = {
@@ -58,7 +59,9 @@ const index = () => {
           </p>
         </div>
         <Button variant="contained" className={css["cta-btn"]} sx={btnStyle}>
-          להרשמה לחצו כאן
+          <Link to="/Signup" style={{ textDecoration: "none", color: "black" }}>
+            להרשמה לחצו כאן
+          </Link>
         </Button>
       </div>
       <div style={{ display: "flex", flexDirection: "column" }}>
