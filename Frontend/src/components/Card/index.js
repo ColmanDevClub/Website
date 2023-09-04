@@ -15,28 +15,28 @@ export default function MediaCard({
   website_url,
 }) {
   return (
-      <Card sx={{ width: "100%", maxWidth: "600px", direction: "rtl" }}>
-        <CardMedia
-          sx={{ height: 225 }}
-          image={image_url}
-          title={`${title} image`}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {description}
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ display: "flex", justifyContent: "end" }}>
-          <Link to={github_url}>
-            <Button size="small">Github</Button>
-          </Link>
-          <Link to={website_url}>
-            <Button size="small">Website</Button>
-          </Link>
-        </CardActions>
-      </Card>
+    <Card sx={{ width: "100%", maxWidth: "600px", direction: "rtl" }}>
+      <CardMedia
+        sx={{ height: 225 }}
+        image={image_url}
+        title={`${title} image`}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {title}
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          {description}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ display: "flex", justifyContent: "end" }}>
+        <Link to={github_url}>
+          <Button size="small">Github</Button>
+        </Link>
+        <Link to={website_url} hrefLang="">
+          <Button size="small">Website</Button>
+        </Link>
+      </CardActions>
+    </Card>
   );
 }

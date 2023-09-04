@@ -1,10 +1,9 @@
 import React from "react";
 import css from "./style.module.css";
 import Button from "@mui/material/Button";
-import Card from "../../components/Card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Grid } from "@mui/material";
+import CardList from "../../components/CardList";
 
 const index = () => {
   const btnStyle = {
@@ -30,8 +29,8 @@ const index = () => {
     image_url: `https://picsum.photos/200`,
     title: `כותרת`,
     description: `תיאור הפרוייקט`,
-    github_url: `www.github.com`,
-    website_url: `www.google.com`,
+    github_url: `https://www.github.com`,
+    website_url: `https://www.google.com`,
   };
 
   return (
@@ -75,18 +74,46 @@ const index = () => {
 
       <div style={{ display: "flex", flexDirection: "column" }}>
         <h1 className={css["title"]}>פרוייקטי המועדון</h1>
-
-        <Grid container>
-          <Grid xs={12} md={6} lg={4} style={{padding: "1rem", justifyContent: "center", display: "flex"}}>
+        {/*After using Firebase, we just need to fetch all the project into array and send to the cardlist. */}
+        <CardList cards={[card, card, card]} />
+        {/* <Grid container>
+          <Grid
+            xs={12}
+            md={6}
+            lg={4}
+            style={{
+              padding: "1rem",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
             <Card {...card} />
           </Grid>
-          <Grid xs={12} md={6} lg={4} style={{padding: "1rem", justifyContent: "center", display: "flex"}}>
+          <Grid
+            xs={12}
+            md={6}
+            lg={4}
+            style={{
+              padding: "1rem",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
             <Card {...card} />
           </Grid>
-          <Grid xs={12} md={6} lg={4} style={{padding: "1rem", justifyContent: "center", display: "flex"}}>
+          <Grid
+            xs={12}
+            md={6}
+            lg={4}
+            style={{
+              padding: "1rem",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
             <Card {...card} />
           </Grid>
-        </Grid>
+        </Grid> */}
       </div>
     </section>
   );
