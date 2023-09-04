@@ -98,9 +98,14 @@ export default function CustomizedInputsStyleOverrides() {
     <div style={{ padding: "3rem 5rem" }}>
       <Typography
         variant="h3"
-        sx={{ textAlign: "center", marginBottom: "2rem" }}
+        sx={{
+          textAlign: "center",
+          marginBottom: "2rem",
+          fontWeight: 700,
+          letterSpacing: "4px",
+        }}
       >
-        Signup
+        <span className={css["text-yellow"]}>Sign</span>up
       </Typography>
       <div class={css["container"]}>
         <Box
