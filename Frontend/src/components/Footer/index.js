@@ -19,7 +19,7 @@ export default function DenseAppBar() {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: "flex", md: "flex" },
                 fontWeight: 700,
                 color: "inherit",
                 textDecoration: "none",
