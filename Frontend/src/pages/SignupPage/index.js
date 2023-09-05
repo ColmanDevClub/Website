@@ -103,9 +103,7 @@ export default function CustomizedInputsStyleOverrides() {
 
   return (
     <Container maxWidth="lg" sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
-      <Typography
-        variant="h3"
-        sx={{
+      <Typography variant="h3" sx={{
           textAlign: "center",
           marginBottom: "2rem",
           fontWeight: 700,
@@ -118,7 +116,7 @@ export default function CustomizedInputsStyleOverrides() {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { md: "1fr 1fr" },
+            gridTemplateColumns: {sm: "1fr", md: "1fr 1fr"},
             gap: 2,
             marginBottom: "2rem",
           }}
@@ -142,12 +140,13 @@ export default function CustomizedInputsStyleOverrides() {
                   )
                 ) : (
                   <FormControl fullWidth>
-                    <InputLabel id={label.label} sx={{ color: "#B2BAC2" }}>
+                    <InputLabel id={label.label} sx={{ color: "#B2BAC2 !important" }}>
                       {label.label}
                     </InputLabel>
                     <Select
                       labelId={label.label}
                       onChange={(event) => handleChange(event, label.setter)}
+                      sx={{color: "white"}}
                       value={label.value}
                       label={label.label}
                     >

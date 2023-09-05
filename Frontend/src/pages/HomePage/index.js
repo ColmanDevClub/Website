@@ -16,10 +16,10 @@ const index = () => {
   };
 
   return (
-    <>
+    <div style={{paddingTop: "3rem", paddingBottom: "3rem" }}>
       <Container
         maxWidth="lg"
-        sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}
+        
       >
         <div
           className={css["hero"]}
@@ -53,6 +53,7 @@ const index = () => {
               וכמובן, שהם יצאו מתכנתי על, ולא פחות מזה!
             </p>
           </div>
+
           <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid xs={12} md={6} lg={4}>
               <Button
@@ -70,13 +71,16 @@ const index = () => {
             </Grid>
           </Grid>
         </div>
+      </Container>
+
+      <Container maxWidth="xl">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h1 className={css["title"]}>פרוייקטי המועדון</h1>
           {/*After using Firebase, we just need to fetch all the project into array and send to the cardlist. */}
           <CardList cards={[card, card, card]} />
         </div>
       </Container>
-    </>
+    </div>
   );
 };
 
