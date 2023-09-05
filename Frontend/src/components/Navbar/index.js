@@ -1,23 +1,29 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import css from "./style.module.css";
+
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Button,
+  MenuItem,
+} from "@mui/material";
+
+import MenuIcon from "@mui/icons-material/Menu";
+
+import css from "./style.module.css";
 
 const pages = [
   { title: "Home", path: "/" },
   { title: "SignUp", path: "/Signup" },
 ];
 
-function ResponsiveAppBar({ children }) {
+function ResponsiveAppBar() {
   const { pathname } = useLocation();
   console.log(pathname);
   console.log(pages[0].path === pathname);

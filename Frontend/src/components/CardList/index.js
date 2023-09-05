@@ -1,6 +1,8 @@
 import React from "react";
-import Card from "../../components/Card";
+
 import { Grid } from "@mui/material";
+
+import Card from "../../components/Card";
 
 const CardList = ({ cards }) => {
   return (

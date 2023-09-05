@@ -1,10 +1,11 @@
 import React from "react";
-import css from "./style.module.css";
-import Button from "@mui/material/Button";
-import CardList from "../../components/CardList";
 import { Link } from "react-router-dom";
+
+import { Container, Grid, Button } from "@mui/material";
+
+import CardList from "../../components/CardList";
 import { btnStyle } from "../../generic/CustomStyle";
-import { Container, Grid } from "@mui/material";
+import css from "./style.module.css";
 
 const index = () => {
   const card = {
@@ -16,11 +17,8 @@ const index = () => {
   };
 
   return (
-    <div style={{paddingTop: "3rem", paddingBottom: "3rem" }}>
-      <Container
-        maxWidth="lg"
-        
-      >
+    <div style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+      <Container maxWidth="lg">
         <div
           className={css["hero"]}
           style={{ display: "flex", flexDirection: "column" }}

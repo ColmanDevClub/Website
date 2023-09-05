@@ -1,9 +1,5 @@
 import * as React from "react";
 
-import TextField from "@mui/material/TextField";
-import { outlinedInputClasses } from "@mui/material/OutlinedInput";
-import Box from "@mui/material/Box";
-import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import {
   Button,
   Container,
@@ -11,9 +7,13 @@ import {
   Grid,
   InputLabel,
   Typography,
+  MenuItem,
+  Select,
+  Box,
+  TextField,
 } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import { outlinedInputClasses } from "@mui/material/OutlinedInput";
+import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 
 import css from "./style.module.css";
 import { btnStyle } from "../../generic/CustomStyle";
@@ -103,7 +103,9 @@ export default function CustomizedInputsStyleOverrides() {
 
   return (
     <Container maxWidth="lg" sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
-      <Typography variant="h3" sx={{
+      <Typography
+        variant="h3"
+        sx={{
           textAlign: "center",
           marginBottom: "2rem",
           fontWeight: 700,
@@ -116,7 +118,7 @@ export default function CustomizedInputsStyleOverrides() {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: {sm: "1fr", md: "1fr 1fr"},
+            gridTemplateColumns: { sm: "1fr", md: "1fr 1fr" },
             gap: 2,
             marginBottom: "2rem",
           }}
@@ -140,13 +142,16 @@ export default function CustomizedInputsStyleOverrides() {
                   )
                 ) : (
                   <FormControl fullWidth>
-                    <InputLabel id={label.label} sx={{ color: "#B2BAC2 !important" }}>
+                    <InputLabel
+                      id={label.label}
+                      sx={{ color: "#B2BAC2 !important" }}
+                    >
                       {label.label}
                     </InputLabel>
                     <Select
                       labelId={label.label}
                       onChange={(event) => handleChange(event, label.setter)}
-                      sx={{color: "white"}}
+                      sx={{ color: "white" }}
                       value={label.value}
                       label={label.label}
                     >
