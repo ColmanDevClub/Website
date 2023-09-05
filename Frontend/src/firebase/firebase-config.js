@@ -31,11 +31,10 @@ export const storage = getStorage(app);
 export const addUser = async (user) => {
     
     try {
-        const docRef = await addDoc(collection(db, "users"), {
-          ...user    
-        });
+        const docRef = await addDoc(collection(db, "users"), user);
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {
+        //TODO : send to Google Analytics an event with the user.
         console.error("Error adding document: ", e);
       }
 }
