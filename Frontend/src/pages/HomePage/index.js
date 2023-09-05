@@ -1,13 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Container, Grid, Button } from "@mui/material";
+import { Container, Grid} from "@mui/material";
+
+import Button from "../../components/common/Button";
 
 import CardList from "../../components/CardList";
-import { btnStyle } from "../../generic/CustomStyle";
 import css from "./style.module.css";
 
-const index = () => {
+const HomePage = () => {
+  const navigate = useNavigate();
+
   const card = {
     image_url: `https://picsum.photos/200`,
     title: `כותרת`,
@@ -54,17 +57,8 @@ const index = () => {
 
           <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid xs={12} md={6} lg={4}>
-              <Button
-                variant="contained"
-                className={css["cta-btn"]}
-                sx={btnStyle}
-              >
-                <Link
-                  to="/Signup"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  להרשמה לחצו כאן
-                </Link>
+              <Button onClick={() => navigate("/Signup")}>
+                להרשמה לחצו כאן
               </Button>
             </Grid>
           </Grid>
@@ -82,4 +76,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default HomePage;
