@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 
 import css from "./style.module.css";
 import { btnStyle } from "../../generic/CustomStyle";
+import { addUser } from "../../firebase/firebase-config";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -63,13 +64,29 @@ export default function CustomizedInputsStyleOverrides() {
   const outerTheme = useTheme();
   const [degree, setDegree] = React.useState("");
   const [schoolYear, setSchoolYear] = React.useState("");
+  const [formValues, setFormValues] = React.useState({});
 
   const labels = [
-    { label: "ID", type: "TextField", showInput: "true" },
-    { label: "Full Name", type: "TextField", showInput: "true" },
-    { label: "Email", type: "TextField", showInput: "true" },
-    { label: "Phone Number", type: "TextField", showInput: "true" },
-    { label: "Password", type: "TextField", showInput: "false" },
+    { label: "ID", type: "TextField", showInput: "true", key: "id" },
+    {
+      label: "Full Name",
+      type: "TextField",
+      showInput: "true",
+      key: "fullName",
+    },
+    { label: "Email", type: "TextField", showInput: "true", key: "email" },
+    {
+      label: "Phone Number",
+      type: "TextField",
+      showInput: "true",
+      key: "phoneNumber",
+    },
+    {
+      label: "Password",
+      type: "TextField",
+      showInput: "false",
+      key: "password",
+    },
     {
       label: "Degree",
       type: "Select",
@@ -86,6 +103,7 @@ export default function CustomizedInputsStyleOverrides() {
       ],
       value: degree,
       setter: setDegree,
+      key: "degree",
     },
     {
       label: "School Year",
@@ -94,6 +112,7 @@ export default function CustomizedInputsStyleOverrides() {
       options: ["א", "ב", "ג", "ד"],
       value: schoolYear,
       setter: setSchoolYear,
+      key: "schoolYear",
     },
   ];
 
@@ -132,12 +151,22 @@ export default function CustomizedInputsStyleOverrides() {
                       sx={{ textAlign: "center" }}
                       label="Password"
                       type="password"
+                      onChange={(event) =>
+                        setFormValues((prev) => {
+                          return { ...prev, password: event.target.value };
+                        })
+                      }
                     />
                   ) : (
                     <TextField
                       sx={{ textAlign: "center" }}
                       label={label.label}
                       type="text"
+                      onChange={(event) =>
+                        setFormValues((prev) => {
+                          return { ...prev, [label.key]: event.target.value };
+                        })
+                      }
                     />
                   )
                 ) : (
@@ -176,6 +205,13 @@ export default function CustomizedInputsStyleOverrides() {
                 ...btnStyle,
                 marginTop: "1rem",
               }}
+              onClick={() =>
+                addUser({
+                  ...formValues,
+                  degree: degree,
+                  schoolYear: schoolYear,
+                })
+              }
             >
               Signup
             </Button>
