@@ -62,8 +62,8 @@ const customTheme = (outerTheme) =>
 
 export default function CustomizedInputsStyleOverrides() {
   const outerTheme = useTheme();
-  const [degree, setDegree] = React.useState("");
-  const [schoolYear, setSchoolYear] = React.useState("");
+  // const [degree, setDegree] = React.useState("");
+  // const [schoolYear, setSchoolYear] = React.useState("");
   const [formValues, setFormValues] = React.useState({});
 
   const labels = [
@@ -101,8 +101,6 @@ export default function CustomizedInputsStyleOverrides() {
         // "Design and Innovation",
         // "Business Administration",
       ],
-      value: degree,
-      setter: setDegree,
       key: "degree",
     },
     {
@@ -110,15 +108,9 @@ export default function CustomizedInputsStyleOverrides() {
       type: "Select",
       showInput: "true",
       options: ["א", "ב", "ג", "ד"],
-      value: schoolYear,
-      setter: setSchoolYear,
       key: "schoolYear",
     },
   ];
-
-  const handleChange = (event, setter) => {
-    setter(event.target.value);
-  };
 
   return (
     <Container maxWidth="lg" sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
@@ -179,7 +171,11 @@ export default function CustomizedInputsStyleOverrides() {
                     </InputLabel>
                     <Select
                       labelId={label.label}
-                      onChange={(event) => handleChange(event, label.setter)}
+                      onChange={(event) =>
+                        setFormValues((prev) => {
+                          return { ...prev, [label.key]: event.target.value };
+                        })
+                      }
                       sx={{ color: "white" }}
                       value={label.value}
                       label={label.label}
@@ -207,9 +203,7 @@ export default function CustomizedInputsStyleOverrides() {
               }}
               onClick={() =>
                 addUser({
-                  ...formValues,
-                  degree: degree,
-                  schoolYear: schoolYear,
+                  formValues,
                 })
               }
             >
