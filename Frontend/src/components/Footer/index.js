@@ -76,9 +76,36 @@ export default function DenseAppBar() {
                 Colman<span className={css["text-yellow"]}>Dev</span>Club
               </Typography>
               <Box sx={{ display: "flex" }} gap="0.75rem">
-                <GitHubIcon />
-                <InstagramIcon />
-                <LinkedInIcon />
+                <a
+                  href="https://github.com/ColmanDevClub"
+                  className={css["icon"]}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <GitHubIcon
+                    sx={{ fontSize: { xs: "1.5rem", lg: "1.75rem" } }}
+                  />
+                </a>
+                <a
+                  href="/"
+                  className={css["icon"]}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <InstagramIcon
+                    sx={{ fontSize: { xs: "1.5rem", lg: "1.75rem" } }}
+                  />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/colman-devclub/"
+                  className={css["icon"]}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <LinkedInIcon
+                    sx={{ fontSize: { xs: "1.5rem", lg: "1.75rem" } }}
+                  />
+                </a>
               </Box>
               <Typography
                 component="p"
@@ -89,12 +116,17 @@ export default function DenseAppBar() {
                   fontSize: { xs: "0.85rem", md: "1rem" },
                   display: "flex",
                   gap: "0.5rem",
+                  textAlign: "center",
+                  width: "fit-content",
                 }}
               >
-                <CopyrightIcon />
-                <Typography component="span">
-                  All Rights Reserved To Colman
-                  <Typography component="span" className={css["text-yellow"]} style={{filter: "brightness(0.75)"}}>
+                <Typography component="span" sx={{ width: "fit-content" }}>
+                  © All Rights Reserved To Colman
+                  <Typography
+                    component="span"
+                    className={css["text-yellow"]}
+                    style={{ filter: "brightness(0.75)" }}
+                  >
                     Dev
                   </Typography>
                   Club
