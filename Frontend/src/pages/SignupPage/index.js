@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import {
+  Button,
   Container,
   FormControl,
   Grid,
@@ -14,14 +15,9 @@ import {
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 
-import { DARK_WHITE } from "../../constants/theme.constants";
-
 import css from "./style.module.css";
 import { btnStyle } from "../../generic/CustomStyle";
 import { addUser } from "../../firebase/firebase-config";
-import FormInputField from "../../components/common/FormInputField";
-import FormSelectField from "../../components/common/FormSelectField";
-import Button from "../../components/common/Button";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -32,7 +28,7 @@ const customTheme = (outerTheme) =>
       MuiTextField: {
         styleOverrides: {
           root: {
-            "--TextField-brandBorderColor": DARK_WHITE,
+            "--TextField-brandBorderColor": "#E0E3E7",
             "--TextField-brandBorderHoverColor": "#B2BAC2",
             "--TextField-brandBorderFocusedColor": "#6F7E8C",
             "& label.Mui-focused": {
@@ -56,7 +52,7 @@ const customTheme = (outerTheme) =>
             [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: "var(--TextField-brandBorderFocusedColor)",
             },
-            color: "white",
+            color: "white", // Add this line to set text color to white,
             backgroundColor: "#222222",
           },
         },
@@ -64,61 +60,57 @@ const customTheme = (outerTheme) =>
     },
   });
 
-const labels = [
-  { label: "ID", type: "TextField", showInput: "true", key: "id" },
-  {
-    label: "Full Name",
-    type: "TextField",
-    showInput: "true",
-    key: "fullName",
-  },
-  { label: "Email", type: "TextField", showInput: "true", key: "email" },
-  {
-    label: "Phone Number",
-    type: "TextField",
-    showInput: "true",
-    key: "phoneNumber",
-  },
-  {
-    label: "Password",
-    type: "TextField",
-    showInput: "false",
-    key: "password",
-  },
-  {
-    label: "Degree",
-    type: "Select",
-    showInput: "true",
-    options: [
-      "Computer Science",
-      // "Communications",
-      // "Information System",
-      // "Data Science",
-      // "Economy",
-      // "Laws",
-      // "Design and Innovation",
-      // "Business Administration",
-    ],
-    key: "degree",
-  },
-  {
-    label: "School Year",
-    type: "Select",
-    showInput: "true",
-    options: ["א", "ב", "ג", "ד"],
-    key: "schoolYear",
-  },
-];
-
-const FIELDS_MAP = {
-  TextField: FormInputField,
-  Select: FormSelectField,
-};
-
 export default function CustomizedInputsStyleOverrides() {
   const outerTheme = useTheme();
-
+  // const [degree, setDegree] = React.useState("");
+  // const [schoolYear, setSchoolYear] = React.useState("");
   const [formValues, setFormValues] = React.useState({});
+
+  const labels = [
+    { label: "ID", type: "TextField", showInput: "true", key: "id" },
+    {
+      label: "Full Name",
+      type: "TextField",
+      showInput: "true",
+      key: "fullName",
+    },
+    { label: "Email", type: "TextField", showInput: "true", key: "email" },
+    {
+      label: "Phone Number",
+      type: "TextField",
+      showInput: "true",
+      key: "phoneNumber",
+    },
+    {
+      label: "Password",
+      type: "TextField",
+      showInput: "false",
+      key: "password",
+    },
+    {
+      label: "Degree",
+      type: "Select",
+      showInput: "true",
+      options: [
+        "Computer Science",
+        // "Communications",
+        // "Information System",
+        // "Data Science",
+        // "Economy",
+        // "Laws",
+        // "Design and Innovation",
+        // "Business Administration",
+      ],
+      key: "degree",
+    },
+    {
+      label: "School Year",
+      type: "Select",
+      showInput: "true",
+      options: ["א", "ב", "ג", "ד"],
+      key: "schoolYear",
+    },
+  ];
 
   return (
     <Container maxWidth="lg" sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
@@ -142,21 +134,60 @@ export default function CustomizedInputsStyleOverrides() {
             marginBottom: "2rem",
           }}
         >
-          {labels.map(({type, label, key, options}) => {
-            const FieldComponent = FIELDS_MAP[type];
+          {labels.map((label) => {
             return (
-              <ThemeProvider theme={customTheme(outerTheme)} key={label}>
-                (
-                <FieldComponent
-                  options={options}
-                  label={label}
-                  onChange={(event) =>
-                    setFormValues((prev) => {
-                      return { ...prev, [key]: event.target.value };
-                    })
-                  }
-                />
-                )
+              <ThemeProvider theme={customTheme(outerTheme)} key={label.label}>
+                {label.type === "TextField" ? (
+                  label.label === "Password" ? (
+                    <TextField
+                      sx={{ textAlign: "center" }}
+                      label="Password"
+                      type="password"
+                      onChange={(event) =>
+                        setFormValues((prev) => {
+                          return { ...prev, password: event.target.value };
+                        })
+                      }
+                    />
+                  ) : (
+                    <TextField
+                      sx={{ textAlign: "center" }}
+                      label={label.label}
+                      type="text"
+                      onChange={(event) =>
+                        setFormValues((prev) => {
+                          return { ...prev, [label.key]: event.target.value };
+                        })
+                      }
+                    />
+                  )
+                ) : (
+                  <FormControl fullWidth>
+                    <InputLabel
+                      id={label.label}
+                      sx={{ color: "#B2BAC2 !important" }}
+                    >
+                      {label.label}
+                    </InputLabel>
+                    <Select
+                      labelId={label.label}
+                      onChange={(event) =>
+                        setFormValues((prev) => {
+                          return { ...prev, [label.key]: event.target.value };
+                        })
+                      }
+                      sx={{ color: "white" }}
+                      value={label.value}
+                      label={label.label}
+                    >
+                      {label.options.map((option) => (
+                        <MenuItem value={option} key={option}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
               </ThemeProvider>
             );
           })}
@@ -164,6 +195,12 @@ export default function CustomizedInputsStyleOverrides() {
         <Grid container sx={{ display: "flex", justifyContent: "center" }}>
           <Grid xs={12} md={6}>
             <Button
+              variant="contained"
+              className={css["cta-btn"]}
+              sx={{
+                ...btnStyle,
+                marginTop: "1rem",
+              }}
               onClick={() =>
                 addUser({
                   formValues,
