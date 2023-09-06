@@ -1,12 +1,15 @@
 import * as React from "react";
 
 import { Container, AppBar, Box, Toolbar, Typography } from "@mui/material";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 import css from "./style.module.css";
 
 export default function DenseAppBar() {
   return (
-    <Box>
+    <Box display={'flex'} alignItems="center">
       <AppBar position="static" sx={{ backgroundColor: "#222222" }}>
         <Container maxWidth="xl">
           <Toolbar variant="dense">
@@ -25,6 +28,11 @@ export default function DenseAppBar() {
             >
               Colman<span className={css["text-yellow"]}>Dev</span>Club
             </Typography>
+            <Box sx={{ display: "flex" }} gap="0.5rem">
+              <GitHubIcon />
+              <InstagramIcon />
+              <LinkedInIcon />
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>
