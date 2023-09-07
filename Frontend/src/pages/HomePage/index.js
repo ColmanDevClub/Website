@@ -54,18 +54,18 @@ const index = () => {
 
           <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid xs={12} md={6} lg={4}>
-              <Button
-                variant="contained"
-                className={css["cta-btn"]}
-                sx={btnStyle}
+              <Link
+                to="/Signup"
+                style={{ textDecoration: "none", color: "black" }}
               >
-                <Link
-                  to="/Signup"
-                  style={{ textDecoration: "none", color: "black" }}
+                <Button
+                  variant="contained"
+                  className={css["cta-btn"]}
+                  sx={btnStyle}
                 >
                   להרשמה לחצו כאן
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </Grid>
           </Grid>
         </div>
