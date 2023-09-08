@@ -2,15 +2,15 @@ import React from "react";
 
 import { Grid } from "@mui/material";
 
-import Card from "../../components/Card";
+import DefaultCard from "../../components/Card";
 
-const CardList = ({ cards }) => {
+const CardList = ({ cards, CardComponent = DefaultCard }) => {
   return (
     <Grid container>
       {cards.map((card) => {
         return (
           <Grid
-            key={card.title}
+            key={card}
             xs={12}
             md={6}
             lg={4}
@@ -20,7 +20,7 @@ const CardList = ({ cards }) => {
               display: "flex",
             }}
           >
-            <Card {...card} />
+            <CardComponent {...card} />
           </Grid>
         );
       })}

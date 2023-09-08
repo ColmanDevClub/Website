@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function MemberCard({ card }) {
+export default function MemberCard({ profileImage, name, about, linkedin }) {
   return (
     <Card
       sx={{
@@ -26,7 +26,7 @@ export default function MemberCard({ card }) {
         <CardMedia
           component="img"
           height="100%"
-          image={card.profileImage}
+          image={profileImage}
           alt="green iguana"
           sx={{
             borderRadius: "50px",
@@ -35,15 +35,15 @@ export default function MemberCard({ card }) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {card.name}
+            {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {card.about}
+            {about}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <Link to={card.linkedin} target="_blank">
+        <Link to={linkedin} target="_blank">
           <Button
             size="small"
             color="primary"

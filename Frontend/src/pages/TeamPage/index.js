@@ -6,8 +6,9 @@ import { Container, Typography } from "@mui/material";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 
-import MemberCardList from "../../components/MemberCardList";
 import css from "./style.module.css";
+import CardList from "../../components/CardList";
+import MemberCard from "../../components/MemberCard";
 
 const fetchTeamMembers = async () => {
   const collectionRef = collection(db, "team");
@@ -45,7 +46,7 @@ export default function TeamPage() {
           textAlign: "center",
         }}
       >
-        <MemberCardList cards={cards} />
+        <CardList cards={cards} CardComponent={MemberCard} />
       </Container>
     </>
   );
