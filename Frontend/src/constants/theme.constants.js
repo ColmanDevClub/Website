@@ -1,0 +1,1 @@
+export const DARK_WHITE = '#E0E3E7';
