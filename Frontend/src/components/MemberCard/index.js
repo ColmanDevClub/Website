@@ -27,11 +27,11 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
           alt={`${name} image`}
           style={{
             borderRadius: "50%",
-            outline: "0.75rem solid white",
+            border: "0.75rem solid white",
             width: '100%',
             height: '100%',
-            maxHeight: "11rem",
-            maxWidth: "11rem",
+            maxHeight: "12rem",
+            maxWidth: "12rem",
             marginLeft: "auto",
             marginRight: "auto",
           }}
