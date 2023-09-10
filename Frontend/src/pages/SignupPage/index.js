@@ -18,6 +18,13 @@ import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import css from "./style.module.css";
 import { btnStyle } from "../../generic/CustomStyle";
 import { addUser } from "../../firebase/firebase-config";
+import {
+  emailValidation,
+  idValidation,
+  numberValidation,
+  selectionValidation,
+  stringValidation,
+} from "../../utils";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -67,19 +74,33 @@ export default function CustomizedInputsStyleOverrides() {
   const [formValues, setFormValues] = React.useState({});
 
   const labels = [
-    { label: "ID", type: "TextField", showInput: "true", key: "id" },
+    {
+      label: "ID",
+      type: "TextField",
+      showInput: "true",
+      key: "id",
+      validator: idValidation,
+    },
     {
       label: "Full Name",
       type: "TextField",
       showInput: "true",
       key: "fullName",
+      validator: stringValidation,
     },
-    { label: "Email", type: "TextField", showInput: "true", key: "email" },
+    {
+      label: "Email",
+      type: "TextField",
+      showInput: "true",
+      key: "email",
+      validator: emailValidation,
+    },
     {
       label: "Phone Number",
       type: "TextField",
       showInput: "true",
       key: "phoneNumber",
+      validator: numberValidation,
     },
     {
       label: "Password",
@@ -102,6 +123,7 @@ export default function CustomizedInputsStyleOverrides() {
         // "Business Administration",
       ],
       key: "degree",
+      validator: selectionValidation,
     },
     {
       label: "School Year",
@@ -109,6 +131,7 @@ export default function CustomizedInputsStyleOverrides() {
       showInput: "true",
       options: ["א", "ב", "ג", "ד"],
       key: "schoolYear",
+      validator: selectionValidation,
     },
   ];
 
@@ -154,11 +177,11 @@ export default function CustomizedInputsStyleOverrides() {
                       sx={{ textAlign: "center" }}
                       label={label.label}
                       type="text"
-                      onChange={(event) =>
+                      onChange={(event) => {
                         setFormValues((prev) => {
                           return { ...prev, [label.key]: event.target.value };
-                        })
-                      }
+                        });
+                      }}
                     />
                   )
                 ) : (
