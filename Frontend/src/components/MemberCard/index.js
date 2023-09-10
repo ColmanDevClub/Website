@@ -61,7 +61,7 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
           >
             {about}
           </Typography>
-          <Link to={linkedin} target='_blank'>
+          <Link to={linkedin} target='_blank' style={{textDecoration: 'none'}}>
             <Button sx={{ color: "#F6C927", marginTop: "1rem" }}>
               LinkedIn
             </Button>
