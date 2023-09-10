@@ -4,55 +4,68 @@ import { Link } from "react-router-dom";
 
 import {
   Button,
-  CardActionArea,
-  CardActions,
-  Card,
-  CardContent,
-  CardMedia,
   Typography,
+  Box,
 } from "@mui/material";
 
 export default function MemberCard({ profileImage, name, about, linkedin }) {
   return (
-    <Card
-      sx={{
-        maxWidth: 230,
-        maxHeight: 700,
-        borderRadius: "50px",
-        boxShadow: "0px 5px 5px 1px white",
-      }}
-    >
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="100%"
-          image={profileImage}
-          alt="green iguana"
-          sx={{
-            borderRadius: "50px",
-            objectFit: "contain",
+    <>
+      <Box
+        sx={{
+          border: "1px solid #F6C927",
+          borderRadius: "0.625rem",
+          padding: "2rem 3rem",
+          width: "100%",
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <img
+          src={profileImage}
+          alt={`${name} image`}
+          style={{
+            borderRadius: "50%",
+            outline: "0.75rem solid white",
+            maxHeight: "11rem",
+            maxWidth: "11rem",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+        <div
+          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+        >
+          <Typography
+            component="h3"
+            sx={{
+              marginTop: "1.25rem",
+              fontSize: "1.5rem",
+              fontWeight: "600",
+              color: "#F6C927",
+            }}
+          >
             {name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            component="p"
+            sx={{
+              marginTop: "0.25rem",
+              fontSize: "1.1rem",
+              flex: "1",
+              color: "#888888",
+            }}
+          >
             {about}
           </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <Link to={linkedin} target="_blank">
-          <Button
-            size="small"
-            color="primary"
-            sx={{ textTransform: "capitalize" }}
-          >
-            LinkedIn
-          </Button>
-        </Link>
-      </CardActions>
-    </Card>
+          <Link to={linkedin} target='_blank'>
+            <Button sx={{ color: "#F6C927", marginTop: "1rem" }}>
+              LinkedIn
+            </Button>
+          </Link>
+        </div>
+      </Box>
+    </>
   );
 }
