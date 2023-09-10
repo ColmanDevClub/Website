@@ -1,8 +1,10 @@
+import { Button } from "@mui/material";
+
 import css from "./Button.module.css";
 
 import { btnStyle } from "./Button.constants";
 
-const Button = ({ children, onClick }) => {
+const ButtonWrapper = ({ children, onClick }) => {
   return (
     <Button
       variant="contained"
@@ -18,4 +20,4 @@ const Button = ({ children, onClick }) => {
   );
 };
 
-export default Button;
+export default ButtonWrapper;
