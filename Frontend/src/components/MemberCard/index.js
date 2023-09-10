@@ -15,7 +15,7 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
         sx={{
           border: "1px solid #F6C927",
           borderRadius: "0.625rem",
-          padding: "2rem 3rem",
+          padding: "2rem",
           width: "100%",
           position: "relative",
           display: "flex",
@@ -28,6 +28,8 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
           style={{
             borderRadius: "50%",
             outline: "0.75rem solid white",
+            width: '100%',
+            height: '100%',
             maxHeight: "11rem",
             maxWidth: "11rem",
             marginLeft: "auto",
