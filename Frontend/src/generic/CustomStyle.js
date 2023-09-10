@@ -10,5 +10,4 @@ const btnStyle = {
   textTransform: "none",
   width: "100%",
 };
-
 export { btnStyle };

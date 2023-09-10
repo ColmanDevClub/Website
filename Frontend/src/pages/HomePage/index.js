@@ -5,6 +5,8 @@ import { Container, Grid} from "@mui/material";
 
 import Button from "../../components/common/Button";
 
+import { btnStyle } from "../../generic/CustomStyle";
+
 import CardList from "../../components/CardList";
 
 import css from "./style.module.css";
@@ -58,9 +60,18 @@ const HomePage = () => {
 
           <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid xs={12} md={6} lg={4}>
-              <Button onClick={() => navigate("/Signup")}>
-                להרשמה לחצו כאן
-              </Button>
+              <Link
+                to="/Signup"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <Button
+                  variant="contained"
+                  className={css["cta-btn"]}
+                  sx={btnStyle}
+                >
+                  להרשמה לחצו כאן
+                </Button>
+              </Link>
             </Grid>
           </Grid>
         </div>
