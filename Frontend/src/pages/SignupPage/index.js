@@ -146,7 +146,6 @@ export default function CustomizedInputsStyleOverrides() {
             const FieldComponent = FIELDS_MAP[type];
             return (
               <ThemeProvider theme={customTheme(outerTheme)} key={label}>
-                (
                 <FieldComponent
                   options={options}
                   label={label}
@@ -156,7 +155,6 @@ export default function CustomizedInputsStyleOverrides() {
                     })
                   }
                 />
-                )
               </ThemeProvider>
             );
           })}

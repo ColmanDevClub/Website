@@ -1,5 +1,4 @@
-import { FormControl, MenuItem, Select } from "@mui/base";
-import { InputLabel } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const FormSelectField = ({ label, onChange, options }) => {
   return (
