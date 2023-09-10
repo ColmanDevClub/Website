@@ -56,7 +56,7 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
               marginTop: "0.25rem",
               fontSize: "1.1rem",
               flex: "1",
-              color: "#888888",
+              color: "#999999",
             }}
           >
             {about}
