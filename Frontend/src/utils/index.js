@@ -5,6 +5,7 @@ const emailValidation = (email) => {
 };
 
 const stringValidation = (name) => {
+  if (name.length < 3) return false;
   const nameValidation = /^[a-zA-Z\s]+$/;
   return nameValidation.test(name);
 };

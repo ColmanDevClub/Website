@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {
   Button,
   Container,
@@ -7,12 +6,10 @@ import {
   Grid,
   InputLabel,
   Typography,
-  MenuItem,
   Select,
   Box,
   TextField,
 } from "@mui/material";
-import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 
 import css from "./style.module.css";
@@ -53,13 +50,13 @@ const customTheme = (outerTheme) =>
             borderColor: "var(--TextField-brandBorderColor)",
           },
           root: {
-            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+            [`&:hover .MuiOutlinedInput-notchedOutline`]: {
               borderColor: "var(--TextField-brandBorderHoverColor)",
             },
-            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+            [`&.Mui-focused .MuiOutlinedInput-notchedOutline`]: {
               borderColor: "var(--TextField-brandBorderFocusedColor)",
             },
-            color: "white", // Add this line to set text color to white,
+            color: "white",
             backgroundColor: "#222222",
           },
         },
@@ -69,9 +66,8 @@ const customTheme = (outerTheme) =>
 
 export default function CustomizedInputsStyleOverrides() {
   const outerTheme = useTheme();
-  // const [degree, setDegree] = React.useState("");
-  // const [schoolYear, setSchoolYear] = React.useState("");
   const [formValues, setFormValues] = React.useState({});
+  const [validationErrors, setValidationErrors] = React.useState({});
 
   const labels = [
     {
@@ -112,16 +108,7 @@ export default function CustomizedInputsStyleOverrides() {
       label: "Degree",
       type: "Select",
       showInput: "true",
-      options: [
-        "Computer Science",
-        // "Communications",
-        // "Information System",
-        // "Data Science",
-        // "Economy",
-        // "Laws",
-        // "Design and Innovation",
-        // "Business Administration",
-      ],
+      options: ["Computer Science"],
       key: "degree",
       validator: selectionValidation,
     },
@@ -134,6 +121,14 @@ export default function CustomizedInputsStyleOverrides() {
       validator: selectionValidation,
     },
   ];
+
+  const inputHandler = (label, value) => {
+    const isValid = label.validator(value);
+    setValidationErrors((prevErrors) => ({
+      ...prevErrors,
+      [label.key]: !isValid,
+    }));
+  };
 
   return (
     <Container maxWidth="lg" sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
@@ -166,22 +161,29 @@ export default function CustomizedInputsStyleOverrides() {
                       sx={{ textAlign: "center" }}
                       label="Password"
                       type="password"
-                      onChange={(event) =>
-                        setFormValues((prev) => {
-                          return { ...prev, password: event.target.value };
-                        })
-                      }
+                      onChange={(event) => {
+                        setFormValues((prev) => ({
+                          ...prev,
+                          password: event.target.value,
+                        }));
+                      }}
+                      error={validationErrors[label.key]} // Set error prop
                     />
                   ) : (
                     <TextField
-                      sx={{ textAlign: "center" }}
+                      sx={{
+                        textAlign: "center",
+                      }}
                       label={label.label}
                       type="text"
                       onChange={(event) => {
-                        setFormValues((prev) => {
-                          return { ...prev, [label.key]: event.target.value };
-                        });
+                        setFormValues((prev) => ({
+                          ...prev,
+                          [label.key]: event.target.value,
+                        }));
+                        inputHandler(label, event.target.value);
                       }}
+                      error={validationErrors[label.key]} // Set error prop
                     />
                   )
                 ) : (
@@ -195,20 +197,15 @@ export default function CustomizedInputsStyleOverrides() {
                     <Select
                       labelId={label.label}
                       onChange={(event) =>
-                        setFormValues((prev) => {
-                          return { ...prev, [label.key]: event.target.value };
-                        })
+                        setFormValues((prev) => ({
+                          ...prev,
+                          [label.key]: event.target.value,
+                        }))
                       }
                       sx={{ color: "white" }}
-                      value={label.value}
+                      value={formValues[label.key] || ""}
                       label={label.label}
-                    >
-                      {label.options.map((option) => (
-                        <MenuItem value={option} key={option}>
-                          {option}
-                        </MenuItem>
-                      ))}
-                    </Select>
+                    />
                   </FormControl>
                 )}
               </ThemeProvider>
