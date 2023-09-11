@@ -150,11 +150,13 @@ export default function CustomizedInputsStyleOverrides() {
       inputHandler(label[0].validator, key, formValues[key]);
     }
 
+    if (Object.keys(validationErrors).length === 0) return;
     for (const key in validationErrors) {
       if (validationErrors[key]) {
         return;
       }
     }
+
     addUser({ formValues });
     navigate("/");
   };
