@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { useNavigate } from "react-router";
+
 import { Container, Grid, Typography, Box } from "@mui/material";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
@@ -19,7 +21,7 @@ import {
   selectionValidation,
   stringValidation,
 } from "../../utils";
-import { useNavigate } from "react-router";
+import TransitionsModal from "../../components/Modal";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -133,6 +135,7 @@ export default function CustomizedInputsStyleOverrides() {
   const outerTheme = useTheme();
   const navigate = useNavigate();
 
+  const [openModal, setOpenModal] = React.useState(false);
   const [formValues, setFormValues] = React.useState({});
   const [validationErrors, setValidationErrors] = React.useState({});
 
@@ -145,6 +148,7 @@ export default function CustomizedInputsStyleOverrides() {
   }, []);
 
   const onSignupHandler = () => {
+    setOpenModal(true);
     for (const key in formValues) {
       const label = labels.filter((label) => label.key === key);
       inputHandler(label[0].validator, key, formValues[key]);
@@ -158,7 +162,6 @@ export default function CustomizedInputsStyleOverrides() {
     }
 
     addUser({ formValues });
-    navigate("/");
   };
 
   const inputHandler = (validator, key, value) => {
@@ -212,6 +215,16 @@ export default function CustomizedInputsStyleOverrides() {
         </Box>
         <Grid container sx={{ display: "flex", justifyContent: "center" }}>
           <Grid xs={12} md={6}>
+            <TransitionsModal
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              title={"נרשמת בהצלחה"}
+              closeOnOverlay={true}
+              btnText="מעבר לדף הבית"
+              btnOnClick={() => navigate("/")}
+            >
+              <Typography sx={{ mt: 2 }}>הינך מועבר לדף הבית</Typography>
+            </TransitionsModal>
             <Button onClick={onSignupHandler}>Signup</Button>
           </Grid>
         </Grid>
