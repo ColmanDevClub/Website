@@ -6,10 +6,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
+import TeamPage from "./pages/TeamPage";
 import Footer from "./components/Footer";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Navbar />}>
         <Route index element={<HomePage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/team" element={<TeamPage />} />
       </Route>
     </>
   )
@@ -24,8 +31,11 @@ const router = createBrowserRouter(
 const App = () => {
   return (
     <>
-      <RouterProvider router={router} />
-      <Footer />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <Footer />
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      </QueryClientProvider>
     </>
   );
 };

@@ -21,6 +21,7 @@ import css from "./style.module.css";
 const pages = [
   { title: "Home", path: "/" },
   { title: "SignUp", path: "/Signup" },
+  { title: "OurTeam", path: "/team" },
 ];
 
 function ResponsiveAppBar() {
