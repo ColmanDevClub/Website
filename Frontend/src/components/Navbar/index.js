@@ -20,6 +20,7 @@ import css from "./style.module.css";
 
 const pages = [
   { title: "Home", path: "/" },
+  { title: "OurTeam", path: "/team" },
   { title: "SignUp", path: "/Signup" },
 ];
 

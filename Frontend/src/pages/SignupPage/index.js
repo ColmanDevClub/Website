@@ -1,23 +1,17 @@
 import * as React from "react";
 
-import {
-  Button,
-  Container,
-  FormControl,
-  Grid,
-  InputLabel,
-  Typography,
-  MenuItem,
-  Select,
-  Box,
-  TextField,
-} from "@mui/material";
+import { Container, Grid, Typography, Box } from "@mui/material";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 
+import { DARK_WHITE } from "../../constants/theme.constants";
+
 import css from "./style.module.css";
-import { btnStyle } from "../../generic/CustomStyle";
 import { addUser } from "../../firebase/firebase-config";
+import FormInputField from "../../components/common/FormInputField";
+import FormSelectField from "../../components/common/FormSelectField";
+import Button from "../../components/common/Button";
+
 import {
   emailValidation,
   idValidation,
@@ -25,6 +19,7 @@ import {
   selectionValidation,
   stringValidation,
 } from "../../utils";
+import { useNavigate } from "react-router";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -35,7 +30,8 @@ const customTheme = (outerTheme) =>
       MuiTextField: {
         styleOverrides: {
           root: {
-            "--TextField-brandBorderColor": "#E0E3E7",
+            "--TextField-brandBorderColor": DARK_WHITE,
+            "--TextField-brandBorderHoverColor": "#B2BAC2",
             "--TextField-brandBorderFocusedColor": "#6F7E8C",
             "& label.Mui-focused": {
               color: "var(--TextField-brandBorderHoverColor)",
@@ -58,7 +54,7 @@ const customTheme = (outerTheme) =>
             [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: "var(--TextField-brandBorderFocusedColor)",
             },
-            color: "white", // Add this line to set text color to white,
+            color: "white",
             backgroundColor: "#222222",
           },
         },
@@ -66,80 +62,108 @@ const customTheme = (outerTheme) =>
     },
   });
 
+const labels = [
+  {
+    label: "ID",
+    type: "TextField",
+    showInput: "true",
+    key: "id",
+    validator: idValidation,
+  },
+  {
+    label: "Full Name",
+    type: "TextField",
+    showInput: "true",
+    key: "fullName",
+    validator: stringValidation,
+  },
+  {
+    label: "Email",
+    type: "TextField",
+    showInput: "true",
+    key: "email",
+    validator: emailValidation,
+  },
+  {
+    label: "Phone Number",
+    type: "TextField",
+    showInput: "true",
+    key: "phoneNumber",
+    validator: numberValidation,
+  },
+  // {
+  //   label: "Password",
+  //   type: "TextField",
+  //   showInput: "false",
+  //   key: "password",
+  // },
+  {
+    label: "Degree",
+    type: "Select",
+    showInput: "true",
+    options: [
+      "Computer Science",
+      // "Communications",
+      "Information System",
+      "Data Science",
+      // "Economy",
+      // "Laws",
+      // "Design and Innovation",
+      // "Business Administration",
+    ],
+    key: "degree",
+    validator: selectionValidation,
+  },
+  {
+    label: "School Year",
+    type: "Select",
+    showInput: "true",
+    options: ["א", "ב", "ג", "ד"],
+    key: "schoolYear",
+    validator: selectionValidation,
+  },
+];
+
+const FIELDS_MAP = {
+  TextField: FormInputField,
+  Select: FormSelectField,
+};
+
 export default function CustomizedInputsStyleOverrides() {
   const outerTheme = useTheme();
-  // const [degree, setDegree] = React.useState("");
-  // const [schoolYear, setSchoolYear] = React.useState("");
+  const navigate = useNavigate();
+
   const [formValues, setFormValues] = React.useState({});
   const [validationErrors, setValidationErrors] = React.useState({});
 
-  const labels = [
-    {
-      label: "ID",
-      type: "TextField",
-      showInput: "true",
-      key: "id",
-      validator: idValidation,
-    },
-    {
-      label: "Full Name",
-      type: "TextField",
-      showInput: "true",
-      key: "fullName",
-      validator: stringValidation,
-    },
-    {
-      label: "Email",
-      type: "TextField",
-      showInput: "true",
-      key: "email",
-      validator: emailValidation,
-    },
-    {
-      label: "Phone Number",
-      type: "TextField",
-      showInput: "true",
-      key: "phoneNumber",
-      validator: numberValidation,
-    },
-    {
-      label: "Password",
-      type: "TextField",
-      showInput: "false",
-      key: "password",
-    },
-    {
-      label: "Degree",
-      type: "Select",
-      showInput: "true",
-      options: [
-        "Computer Science",
-        // "Communications",
-        // "Information System",
-        // "Data Science",
-        // "Economy",
-        // "Laws",
-        // "Design and Innovation",
-        // "Business Administration",
-      ],
-      key: "degree",
-      validator: selectionValidation,
-    },
-    {
-      label: "School Year",
-      type: "Select",
-      showInput: "true",
-      options: ["א", "ב", "ג", "ד"],
-      key: "schoolYear",
-      validator: selectionValidation,
-    },
-  ];
+  React.useEffect(() => {
+    labels.forEach((label) =>
+      setFormValues((prev) => {
+        return { ...prev, [label.key]: "" };
+      })
+    );
+  }, []);
 
-  const inputHandler = (label, value) => {
-    const isValid = value.length === 0 ? undefined : label.validator(value);
+  const onSignupHandler = () => {
+    for (const key in formValues) {
+      const label = labels.filter((label) => label.key === key);
+      inputHandler(label[0].validator, key, formValues[key]);
+    }
+
+    for (const key in validationErrors) {
+      if (validationErrors[key]) {
+        return;
+      }
+    }
+    addUser({ formValues });
+    navigate("/");
+  };
+
+  const inputHandler = (validator, key, value) => {
+    const isValid = validator(value);
     setValidationErrors((prevErrors) => ({
       ...prevErrors,
-      [label.key]: isValid === undefined ? isValid : !isValid,
+      [key]: !isValid,
     }));
   };
 
@@ -165,87 +189,28 @@ export default function CustomizedInputsStyleOverrides() {
             marginBottom: "2rem",
           }}
         >
-          {labels.map((label) => {
+          {labels.map(({ type, label, key, options, validator }) => {
+            const FieldComponent = FIELDS_MAP[type];
             return (
-              <ThemeProvider theme={customTheme(outerTheme)} key={label.label}>
-                {label.type === "TextField" ? (
-                  label.label === "Password" ? (
-                    <TextField
-                      sx={{ textAlign: "center" }}
-                      label="Password"
-                      type="password"
-                      onChange={(event) => {
-                        setFormValues((prev) => {
-                          return { ...prev, password: event.target.value };
-                        });
-                      }}
-                      error={validationErrors[label.key]}
-                    />
-                  ) : (
-                    <TextField
-                      sx={{
-                        textAlign: "center",
-                      }}
-                      label={label.label}
-                      type="text"
-                      onChange={(event) => {
-                        setFormValues((prev) => {
-                          return { ...prev, [label.key]: event.target.value };
-                        });
-                        inputHandler(label, event.target.value);
-                      }}
-                      error={validationErrors[label.key]}
-                    />
-                  )
-                ) : (
-                  <FormControl fullWidth>
-                    <InputLabel
-                      id={label.label}
-                      sx={{ color: "#B2BAC2 !important" }}
-                    >
-                      {label.label}
-                    </InputLabel>
-                    <Select
-                      labelId={label.label}
-                      onChange={(event) => {
-                        setFormValues((prev) => {
-                          return { ...prev, [label.key]: event.target.value };
-                        });
-                        inputHandler(label, event.target.value);
-                      }}
-                      sx={{ color: "white" }}
-                      value={label.value}
-                      label={label.label}
-                    >
-                      {label.options.map((option) => (
-                        <MenuItem value={option} key={option}>
-                          {option}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                )}
+              <ThemeProvider theme={customTheme(outerTheme)} key={label}>
+                <FieldComponent
+                  options={options}
+                  label={label}
+                  onChange={(event) => {
+                    setFormValues((prev) => {
+                      return { ...prev, [key]: event.target.value };
+                    });
+                    inputHandler(validator, key, event.target.value);
+                  }}
+                  error={validationErrors[key]}
+                />
               </ThemeProvider>
             );
           })}
         </Box>
         <Grid container sx={{ display: "flex", justifyContent: "center" }}>
           <Grid xs={12} md={6}>
-            <Button
-              variant="contained"
-              className={css["cta-btn"]}
-              sx={{
-                ...btnStyle,
-                marginTop: "1rem",
-              }}
-              onClick={() =>
-                addUser({
-                  formValues,
-                })
-              }
-            >
-              Signup
-            </Button>
+            <Button onClick={onSignupHandler}>Signup</Button>
           </Grid>
         </Grid>
       </div>

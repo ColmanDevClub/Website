@@ -1,13 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-import { Container, Grid, Button } from "@mui/material";
+import { Container, Grid} from "@mui/material";
+
+import Button from "../../components/common/Button";
+
+import { btnStyle } from "../../generic/CustomStyle";
 
 import CardList from "../../components/CardList";
-import { btnStyle } from "../../generic/CustomStyle";
+
 import css from "./style.module.css";
 
-const index = () => {
+const HomePage = () => {
+  const navigate = useNavigate();
+
   const card = {
     image_url: `https://picsum.photos/200`,
     title: `כותרת`,
@@ -82,4 +88,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default HomePage;
