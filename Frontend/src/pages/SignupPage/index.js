@@ -148,7 +148,7 @@ export default function CustomizedInputsStyleOverrides() {
   }, []);
 
   const onSignupHandler = () => {
-    setOpenModal(true);
+    setOpenModal(true); //TODO --> after testing, move to line 163.
     for (const key in formValues) {
       const label = labels.filter((label) => label.key === key);
       inputHandler(label[0].validator, key, formValues[key]);
