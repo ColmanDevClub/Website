@@ -1,18 +1,21 @@
 import validator from "validator";
 
 const emailValidation = (email) => {
-  return validator.isEmail(email);
+  const test = validator.trim(email);
+  return validator.isEmail(test);
 };
 
 const stringValidation = (name) => {
   if (name.length < 3) return false;
+  const newName = validator.trim(name);
   const nameValidation = /^[a-zA-Z\s]+$/;
-  return nameValidation.test(name);
+  return nameValidation.test(newName);
 };
 
 const numberValidation = (number) => {
-  if (!validator.isNumeric(number)) return false;
-  if (number.length !== 10) return false;
+  const newNumber = validator.trim(number);
+  if (!validator.isNumeric(newNumber)) return false;
+  if (newNumber.length !== 10) return false;
   return true;
 };
 
