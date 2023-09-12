@@ -91,7 +91,11 @@ function ResponsiveAppBar() {
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
                       <NavLink
-                        style={{ textDecoration: "none", color: "black" }}
+                        style={{
+                          textDecoration: "none",
+                          color: "black",
+                          letterSpacing: "1px",
+                        }}
                         to={page.path}
                       >
                         {page.title}
