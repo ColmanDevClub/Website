@@ -3,26 +3,17 @@ import React from "react";
 import { useQuery } from "react-query";
 import { Container, Typography } from "@mui/material";
 
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/firebase-config";
+import { fetchData } from "../../firebase/firebase-utils";
 
 import css from "./style.module.css";
 import CardList from "../../components/CardList";
 import MemberCard from "../../components/MemberCard";
-
-const fetchTeamMembers = async () => {
-  const collectionRef = collection(db, "team");
-  const querySnapshot = await getDocs(collectionRef);
-
-  const fetchedCards = querySnapshot.docs.map((doc) => doc.data());
-  return fetchedCards;
-};
+import Loader from "../../components/common/Loader";
 
 export default function TeamPage() {
-  const { data: cards, isLoading } = useQuery("teamMembers", fetchTeamMembers);
-
-  if (isLoading) return <div>Loading...</div>;
-
+  const { data: cards, isLoading } = useQuery("teamMembers", () =>
+    fetchData("team")
+  );
   return (
     <>
       <Typography
@@ -46,7 +37,9 @@ export default function TeamPage() {
           textAlign: "center",
         }}
       >
-        <CardList cards={cards} CardComponent={MemberCard} />
+        <Loader isLoading={isLoading}>
+          <CardList cards={cards} CardComponent={MemberCard} />
+        </Loader>
       </Container>
     </>
   );

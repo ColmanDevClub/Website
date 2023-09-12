@@ -1,9 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-const FormSelectField = ({ label, onChange, options }) => {
+const FormSelectField = ({ label, onChange, options, error }) => {
   return (
-    <FormControl fullWidth>
-      <InputLabel id={label} sx={{ color: "#B2BAC2 !important" }}>
+    <FormControl fullWidth error={error}>
+      <InputLabel id={label} sx={{ color: "#B2BAC2" }}>
         {label}
       </InputLabel>
       <Select

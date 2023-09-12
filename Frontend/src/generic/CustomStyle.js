@@ -10,4 +10,19 @@ const btnStyle = {
   textTransform: "none",
   width: "100%",
 };
-export { btnStyle };
+
+const modalStyle = {
+  position: "absolute",
+  color: "white", // Text color
+  backgroundColor: "#111111", // Background color
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  border: "2px solid #000",
+  boxShadow: "24px", // Added "px" for boxShadow
+  padding: "16px", // Added padding instead of "p"
+  direction: "rtl",
+};
+
+export { btnStyle, modalStyle };

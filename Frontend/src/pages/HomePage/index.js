@@ -1,26 +1,24 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 
-import { Container, Grid} from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import Button from "../../components/common/Button";
-
-import { btnStyle } from "../../generic/CustomStyle";
-
 import CardList from "../../components/CardList";
+import Loader from "../../components/common/Loader";
+
+import { fetchData } from "../../firebase/firebase-utils";
+import { btnStyle } from "../../generic/CustomStyle";
 
 import css from "./style.module.css";
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  const { data: cards, isLoading } = useQuery("projects", () =>
+    fetchData("projects")
+  );
 
-  const card = {
-    image_url: `https://picsum.photos/200`,
-    title: `כותרת`,
-    description: `תיאור הפרוייקט`,
-    github_url: `https://www.github.com`,
-    website_url: `https://www.google.com`,
-  };
+  const navigate = useNavigate();
 
   return (
     <div style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
@@ -60,18 +58,14 @@ const HomePage = () => {
 
           <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid xs={12} md={6} lg={4}>
-              <Link
-                to="/Signup"
-                style={{ textDecoration: "none", color: "black" }}
+              <Button
+                variant="contained"
+                className={css["cta-btn"]}
+                sx={btnStyle}
+                onClick={() => navigate("/Signup")}
               >
-                <Button
-                  variant="contained"
-                  className={css["cta-btn"]}
-                  sx={btnStyle}
-                >
-                  להרשמה לחצו כאן
-                </Button>
-              </Link>
+                להרשמה לחצו כאן
+              </Button>
             </Grid>
           </Grid>
         </div>
@@ -80,8 +74,14 @@ const HomePage = () => {
       <Container maxWidth="xl">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h1 className={css["title"]}>פרוייקטי המועדון</h1>
-          {/*After using Firebase, we just need to fetch all the project into array and send to the cardlist. */}
-          <CardList cards={[card, card, card]} />
+          <Loader isLoading={isLoading}>
+            <CardList cards={cards} />
+          </Loader>
+          {/* {isLoading ? (
+            <Typography sx={{ textAlign: "center" }}>Loading..</Typography>
+          ) : (
+            <CardList cards={cards} />
+          )} */}
         </div>
       </Container>
     </div>
