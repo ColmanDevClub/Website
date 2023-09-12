@@ -2,10 +2,11 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import Button from "../../components/common/Button";
 import CardList from "../../components/CardList";
+import Loader from "../../components/common/Loader";
 
 import { fetchData } from "../../firebase/firebase-utils";
 import { btnStyle } from "../../generic/CustomStyle";
@@ -73,11 +74,14 @@ const HomePage = () => {
       <Container maxWidth="xl">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h1 className={css["title"]}>פרוייקטי המועדון</h1>
-          {isLoading ? (
+          <Loader isLoading={isLoading}>
+            <CardList cards={cards} />
+          </Loader>
+          {/* {isLoading ? (
             <Typography sx={{ textAlign: "center" }}>Loading..</Typography>
           ) : (
             <CardList cards={cards} />
-          )}
+          )} */}
         </div>
       </Container>
     </div>

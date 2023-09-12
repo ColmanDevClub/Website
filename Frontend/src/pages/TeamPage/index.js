@@ -8,12 +8,12 @@ import { fetchData } from "../../firebase/firebase-utils";
 import css from "./style.module.css";
 import CardList from "../../components/CardList";
 import MemberCard from "../../components/MemberCard";
+import Loader from "../../components/common/Loader";
 
 export default function TeamPage() {
   const { data: cards, isLoading } = useQuery("teamMembers", () =>
     fetchData("team")
   );
-  if (isLoading) return <div>Loading...</div>;
   return (
     <>
       <Typography
@@ -37,7 +37,9 @@ export default function TeamPage() {
           textAlign: "center",
         }}
       >
-        <CardList cards={cards} CardComponent={MemberCard} />
+        <Loader isLoading={isLoading}>
+          <CardList cards={cards} CardComponent={MemberCard} />
+        </Loader>
       </Container>
     </>
   );
