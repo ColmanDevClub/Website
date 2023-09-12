@@ -1,13 +1,9 @@
 import * as React from "react";
 
 import { Link } from "react-router-dom";
-import {LinkedIn} from '@mui/icons-material';
+import { LinkedIn as LinkedInIcon } from "@mui/icons-material";
 
-import {
-  Button,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Button, Typography, Box } from "@mui/material";
 
 export default function MemberCard({ profileImage, name, about, linkedin }) {
   return (
@@ -29,8 +25,8 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
           style={{
             borderRadius: "50%",
             border: "0.75rem solid white",
-            width: '100%',
-            height: '100%',
+            width: "100%",
+            height: "100%",
             maxHeight: "12rem",
             maxWidth: "12rem",
             marginLeft: "auto",
@@ -62,9 +58,13 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
           >
             {about}
           </Typography>
-          <Link to={linkedin} target='_blank' style={{textDecoration: 'none'}}>
+          <Link
+            to={linkedin}
+            target="_blank"
+            style={{ textDecoration: "none" }}
+          >
             <Button sx={{ color: "#F6C927", marginTop: "1rem" }}>
-              <LinkedIn fontSize="large"/>
+              <LinkedInIcon fontSize="large" />
             </Button>
           </Link>
         </div>
