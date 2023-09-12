@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -20,7 +19,7 @@ export default function MediaCard({
   return (
     <Card sx={{ width: "100%", maxWidth: "600px", direction: "rtl" }}>
       <CardMedia
-        sx={{ height: 225 }}
+        sx={{ height: 225, objectFit: "cover" }}
         image={image_url}
         title={`${title} image`}
       />
@@ -33,12 +32,12 @@ export default function MediaCard({
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "end" }}>
-        <Link to={github_url}>
-          <Button size="small">Github</Button>
-        </Link>
-        <Link to={website_url} hrefLang="">
-          <Button size="small">Website</Button>
-        </Link>
+        <a href={github_url} target="_blank" rel="noreferrer">
+          {github_url ? <Button size="small">Github</Button> : undefined}
+        </a>
+        <a href={website_url} target="_blank" rel="noreferrer">
+          {website_url ? <Button size="small">Website</Button> : undefined}
+        </a>
       </CardActions>
     </Card>
   );

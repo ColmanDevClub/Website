@@ -9,7 +9,7 @@ import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { DARK_WHITE } from "../../constants/theme.constants";
 
 import css from "./style.module.css";
-import { addUser } from "../../firebase/firebase-config";
+import { addUser } from "../../firebase/firebase-utils";
 import FormInputField from "../../components/common/FormInputField";
 import FormSelectField from "../../components/common/FormSelectField";
 import Button from "../../components/common/Button";
