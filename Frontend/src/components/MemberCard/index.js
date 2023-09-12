@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Link } from "react-router-dom";
+import {LinkedIn} from '@mui/icons-material';
 
 import {
   Button,
@@ -63,7 +64,7 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
           </Typography>
           <Link to={linkedin} target='_blank' style={{textDecoration: 'none'}}>
             <Button sx={{ color: "#F6C927", marginTop: "1rem" }}>
-              LinkedIn
+              <LinkedIn fontSize="large"/>
             </Button>
           </Link>
         </div>
