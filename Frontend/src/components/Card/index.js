@@ -7,6 +7,8 @@ import {
   CardMedia,
   Button,
   Typography,
+  Tooltip,
+  IconButton
 } from "@mui/material";
 
 import {
@@ -38,18 +40,22 @@ export default function MediaCard({
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "end" }}>
         <a href={github_url} target="_blank" rel="noreferrer">
+          <Tooltip title="Check out the project on GitHub">
           {github_url ? (
-            <Button size="small" sx={{ color: "black" }}>
-              <GitHubIcon sx={{ fontSize: "2rem" }} />
-            </Button>
+            <IconButton sx={{color: 'black'}}>
+              <GitHubIcon sx={{ fontSize: "1.75rem" }} />
+            </IconButton>
           ) : undefined}
+          </Tooltip>
         </a>
         <a href={website_url} target="_blank" rel="noreferrer">
+          <Tooltip title="Check out the project on web">
           {website_url ? (
-            <Button size="small">
-              <LanguageIcon sx={{ fontSize: "2rem", color: "black" }} />
-            </Button>
+            <IconButton sx={{color: 'black'}}>
+              <LanguageIcon sx={{ fontSize: "1.75rem"}} />
+            </IconButton>
           ) : undefined}
+          </Tooltip>
         </a>
       </CardActions>
     </Card>
