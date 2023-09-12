@@ -1,10 +1,7 @@
 import * as React from "react";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+
+import { Backdrop, Box, Modal, Fade, Typography, Button } from "@mui/material";
+
 import { modalStyle } from "../../generic/CustomStyle";
 
 export default function TransitionsModal({
@@ -37,7 +34,11 @@ export default function TransitionsModal({
               {title}
             </Typography>
             {children}
-            <Button variant="contained" onClick={btnOnClick}>
+            <Button
+              variant="contained"
+              onClick={btnOnClick}
+              sx={{ marginTop: "1rem" }}
+            >
               {btnText}
             </Button>
           </Box>

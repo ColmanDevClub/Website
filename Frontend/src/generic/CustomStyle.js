@@ -13,15 +13,16 @@ const btnStyle = {
 
 const modalStyle = {
   position: "absolute",
-  color: "#111111",
+  color: "white", // Text color
+  backgroundColor: "#111111", // Background color
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "background.paper",
   border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
+  boxShadow: "24px", // Added "px" for boxShadow
+  padding: "16px", // Added padding instead of "p"
   direction: "rtl",
 };
+
 export { btnStyle, modalStyle };

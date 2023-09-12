@@ -219,11 +219,11 @@ export default function CustomizedInputsStyleOverrides() {
               openModal={openModal}
               setOpenModal={setOpenModal}
               title={"נרשמת בהצלחה"}
-              closeOnOverlay={true}
+              closeOnOverlay={false}
               btnText="מעבר לדף הבית"
               btnOnClick={() => navigate("/")}
             >
-              <Typography sx={{ mt: 2 }}>הינך מועבר לדף הבית</Typography>
+              {/* <Typography sx={{ mt: 2 }}>הינך מועבר לדף הבית</Typography> */}
             </TransitionsModal>
             <Button onClick={onSignupHandler}>Signup</Button>
           </Grid>
