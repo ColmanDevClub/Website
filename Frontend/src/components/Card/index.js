@@ -9,7 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import {GitHub} from '@mui/icons-material/';
+import {
+  GitHub as GitHubIcon,
+  Language as LanguageIcon,
+} from "@mui/icons-material/";
 
 export default function MediaCard({
   image_url,
@@ -35,10 +38,18 @@ export default function MediaCard({
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "end" }}>
         <a href={github_url} target="_blank" rel="noreferrer">
-          {github_url ? <Button size="small" sx={{color: 'black'}}><GitHub sx={{fontSize: '2rem'}}/></Button> : undefined}
+          {github_url ? (
+            <Button size="small" sx={{ color: "black" }}>
+              <GitHubIcon sx={{ fontSize: "2rem" }} />
+            </Button>
+          ) : undefined}
         </a>
         <a href={website_url} target="_blank" rel="noreferrer">
-          {website_url ? <Button size="small">Website</Button> : undefined}
+          {website_url ? (
+            <Button size="small">
+              <LanguageIcon sx={{ fontSize: "2rem", color: "black" }} />
+            </Button>
+          ) : undefined}
         </a>
       </CardActions>
     </Card>
