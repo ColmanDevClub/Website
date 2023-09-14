@@ -14,7 +14,6 @@ import { btnStyle } from "../../generic/CustomStyle";
 import css from "./style.module.css";
 import EntranceAnimation from "../../components/EntranceAnimation";
 import SplashAnimation from "../../components/SplashAnimation";
-import AppearanceAnimation from "../../components/AppearanceAnimation";
 
 const HomePage = () => {
   const { data: cards, isLoading } = useQuery("projects", () =>
@@ -42,7 +41,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <img src="/programmers1.png"></img>
+            <img src="/programmers1.png" className={css["programmers-img"]} alt="programmers"></img>
 
             <SplashAnimation>
               <Grid
