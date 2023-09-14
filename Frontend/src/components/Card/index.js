@@ -8,6 +8,7 @@ import {
   Typography,
   Tooltip,
   IconButton,
+  Chip,
 } from "@mui/material";
 
 import {
@@ -38,7 +39,12 @@ export default function MediaCard({
           {description}
         </Typography>
       </CardContent>
-      <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
+      <CardActions
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <Typography
           sx={{ fontSize: "0.7rem" }}
           gutterBottom
@@ -47,7 +53,7 @@ export default function MediaCard({
         >
           {language
             ? language.map((lang) => {
-                return `${lang} #`;
+                return <Chip sx={{ marginRight: "0.3rem" }} label={lang} />;
               })
             : ""}
         </Typography>
