@@ -9,6 +9,8 @@ import css from "./style.module.css";
 import CardList from "../../components/CardList";
 import MemberCard from "../../components/MemberCard";
 import Loader from "../../components/common/Loader";
+import SplashAnimation from "../../components/SplashAnimation";
+import EntranceAnimation from "../../components/EntranceAnimation";
 
 export default function TeamPage() {
   const { data: cards, isLoading } = useQuery("teamMembers", () =>
@@ -38,7 +40,9 @@ export default function TeamPage() {
         }}
       >
         <Loader isLoading={isLoading}>
+          <EntranceAnimation>
           <CardList cards={cards} CardComponent={MemberCard} />
+          </EntranceAnimation>
         </Loader>
       </Container>
     </>

@@ -22,6 +22,7 @@ import {
   stringValidation,
 } from "../../utils";
 import TransitionsModal from "../../components/Modal";
+import EntranceAnimation from "../../components/EntranceAnimation";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -173,62 +174,67 @@ export default function CustomizedInputsStyleOverrides() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
-      <Typography
-        variant="h3"
-        sx={{
-          textAlign: "center",
-          marginBottom: "2rem",
-          fontWeight: 700,
-          letterSpacing: "4px",
-        }}
+    <EntranceAnimation>
+      <Container
+        maxWidth="lg"
+        sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}
       >
-        <span className={css["text-yellow"]}>Sign</span>up
-      </Typography>
-      <div className={css["container"]}>
-        <Box
+        <Typography
+          variant="h3"
           sx={{
-            display: "grid",
-            gridTemplateColumns: { sm: "1fr", md: "1fr 1fr" },
-            gap: 2,
+            textAlign: "center",
             marginBottom: "2rem",
+            fontWeight: 700,
+            letterSpacing: "4px",
           }}
         >
-          {labels.map(({ type, label, key, options, validator }) => {
-            const FieldComponent = FIELDS_MAP[type];
-            return (
-              <ThemeProvider theme={customTheme(outerTheme)} key={label}>
-                <FieldComponent
-                  options={options}
-                  label={label}
-                  onChange={(event) => {
-                    setFormValues((prev) => {
-                      return { ...prev, [key]: event.target.value };
-                    });
-                    inputHandler(validator, key, event.target.value);
-                  }}
-                  error={validationErrors[key]}
-                />
-              </ThemeProvider>
-            );
-          })}
-        </Box>
-        <Grid container sx={{ display: "flex", justifyContent: "center" }}>
-          <Grid xs={12} md={6}>
-            <TransitionsModal
-              openModal={openModal}
-              setOpenModal={setOpenModal}
-              title={"נרשמת בהצלחה"}
-              closeOnOverlay={false}
-              btnText="מעבר לדף הבית"
-              btnOnClick={() => navigate("/")}
-            >
-              {/* <Typography sx={{ mt: 2 }}>הינך מועבר לדף הבית</Typography> */}
-            </TransitionsModal>
-            <Button onClick={onSignupHandler}>Signup</Button>
+          <span className={css["text-yellow"]}>Sign</span>up
+        </Typography>
+        <div className={css["container"]}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { sm: "1fr", md: "1fr 1fr" },
+              gap: 2,
+              marginBottom: "2rem",
+            }}
+          >
+            {labels.map(({ type, label, key, options, validator }) => {
+              const FieldComponent = FIELDS_MAP[type];
+              return (
+                <ThemeProvider theme={customTheme(outerTheme)} key={label}>
+                  <FieldComponent
+                    options={options}
+                    label={label}
+                    onChange={(event) => {
+                      setFormValues((prev) => {
+                        return { ...prev, [key]: event.target.value };
+                      });
+                      inputHandler(validator, key, event.target.value);
+                    }}
+                    error={validationErrors[key]}
+                  />
+                </ThemeProvider>
+              );
+            })}
+          </Box>
+          <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+            <Grid xs={12} md={6}>
+              <TransitionsModal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                title={"נרשמת בהצלחה"}
+                closeOnOverlay={false}
+                btnText="מעבר לדף הבית"
+                btnOnClick={() => navigate("/")}
+              >
+                {/* <Typography sx={{ mt: 2 }}>הינך מועבר לדף הבית</Typography> */}
+              </TransitionsModal>
+              <Button onClick={onSignupHandler}>Signup</Button>
+            </Grid>
           </Grid>
-        </Grid>
-      </div>
-    </Container>
+        </div>
+      </Container>
+    </EntranceAnimation>
   );
 }
