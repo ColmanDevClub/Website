@@ -41,7 +41,11 @@ const HomePage = () => {
               </p>
             </div>
 
-            <img src="/programmers1.png" className={css["programmers-img"]} alt="programmers"></img>
+            <img
+              src="/programmers1.png"
+              className={css["programmers-img"]}
+              alt="programmers"
+            ></img>
 
             <SplashAnimation>
               <Grid
@@ -98,16 +102,17 @@ const HomePage = () => {
         </div>
 
         <Container maxWidth="xl">
-          <div style={{ display: "flex", flexDirection: "column", marginTop: "2rem" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: "2rem",
+            }}
+          >
             <h1 className={css["title"]}>פרוייקטי המועדון</h1>
             <Loader isLoading={isLoading}>
               <CardList cards={cards} />
             </Loader>
-            {/* {isLoading ? (
-            <Typography sx={{ textAlign: "center" }}>Loading..</Typography>
-          ) : (
-            <CardList cards={cards} />
-          )} */}
           </div>
         </Container>
       </div>
