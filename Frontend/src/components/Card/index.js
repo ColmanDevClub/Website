@@ -53,7 +53,12 @@ export default function MediaCard({
         >
           {language
             ? language.map((lang) => {
-                return <Chip sx={{ marginRight: "0.3rem" }} label={lang} />;
+                return (
+                  <Chip
+                    sx={{ marginRight: "0.3rem", marginTop: "0.3rem" }}
+                    label={lang}
+                  />
+                );
               })
             : ""}
         </Typography>
