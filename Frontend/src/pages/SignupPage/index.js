@@ -20,7 +20,7 @@ import { addUser } from "../../firebase/firebase-utils";
 import FormInputField from "../../components/common/FormInputField";
 import FormSelectField from "../../components/common/FormSelectField";
 import Button from "../../components/common/Button";
-
+import MuiButton from "@mui/material/Button";
 import { allRules, labels } from "../../data";
 import TransitionsModal from "../../components/Modal";
 import EntranceAnimation from "../../components/EntranceAnimation";
@@ -164,9 +164,14 @@ export default function CustomizedInputsStyleOverrides() {
                   label="מאשר"
                 />
               </TransitionsModal>
-              <Button onClick={() => setOpenRulesModal((prev) => !prev)}>
+              <MuiButton
+                variant="outlined"
+                color={rules ? "success" : "inherit"}
+                onClick={() => setOpenRulesModal((prev) => !prev)}
+                sx={{ fontWeight: 500 }}
+              >
                 תקנון
-              </Button>
+              </MuiButton>
               <Button onClick={onSignupHandler}>Signup</Button>
             </Grid>
           </Grid>
