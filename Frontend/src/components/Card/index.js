@@ -51,29 +51,31 @@ export default function MediaCard({
           variant="p"
           component="div"
         >
-          {language
-            ? language.map((lang) => {
-                return <Chip sx={{ marginRight: "0.3rem" }} label={lang} />;
-              })
-            : ""}
+          {language &&
+            language.map((lang) => (
+              <Chip
+                sx={{ marginRight: "0.3rem", marginTop: "0.3rem" }}
+                label={lang}
+              />
+            ))}
         </Typography>
         <div>
           <a href={github_url} target="_blank" rel="noreferrer">
             <Tooltip title="Check out the project on GitHub">
-              {github_url ? (
+              {github_url && (
                 <IconButton sx={{ color: "black" }}>
                   <GitHubIcon sx={{ fontSize: "1.75rem" }} />
                 </IconButton>
-              ) : undefined}
+              )}
             </Tooltip>
           </a>
           <a href={website_url} target="_blank" rel="noreferrer">
             <Tooltip title="Check out the project on web">
-              {website_url ? (
+              {website_url && (
                 <IconButton sx={{ color: "black" }}>
                   <LanguageIcon sx={{ fontSize: "1.75rem" }} />
                 </IconButton>
-              ) : undefined}
+              )}
             </Tooltip>
           </a>
         </div>

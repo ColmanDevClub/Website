@@ -2,130 +2,28 @@ import * as React from "react";
 
 import { useNavigate } from "react-router";
 
-import { Container, Grid, Typography, Box } from "@mui/material";
-import { outlinedInputClasses } from "@mui/material/OutlinedInput";
-import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
+import {
+  Container,
+  Grid,
+  Typography,
+  Box,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
 
-import { DARK_WHITE } from "../../constants/theme.constants";
+import { ThemeProvider, useTheme } from "@mui/material/styles";
+
+import { customTheme } from "../../constants/theme.constants";
 
 import css from "./style.module.css";
 import { addUser } from "../../firebase/firebase-utils";
 import FormInputField from "../../components/common/FormInputField";
 import FormSelectField from "../../components/common/FormSelectField";
 import Button from "../../components/common/Button";
-
-import {
-  emailValidation,
-  idValidation,
-  numberValidation,
-  selectionValidation,
-  stringValidation,
-} from "../../utils";
+import MuiButton from "@mui/material/Button";
+import { allRules, labels } from "../../data";
 import TransitionsModal from "../../components/Modal";
 import EntranceAnimation from "../../components/EntranceAnimation";
-
-const customTheme = (outerTheme) =>
-  createTheme({
-    palette: {
-      mode: outerTheme.palette.mode,
-    },
-    components: {
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            "--TextField-brandBorderColor": DARK_WHITE,
-            "--TextField-brandBorderHoverColor": "#B2BAC2",
-            "--TextField-brandBorderFocusedColor": "#6F7E8C",
-            "& label.Mui-focused": {
-              color: "var(--TextField-brandBorderHoverColor)",
-            },
-            "& label": {
-              color: "var(--TextField-brandBorderHoverColor)",
-            },
-          },
-        },
-      },
-      MuiOutlinedInput: {
-        styleOverrides: {
-          notchedOutline: {
-            borderColor: "var(--TextField-brandBorderColor)",
-          },
-          root: {
-            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: "var(--TextField-brandBorderHoverColor)",
-            },
-            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: "var(--TextField-brandBorderFocusedColor)",
-            },
-            color: "white",
-            backgroundColor: "#222222",
-          },
-        },
-      },
-    },
-  });
-
-const labels = [
-  {
-    label: "ID",
-    type: "TextField",
-    showInput: "true",
-    key: "id",
-    validator: idValidation,
-  },
-  {
-    label: "Full Name",
-    type: "TextField",
-    showInput: "true",
-    key: "fullName",
-    validator: stringValidation,
-  },
-  {
-    label: "Email",
-    type: "TextField",
-    showInput: "true",
-    key: "email",
-    validator: emailValidation,
-  },
-  {
-    label: "Phone Number",
-    type: "TextField",
-    showInput: "true",
-    key: "phoneNumber",
-    validator: numberValidation,
-  },
-  // {
-  //   label: "Password",
-  //   type: "TextField",
-  //   showInput: "false",
-  //   key: "password",
-  // },
-  {
-    label: "Degree",
-    type: "Select",
-    showInput: "true",
-    options: [
-      "Computer Science",
-      // "Communications",
-      "Information System",
-      "Data Science",
-      // "Economy",
-      // "Laws",
-      // "Design and Innovation",
-      // "Business Administration",
-    ],
-    key: "degree",
-    validator: selectionValidation,
-  },
-  {
-    label: "School Year",
-    type: "Select",
-    showInput: "true",
-    options: ["א", "ב", "ג", "ד"],
-    key: "schoolYear",
-    validator: selectionValidation,
-  },
-];
 
 const FIELDS_MAP = {
   TextField: FormInputField,
@@ -139,6 +37,8 @@ export default function CustomizedInputsStyleOverrides() {
   const [openModal, setOpenModal] = React.useState(false);
   const [formValues, setFormValues] = React.useState({});
   const [validationErrors, setValidationErrors] = React.useState({});
+  const [openRulesModal, setOpenRulesModal] = React.useState(false);
+  const [rules, setRules] = React.useState(false);
 
   React.useEffect(() => {
     labels.forEach((label) =>
@@ -160,6 +60,7 @@ export default function CustomizedInputsStyleOverrides() {
         return;
       }
     }
+    if (!rules) return;
 
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
     addUser({ formValues });
@@ -227,10 +128,52 @@ export default function CustomizedInputsStyleOverrides() {
                 closeOnOverlay={false}
                 btnText="מעבר לדף הבית"
                 btnOnClick={() => navigate("/")}
+              ></TransitionsModal>
+              <TransitionsModal
+                openModal={openRulesModal}
+                setOpenModal={setOpenRulesModal}
+                title={"תקנון"}
+                closeOnOverlay={true}
               >
-                {/* <Typography sx={{ mt: 2 }}>הינך מועבר לדף הבית</Typography> */}
+                {allRules.map((rule) => {
+                  return (
+                    <Typography
+                      sx={{
+                        textAlign: "start",
+                        marginBottom: "0.5rem",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {" "}
+                      * {rule}
+                    </Typography>
+                  );
+                })}
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      defaultChecked={rules ? true : false}
+                      onClick={() => {
+                        setRules((prev) => !prev);
+                        setOpenRulesModal(false);
+                      }}
+                      sx={{ color: "white" }}
+                    />
+                  }
+                  label="מאשר"
+                />
               </TransitionsModal>
-              <Button onClick={onSignupHandler}>Signup</Button>
+              <MuiButton
+                variant="outlined"
+                color={rules ? "success" : "inherit"}
+                onClick={() => setOpenRulesModal((prev) => !prev)}
+                sx={{ fontWeight: 500 }}
+              >
+                תקנון
+              </MuiButton>
+              <Button disabled={!rules} onClick={onSignupHandler}>
+                Signup
+              </Button>
             </Grid>
           </Grid>
         </div>

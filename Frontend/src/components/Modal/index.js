@@ -30,17 +30,24 @@ export default function TransitionsModal({
       >
         <Fade in={openModal}>
           <Box sx={modalStyle}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
+            <Typography
+              id="transition-modal-title"
+              variant="h6"
+              component="h2"
+              sx={{ fontWeight: "bold" }}
+            >
               {title}
             </Typography>
             {children}
-            <Button
-              variant="contained"
-              onClick={btnOnClick}
-              sx={{ marginTop: "1rem" }}
-            >
-              {btnText}
-            </Button>
+            {btnText && (
+              <Button
+                variant="contained"
+                onClick={btnOnClick}
+                sx={{ marginTop: "1rem" }}
+              >
+                {btnText}
+              </Button>
+            )}
           </Box>
         </Fade>
       </Modal>

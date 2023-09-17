@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Container, Grid } from "@mui/material";
 
 import Button from "../../components/common/Button";
-import CardList from "../../components/CardList";
+// import CardList from "../../components/CardList";
 import Loader from "../../components/common/Loader";
 
 import { fetchData } from "../../firebase/firebase-utils";
@@ -14,6 +14,8 @@ import { btnStyle } from "../../generic/CustomStyle";
 import css from "./style.module.css";
 import EntranceAnimation from "../../components/EntranceAnimation";
 import SplashAnimation from "../../components/SplashAnimation";
+import Carousel from "../../components/Carousel";
+import DefaultCard from "../../components/Card";
 
 const HomePage = () => {
   const { data: cards, isLoading } = useQuery("projects", () =>
@@ -21,6 +23,12 @@ const HomePage = () => {
   );
 
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    }
+  }, [])
 
   return (
     <EntranceAnimation>
@@ -41,7 +49,11 @@ const HomePage = () => {
               </p>
             </div>
 
-            <img src="/programmers1.png" className={css["programmers-img"]} alt="programmers"></img>
+            <img
+              src="/programmers1.png"
+              className={css["programmers-img"]}
+              alt="programmers"
+            ></img>
 
             <SplashAnimation>
               <Grid
@@ -98,16 +110,41 @@ const HomePage = () => {
         </div>
 
         <Container maxWidth="xl">
-          <div style={{ display: "flex", flexDirection: "column", marginTop: "2rem" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: "2rem",
+              padding: "0 2rem"
+            }}
+          >
             <h1 className={css["title"]}>פרוייקטי המועדון</h1>
             <Loader isLoading={isLoading}>
-              <CardList cards={cards} />
+              {/* <CardList cards={cards} /> */}
+              {cards && (
+                <Carousel
+                  settings={{
+                    slidesToScroll: 1,
+                    slidesToShow: 3,
+                    infinite: true,
+                    responsive: [
+                      {
+                        breakpoint: 500,
+                        settings: { slidesToScroll: 1, slidesToShow: 1 },
+                      },
+                    ],
+                  }}
+                >
+                  {cards.map((card) => {
+                    return (
+                      <div className={css["slide"]}>
+                        <DefaultCard {...card} />
+                      </div>
+                    );
+                  })}
+                </Carousel>
+              )}
             </Loader>
-            {/* {isLoading ? (
-            <Typography sx={{ textAlign: "center" }}>Loading..</Typography>
-          ) : (
-            <CardList cards={cards} />
-          )} */}
           </div>
         </Container>
       </div>
