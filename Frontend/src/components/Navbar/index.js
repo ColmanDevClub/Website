@@ -20,8 +20,8 @@ import css from "./style.module.css";
 
 const pages = [
   { title: "Home", path: "/" },
-  { title: "OurTeam", path: "/team" },
-  { title: "SignUp", path: "/Signup" },
+  { title: "The Team", path: "/team" },
+  { title: "Sign Up", path: "/Signup" },
 ];
 
 function ResponsiveAppBar() {
@@ -88,20 +88,17 @@ function ResponsiveAppBar() {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <NavLink
-                        style={{
-                          textDecoration: "none",
-                          color: "black",
-                          letterSpacing: "1px",
-                        }}
-                        to={page.path}
-                      >
-                        {page.title}
-                      </NavLink>
-                    </Typography>
-                  </MenuItem>
+                  <NavLink
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                    }}
+                    to={page.path}
+                  >
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{page.title}</Typography>
+                    </MenuItem>
+                  </NavLink>
                 ))}
               </Menu>
             </Box>

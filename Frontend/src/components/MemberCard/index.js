@@ -6,6 +6,8 @@ import { LinkedIn as LinkedInIcon } from "@mui/icons-material";
 import { Button, Typography, Box } from "@mui/material";
 
 export default function MemberCard({ profileImage, name, about, linkedin }) {
+  const [isImgLoaded, setIsImgLoaded] = React.useState(false)
+
   return (
     <>
       <Box
@@ -15,13 +17,14 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
           padding: "2rem",
           width: "100%",
           position: "relative",
-          display: "flex",
+          display: isImgLoaded ? "flex" : "none",
           flexDirection: "column",
         }}
       >
         <img
           src={profileImage}
-          alt={`${name} image`}
+          alt={name}
+          onLoad={() => setIsImgLoaded(true)}
           style={{
             borderRadius: "50%",
             border: "0.75rem solid white",

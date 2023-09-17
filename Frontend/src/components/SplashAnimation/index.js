@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const cardVariants = {
     offscreen: {
-      y: 500,
+      y: 1200,
     },
     onscreen: {
       y: 0,
@@ -11,7 +11,7 @@ const cardVariants = {
       transition: {
         type: "spring",
         bounce: 0.4,
-        duration: 0.8
+        duration: 0.7
       }
     }
   };

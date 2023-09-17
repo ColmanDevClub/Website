@@ -49,11 +49,11 @@
     rgba(246, 201, 39, 1) 100%,
     rgba(34, 34, 34, 0) 100%
   ); */
-  background:linear-gradient(306deg,rgba(246, 201, 39, 1) , rgb(180, 142, 5));
+  background: linear-gradient(306deg, rgba(246, 201, 39, 1), rgb(180, 142, 5));
 }
 
 .additional-content p {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .content p {
@@ -62,4 +62,8 @@
 
 .cta-btn:hover {
   filter: brightness(0.75) !important;
+}
+
+.slide {
+  padding: 0 1rem;
 }

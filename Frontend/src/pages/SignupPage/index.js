@@ -142,7 +142,6 @@ export default function CustomizedInputsStyleOverrides() {
                         textAlign: "start",
                         marginBottom: "0.5rem",
                         fontWeight: 700,
-                        letterSpacing: "4px",
                       }}
                     >
                       {" "}
@@ -172,7 +171,9 @@ export default function CustomizedInputsStyleOverrides() {
               >
                 תקנון
               </MuiButton>
-              <Button disabled={!rules} onClick={onSignupHandler}>Signup</Button>
+              <Button disabled={!rules} onClick={onSignupHandler}>
+                Signup
+              </Button>
             </Grid>
           </Grid>
         </div>
