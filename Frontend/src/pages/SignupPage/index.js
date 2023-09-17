@@ -49,20 +49,22 @@ export default function CustomizedInputsStyleOverrides() {
   }, []);
 
   const onSignupHandler = () => {
-    for (const key in formValues) {
-      const label = labels.filter((label) => label.key === key);
-      inputHandler(label[0].validator, key, formValues[key]);
-    }
+    const validationState = labels.reduce((obj, { key, validator }) => {
+      obj[key] = !validator(formValues[key]);
+      return obj;
+    }, {});
+    setValidationErrors(validationState);
 
-    if (Object.keys(validationErrors).length === 0) return;
-    for (const key in validationErrors) {
-      if (validationErrors[key]) {
+    if (Object.keys(validationState).length === 0) return;
+    for (const key in validationState) {
+      if (validationState[key]) {
         return;
       }
     }
     if (!rules) return;
 
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
+    
     addUser({ formValues });
   };
 
