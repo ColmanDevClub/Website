@@ -55,7 +55,7 @@ export const labels = [
     label: "Course of study",
     type: "Select",
     showInput: "true",
-    options: ["בוקר", "ערב"],
+    options: ["בוקר", "ערב", "אלצ", "אבצ"],
     key: "courseOfStudy",
     validator: selectionValidation,
   },
