@@ -4,7 +4,7 @@ import css from "./Button.module.css";
 
 import { btnStyle } from "./Button.constants";
 
-const ButtonWrapper = ({ children, onClick }) => {
+const ButtonWrapper = ({ children, onClick, ...rest }) => {
   return (
     <Button
       variant="contained"
@@ -14,6 +14,7 @@ const ButtonWrapper = ({ children, onClick }) => {
         marginTop: "1rem",
       }}
       onClick={onClick}
+      {...rest}
     >
       {children}
     </Button>

@@ -172,7 +172,7 @@ export default function CustomizedInputsStyleOverrides() {
               >
                 תקנון
               </MuiButton>
-              <Button onClick={onSignupHandler}>Signup</Button>
+              <Button disabled={!rules} onClick={onSignupHandler}>Signup</Button>
             </Grid>
           </Grid>
         </div>

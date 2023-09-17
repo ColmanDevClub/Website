@@ -36,11 +36,11 @@ export const labels = [
     validator: numberValidation,
   },
   {
-    label: "Degree",
+    label: "Field of Study",
     type: "Select",
     showInput: "true",
     options: ["מדעי המחשב", "מערכות מידע", "מדעי הנתונים"],
-    key: "degree",
+    key: "fieldOfStudy",
     validator: selectionValidation,
   },
   {
@@ -52,11 +52,11 @@ export const labels = [
     validator: selectionValidation,
   },
   {
-    label: "Course of study",
+    label: "Program",
     type: "Select",
     showInput: "true",
     options: ["בוקר", "ערב", "אלצ", "אבצ"],
-    key: "courseOfStudy",
+    key: "program",
     validator: selectionValidation,
   },
   {
