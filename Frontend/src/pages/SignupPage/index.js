@@ -57,6 +57,10 @@ export default function CustomizedInputsStyleOverrides() {
 
     if (Object.keys(validationState).length === 0) return;
     for (const key in validationState) {
+      if (key === "experienceDetails" && formValues["experience"] !== "כן") {
+        validationState[key] = validationState["experience"];
+      }
+
       if (validationState[key]) {
         return;
       }
@@ -64,7 +68,7 @@ export default function CustomizedInputsStyleOverrides() {
     if (!rules) return;
 
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
-    
+
     addUser({ formValues });
   };
 
@@ -104,7 +108,8 @@ export default function CustomizedInputsStyleOverrides() {
           >
             {labels.map(({ type, label, key, options, validator }) => {
               const FieldComponent = FIELDS_MAP[type];
-              return (
+              return label === "Experience Details" &&
+                formValues["experience"] !== "כן" ? null : (
                 <ThemeProvider theme={customTheme(outerTheme)} key={label}>
                   <FieldComponent
                     options={options}

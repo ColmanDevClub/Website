@@ -15,7 +15,7 @@ export const labels = [
     validator: idValidation,
   },
   {
-    label: "Full Name",
+    label: "Full Name - (English)",
     type: "TextField",
     showInput: "true",
     key: "fullName",
@@ -66,6 +66,13 @@ export const labels = [
     options: ["כן", "לא"],
     key: "experience",
     validator: selectionValidation,
+  },
+  {
+    label: "Experience Details",
+    type: "TextField",
+    showInput: "true",
+    key: "experienceDetails",
+    validator: stringValidation,
   },
 ];
 
