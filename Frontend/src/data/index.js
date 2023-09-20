@@ -67,6 +67,13 @@ export const labels = [
     key: "experience",
     validator: selectionValidation,
   },
+  {
+    label: "Experience Details",
+    type: "TextField",
+    showInput: "true",
+    key: "experienceDetails",
+    validator: stringValidation,
+  },
 ];
 
 export const allRules = [

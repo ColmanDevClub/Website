@@ -104,7 +104,9 @@ export default function CustomizedInputsStyleOverrides() {
           >
             {labels.map(({ type, label, key, options, validator }) => {
               const FieldComponent = FIELDS_MAP[type];
+              console.log(formValues["experience"]);
               return (
+                label === "Experience Details" && formValues["experience"] !== "כן" ? null :
                 <ThemeProvider theme={customTheme(outerTheme)} key={label}>
                   <FieldComponent
                     options={options}
