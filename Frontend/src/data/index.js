@@ -15,7 +15,7 @@ export const labels = [
     validator: idValidation,
   },
   {
-    label: "Full Name",
+    label: "Full Name - (English)",
     type: "TextField",
     showInput: "true",
     key: "fullName",
