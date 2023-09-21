@@ -27,8 +27,8 @@ const HomePage = () => {
   React.useEffect(() => {
     window.onbeforeunload = function () {
       window.scrollTo(0, 0);
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <EntranceAnimation>
@@ -115,7 +115,7 @@ const HomePage = () => {
               display: "flex",
               flexDirection: "column",
               marginTop: "2rem",
-              padding: "0 2rem"
+              padding: "0 2rem",
             }}
           >
             <h1 className={css["title"]}>פרוייקטי המועדון</h1>
