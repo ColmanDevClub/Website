@@ -106,23 +106,30 @@ export default function CustomizedInputsStyleOverrides() {
               marginBottom: "2rem",
             }}
           >
-            {labels.map(({ type, label, key, options, validator }) => {
+            {labels.map(({ type, label, key, options, validator }, index) => {
               const FieldComponent = FIELDS_MAP[type];
               return label === "Experience Details" &&
                 formValues["experience"] !== "כן" ? null : (
-                <ThemeProvider theme={customTheme(outerTheme)} key={label}>
-                  <FieldComponent
-                    options={options}
-                    label={label}
-                    onChange={(event) => {
-                      setFormValues((prev) => {
-                        return { ...prev, [key]: event.target.value };
-                      });
-                      inputHandler(validator, key, event.target.value);
-                    }}
-                    error={validationErrors[key]}
-                  />
-                </ThemeProvider>
+                <EntranceAnimation
+                  animationDelay={
+                    label === "Experience Details" ? 0 : index * 0.2
+                  }
+                >
+                  <ThemeProvider theme={customTheme(outerTheme)} key={label}>
+                    <FieldComponent
+                      sx={{ width: "100%" }}
+                      options={options}
+                      label={label}
+                      onChange={(event) => {
+                        setFormValues((prev) => {
+                          return { ...prev, [key]: event.target.value };
+                        });
+                        inputHandler(validator, key, event.target.value);
+                      }}
+                      error={validationErrors[key]}
+                    />
+                  </ThemeProvider>
+                </EntranceAnimation>
               );
             })}
           </Box>
