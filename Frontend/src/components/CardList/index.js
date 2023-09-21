@@ -3,11 +3,16 @@ import React from "react";
 import { Grid } from "@mui/material";
 
 import DefaultCard from "../../components/Card";
+import DefaultAnimation from "../EntranceAnimation";
 
-const CardList = ({ cards, CardComponent = DefaultCard }) => {
+const CardList = ({
+  cards,
+  CardComponent = DefaultCard,
+  AnimationComponent = DefaultAnimation,
+}) => {
   return (
     <Grid container>
-      {cards.map((card) => {
+      {cards.map((card, index) => {
         return (
           <Grid
             key={card}
@@ -20,7 +25,12 @@ const CardList = ({ cards, CardComponent = DefaultCard }) => {
               display: "flex",
             }}
           >
-            <CardComponent {...card} />
+            <AnimationComponent
+              animationDelay={index * 0.1}
+              sx={{ justifyContent: "center", display: "flex", width: "100%" }}
+            >
+              <CardComponent {...card} />
+            </AnimationComponent>
           </Grid>
         );
       })}
