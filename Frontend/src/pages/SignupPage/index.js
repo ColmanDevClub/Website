@@ -2,14 +2,7 @@ import * as React from "react";
 
 import { useNavigate } from "react-router";
 
-import {
-  Container,
-  Grid,
-  Typography,
-  Box,
-  FormControlLabel,
-  Checkbox,
-} from "@mui/material";
+import { Container, Grid, Typography, Box, Checkbox } from "@mui/material";
 
 import { ThemeProvider, useTheme } from "@mui/material/styles";
 
@@ -20,7 +13,6 @@ import { addUser } from "../../firebase/firebase-utils";
 import FormInputField from "../../components/common/FormInputField";
 import FormSelectField from "../../components/common/FormSelectField";
 import Button from "../../components/common/Button";
-import MuiButton from "@mui/material/Button";
 import { allRules, labels } from "../../data";
 import TransitionsModal from "../../components/Modal";
 import EntranceAnimation from "../../components/EntranceAnimation";
@@ -53,6 +45,7 @@ export default function CustomizedInputsStyleOverrides() {
       obj[key] = !validator(formValues[key]);
       return obj;
     }, {});
+
     setValidationErrors(validationState);
 
     if (Object.keys(validationState).length === 0) return;
@@ -148,43 +141,48 @@ export default function CustomizedInputsStyleOverrides() {
                 setOpenModal={setOpenRulesModal}
                 title={"תקנון"}
                 closeOnOverlay={true}
+                btnText="סגור"
+                btnOnClick={() => setOpenRulesModal(false)}
               >
-                {allRules.map((rule) => {
-                  return (
-                    <Typography
-                      sx={{
-                        textAlign: "start",
-                        marginBottom: "0.5rem",
-                        fontWeight: 700,
-                      }}
-                    >
-                      {" "}
-                      * {rule}
-                    </Typography>
-                  );
-                })}
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      defaultChecked={rules ? true : false}
-                      onClick={() => {
-                        setRules((prev) => !prev);
-                        setOpenRulesModal(false);
-                      }}
-                      sx={{ color: "white" }}
-                    />
-                  }
-                  label="מאשר"
-                />
+                <ul>
+                  {allRules.map((rule) => {
+                    return <li>{rule}</li>;
+                  })}
+                </ul>
+                <Container
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                ></Container>
               </TransitionsModal>
-              <MuiButton
-                variant="outlined"
-                color={rules ? "success" : "inherit"}
-                onClick={() => setOpenRulesModal((prev) => !prev)}
-                sx={{ fontWeight: 500 }}
+              <Container
+                sx={{
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
-                תקנון
-              </MuiButton>
+                <Checkbox
+                  defaultChecked={rules ? true : false}
+                  onClick={() => {
+                    setRules((prev) => !prev);
+                    setOpenRulesModal(false);
+                  }}
+                  sx={{ color: "white" }}
+                />
+                <Typography>
+                  אני מאשר את תנאי{" "}
+                  <span
+                    className={css["terms"]}
+                    onClick={() => setOpenRulesModal((prev) => !prev)}
+                  >
+                    התקנון
+                  </span>
+                </Typography>
+              </Container>
               <Button disabled={!rules} onClick={onSignupHandler}>
                 Signup
               </Button>

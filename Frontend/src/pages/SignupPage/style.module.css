@@ -5,3 +5,16 @@
 .text-yellow {
   color: #f6c927;
 }
+
+.terms {
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+ul {
+  padding-right: 1rem;
+}
+
+li {
+  margin-top: 0.5rem;
+}
