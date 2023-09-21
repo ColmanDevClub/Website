@@ -1,9 +1,18 @@
 import * as React from "react";
 
-import { Backdrop, Box, Modal, Fade, Typography, Button } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  Modal,
+  Fade,
+  Typography,
+  Button,
+  Container,
+} from "@mui/material";
 
 import { modalStyle } from "../../generic/CustomStyle";
 
+import css from "./style.module.css";
 export default function TransitionsModal({
   children,
   openModal,
@@ -34,19 +43,27 @@ export default function TransitionsModal({
               id="transition-modal-title"
               variant="h6"
               component="h2"
-              sx={{ fontWeight: "bold" }}
+              sx={{ fontWeight: "bold", textDecoration: "underline" }}
             >
               {title}
             </Typography>
             {children}
             {btnText && (
-              <Button
-                variant="contained"
-                onClick={btnOnClick}
-                sx={{ marginTop: "1rem" }}
+              <Container
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                {btnText}
-              </Button>
+                <Button
+                  variant="contained"
+                  onClick={btnOnClick}
+                  className={css["button"]}
+                >
+                  {btnText}
+                </Button>
+              </Container>
             )}
           </Box>
         </Fade>
@@ -54,3 +71,19 @@ export default function TransitionsModal({
     </div>
   );
 }
+
+/*
+
+.closeModalButton {
+  background-color: #f6c927;
+  color: #222222;
+  font-weight: 900;
+  transition: 200ms ease-in-out;
+}
+
+.closeModalButton:hover {
+  background-color: #f6c927;
+  filter: brightness(0.85);
+}
+
+*/
