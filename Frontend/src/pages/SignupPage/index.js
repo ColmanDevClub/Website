@@ -13,7 +13,7 @@ import { addUser } from "../../firebase/firebase-utils";
 import FormInputField from "../../components/common/FormInputField";
 import FormSelectField from "../../components/common/FormSelectField";
 import Button from "../../components/common/Button";
-import { allRules, labels } from "../../data";
+import { allRules, errorMessages, labels } from "../../data";
 import TransitionsModal from "../../components/Modal";
 import EntranceAnimation from "../../components/EntranceAnimation";
 
@@ -122,6 +122,15 @@ export default function CustomizedInputsStyleOverrides() {
                       error={validationErrors[key]}
                     />
                   </ThemeProvider>
+                  <Typography
+                    sx={{
+                      textAlign: "start",
+                      color: "#f44336",
+                      direction: "rtl",
+                    }}
+                  >
+                    {validationErrors[key] ? errorMessages[key] : ""}
+                  </Typography>
                 </EntranceAnimation>
               );
             })}
