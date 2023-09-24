@@ -85,13 +85,13 @@ export const allRules = [
 ];
 
 export const errorMessages = {
-  id: "צריך תעודת זהות ישראלית קיימת.",
-  experienceDetails: "חייב להכיל תוכן.",
-  experience: "חייב לבחור ערך מהרשימה.",
-  program: "חייב לבחור ערך מהרשימה.",
-  schoolYear: "חייב לבחור ערך מהרשימה.",
-  fieldOfStudy: "חייב לבחור ערך מהרשימה.",
-  phoneNumber: "מספר פלאפון חייב להכיל 10 מספרים.",
-  email: "אימייל חייב להיות בפורמט של אימייל.",
-  fullName: "שם מלא חייב להיות באנגלית.",
+  id: "ID is not valid",
+  experienceDetails: "Required Field",
+  experience: "Required Field",
+  program: "Required Field",
+  schoolYear: "Required Field",
+  fieldOfStudy: "Required Field",
+  phoneNumber: "Phone number must contain 10 digits",
+  email: "Email is not valid",
+  fullName: "Name must be in English",
 };

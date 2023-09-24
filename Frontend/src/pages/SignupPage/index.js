@@ -126,7 +126,6 @@ export default function CustomizedInputsStyleOverrides() {
                     sx={{
                       textAlign: "start",
                       color: "#f44336",
-                      direction: "rtl",
                     }}
                   >
                     {validationErrors[key] ? errorMessages[key] : ""}
