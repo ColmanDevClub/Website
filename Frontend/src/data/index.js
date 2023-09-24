@@ -83,3 +83,15 @@ export const allRules = [
   "חובה להגיע לכל המפגשים ובזמן, חבר שיעדר יותר מפעמיים ללא סיבה מוצדקת בסמסטר יצא מהמועדון.",
   "יש לפנות במקרה הצורך לראש הצוות בכל בעיה אישית/צוותית על מנת לפתור את הבעיה על הצד הטוב ביותר.",
 ];
+
+export const errorMessages = {
+  id: "ID is not valid",
+  experienceDetails: "Required Field",
+  experience: "Required Field",
+  program: "Required Field",
+  schoolYear: "Required Field",
+  fieldOfStudy: "Required Field",
+  phoneNumber: "Phone number must contain 10 digits",
+  email: "Email is not valid",
+  fullName: "Name must be in English and must contain atleast 3 chars.",
+};
