@@ -119,28 +119,47 @@ function ResponsiveAppBar() {
             >
               Colman<span className={css["text-yellow"]}>Dev</span>Club
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <NavLink
-                  key={page.title}
-                  style={{ textDecoration: "none", color: "white" }}
-                  to={page.path}
-                >
-                  <Button
+            <Box
+              sx={{
+                justifyContent: "space-between",
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+              }}
+            >
+              <Box sx={{ display: "flex" }}>
+                {pages.map((page) => (
+                  <NavLink
                     key={page.title}
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      my: 2,
-                      color: "white",
-                      display: "block",
-                      textTransform: "none",
-                    }}
-                    className={page.path === pathname ? css["text-yellow"] : ""}
+                    style={{ textDecoration: "none", color: "white" }}
+                    to={page.path}
                   >
-                    {page.title}
-                  </Button>
-                </NavLink>
-              ))}
+                    <Button
+                      key={page.title}
+                      onClick={handleCloseNavMenu}
+                      sx={{
+                        my: 2,
+                        color: "white",
+                        display: "block",
+                        textTransform: "none",
+                      }}
+                      className={
+                        page.path === pathname ? css["text-yellow"] : ""
+                      }
+                    >
+                      {page.title}
+                    </Button>
+                  </NavLink>
+                ))}
+              </Box>
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  direction: "rtl",
+                }}
+              >
+                יצירת קשר: colmandevclub@gmail.com{" "}
+              </Typography>
             </Box>
           </Toolbar>
         </Container>
