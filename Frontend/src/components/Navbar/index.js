@@ -1,27 +1,17 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Container,
-  Button,
-  MenuItem,
-} from "@mui/material";
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
 
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
 
-import css from "./style.module.css";
+import css from './style.module.css';
 
 const pages = [
-  { title: "Home", path: "/" },
-  { title: "The Team", path: "/team" },
-  { title: "Sign Up", path: "/Signup" },
+  { title: 'Home', path: '/' },
+  { title: 'The Team', path: '/team' },
+  { title: 'Sign Up', path: '/Signup' },
 ];
 
 function ResponsiveAppBar() {
@@ -38,10 +28,9 @@ function ResponsiveAppBar() {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "#222222" }}>
+      <AppBar position="sticky" color="secondary" sx={{ borderBottom: '1px solid #1F1F53' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
             <Typography
               variant="h6"
               noWrap
@@ -49,16 +38,16 @@ function ResponsiveAppBar() {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: 'none', md: 'flex' },
                 fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              Colman<span className={css["text-yellow"]}>Dev</span>Club
+              Colman<span className={css['text-yellow']}>Dev</span>Club
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -73,36 +62,35 @@ function ResponsiveAppBar() {
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
+                  vertical: 'top',
+                  horizontal: 'left',
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: { xs: 'block', md: 'none' },
                 }}
               >
                 {pages.map((page) => (
                   <NavLink
                     style={{
-                      textDecoration: "none",
-                      color: "black",
+                      textDecoration: 'none',
+                      color: 'inherit',
                     }}
                     to={page.path}
                   >
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <MenuItem key={page} onClick={handleCloseNavMenu} divider>
                       <Typography textAlign="center">{page.title}</Typography>
                     </MenuItem>
                   </NavLink>
                 ))}
               </Menu>
             </Box>
-            {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
             <Typography
               variant="h5"
               noWrap
@@ -110,32 +98,28 @@ function ResponsiveAppBar() {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
                 fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              Colman<span className={css["text-yellow"]}>Dev</span>Club
+              Colman<span className={css['text-yellow']}>Dev</span>Club
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
-                <NavLink
-                  key={page.title}
-                  style={{ textDecoration: "none", color: "white" }}
-                  to={page.path}
-                >
+                <NavLink key={page.title} style={{ textDecoration: 'none', color: 'white' }} to={page.path}>
                   <Button
                     key={page.title}
                     onClick={handleCloseNavMenu}
                     sx={{
                       my: 2,
-                      color: "white",
-                      display: "block",
-                      textTransform: "none",
+                      color: 'white',
+                      display: 'block',
+                      textTransform: 'none',
                     }}
-                    className={page.path === pathname ? css["text-yellow"] : ""}
+                    className={page.path === pathname ? css['text-yellow'] : ''}
                   >
                     {page.title}
                   </Button>
@@ -145,7 +129,7 @@ function ResponsiveAppBar() {
           </Toolbar>
         </Container>
       </AppBar>
-      <main style={{ flex: "1" }}>{<Outlet />}</main>
+      <main style={{ flex: '1' }}>{<Outlet />}</main>
     </>
   );
 }
