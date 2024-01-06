@@ -1,21 +1,17 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router';
 
-import { Container, Grid, Typography, Box, Checkbox } from "@mui/material";
+import { Box, Checkbox, Container, Grid, Typography } from '@mui/material';
 
-import { ThemeProvider, useTheme } from "@mui/material/styles";
-
-import { customTheme } from "../../constants/theme.constants";
-
-import css from "./style.module.css";
-import { addUser } from "../../firebase/firebase-utils";
-import FormInputField from "../../components/common/FormInputField";
-import FormSelectField from "../../components/common/FormSelectField";
-import Button from "../../components/common/Button";
-import { allRules, errorMessages, labels } from "../../data";
-import TransitionsModal from "../../components/Modal";
-import EntranceAnimation from "../../components/EntranceAnimation";
+import EntranceAnimation from '../../components/EntranceAnimation';
+import TransitionsModal from '../../components/Modal';
+import Button from '../../components/common/Button';
+import FormInputField from '../../components/common/FormInputField';
+import FormSelectField from '../../components/common/FormSelectField';
+import { allRules, errorMessages, labels } from '../../data';
+import { addUser } from '../../firebase/firebase-utils';
+import css from './style.module.css';
 
 const FIELDS_MAP = {
   TextField: FormInputField,
@@ -23,7 +19,6 @@ const FIELDS_MAP = {
 };
 
 export default function CustomizedInputsStyleOverrides() {
-  const outerTheme = useTheme();
   const navigate = useNavigate();
 
   const [openModal, setOpenModal] = React.useState(false);
@@ -35,7 +30,7 @@ export default function CustomizedInputsStyleOverrides() {
   React.useEffect(() => {
     labels.forEach((label) =>
       setFormValues((prev) => {
-        return { ...prev, [label.key]: "" };
+        return { ...prev, [label.key]: '' };
       })
     );
   }, []);
@@ -50,8 +45,8 @@ export default function CustomizedInputsStyleOverrides() {
 
     if (Object.keys(validationState).length === 0) return;
     for (const key in validationState) {
-      if (key === "experienceDetails" && formValues["experience"] !== "כן") {
-        validationState[key] = validationState["experience"];
+      if (key === 'experienceDetails' && formValues['experience'] !== 'כן') {
+        validationState[key] = validationState['experience'];
       }
 
       if (validationState[key]) {
@@ -76,78 +71,78 @@ export default function CustomizedInputsStyleOverrides() {
   return (
     <EntranceAnimation>
       <Container
-        maxWidth="lg"
-        sx={{ paddingTop: "3rem", paddingBottom: "3rem" }}
+        maxWidth="md"
+        sx={{
+          paddingTop: '3rem',
+          paddingBottom: '3rem',
+          px: {
+            xs: '2rem',
+            md: '5rem',
+          },
+        }}
       >
         <Typography
           variant="h3"
           sx={{
-            textAlign: "center",
-            marginBottom: "2rem",
+            textAlign: 'center',
+            marginBottom: '2rem',
             fontWeight: 700,
-            letterSpacing: "4px",
+            letterSpacing: '4px',
           }}
         >
-          <span className={css["text-yellow"]}>Sign</span>up
+          <span className={css['text-yellow']}>Sign</span>up
         </Typography>
-        <div className={css["container"]}>
+        <div className={css['container']}>
           <Box
             sx={{
-              display: "grid",
-              gridTemplateColumns: { sm: "1fr", md: "1fr 1fr" },
+              display: 'grid',
+              gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' },
               gap: 2,
-              marginBottom: "2rem",
+              marginBottom: '2rem',
             }}
           >
             {labels.map(({ type, label, key, options, validator }, index) => {
               const FieldComponent = FIELDS_MAP[type];
-              return label === "Experience Details" &&
-                formValues["experience"] !== "כן" ? null : (
-                <EntranceAnimation
-                  animationDelay={
-                    label === "Experience Details" ? 0 : index * 0.2
-                  }
-                >
-                  <ThemeProvider theme={customTheme(outerTheme)} key={label}>
-                    <FieldComponent
-                      sx={{ width: "100%" }}
-                      options={options}
-                      label={label}
-                      onChange={(event) => {
-                        setFormValues((prev) => {
-                          return { ...prev, [key]: event.target.value };
-                        });
-                        inputHandler(validator, key, event.target.value);
-                      }}
-                      error={validationErrors[key]}
-                    />
-                  </ThemeProvider>
+              return label === 'Experience Details' && formValues['experience'] !== 'כן' ? null : (
+                <EntranceAnimation animationDelay={label === 'Experience Details' ? 0 : index * 0.2}>
+                  <FieldComponent
+                    sx={{ width: '100%' }}
+                    options={options}
+                    label={label}
+                    onChange={(event) => {
+                      setFormValues((prev) => {
+                        return { ...prev, [key]: event.target.value };
+                      });
+                      inputHandler(validator, key, event.target.value);
+                    }}
+                    error={validationErrors[key]}
+                  />
                   <Typography
                     sx={{
-                      textAlign: "start",
-                      color: "#f44336",
+                      textAlign: 'start',
+                      color: '#f44336',
                     }}
                   >
-                    {validationErrors[key] ? errorMessages[key] : ""}
+                    {validationErrors[key] ? errorMessages[key] : ''}
                   </Typography>
                 </EntranceAnimation>
               );
             })}
           </Box>
-          <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
             <Grid xs={12} md={6}>
               <TransitionsModal
                 openModal={openModal}
                 setOpenModal={setOpenModal}
-                title={"נרשמת בהצלחה"}
+                title={'נרשמת בהצלחה'}
                 closeOnOverlay={false}
                 btnText="מעבר לדף הבית"
-                btnOnClick={() => navigate("/")}
+                btnOnClick={() => navigate('/')}
               ></TransitionsModal>
               <TransitionsModal
                 openModal={openRulesModal}
                 setOpenModal={setOpenRulesModal}
-                title={"תקנון"}
+                title={'תקנון'}
                 closeOnOverlay={true}
                 btnText="סגור"
                 btnOnClick={() => setOpenRulesModal(false)}
@@ -159,18 +154,18 @@ export default function CustomizedInputsStyleOverrides() {
                 </ul>
                 <Container
                   sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    width: "100%",
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '100%',
                   }}
                 ></Container>
               </TransitionsModal>
               <Container
                 sx={{
-                  display: "flex",
-                  flexDirection: "row-reverse",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  display: 'flex',
+                  flexDirection: 'row-reverse',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
                 <Checkbox
@@ -179,23 +174,22 @@ export default function CustomizedInputsStyleOverrides() {
                     setRules((prev) => !prev);
                     setOpenRulesModal(false);
                   }}
-                  sx={{ color: "white" }}
+                  sx={{ color: 'white' }}
                 />
                 <Typography>
-                  אני מאשר את תנאי{" "}
-                  <span
-                    className={css["terms"]}
-                    onClick={() => setOpenRulesModal((prev) => !prev)}
-                  >
+                  אני מאשר את תנאי{' '}
+                  <span className={css['terms']} onClick={() => setOpenRulesModal((prev) => !prev)}>
                     התקנון
                   </span>
                 </Typography>
               </Container>
-              <Button disabled={!rules} onClick={onSignupHandler}>
-                Signup
-              </Button>
             </Grid>
           </Grid>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button disabled={!rules} onClick={onSignupHandler}>
+            Signup
+          </Button>
         </div>
       </Container>
     </EntranceAnimation>

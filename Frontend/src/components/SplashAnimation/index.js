@@ -1,37 +1,36 @@
-import { motion } from "framer-motion";
-
+import { motion } from 'framer-motion';
 
 const cardVariants = {
-    offscreen: {
-      y: 1200,
-    },
-    onscreen: {
-      y: 0,
+  offscreen: {
+    y: 1200,
+  },
+  onscreen: {
+    y: 0,
     //   rotate: -10,
-      transition: {
-        type: "spring",
-        bounce: 0.4,
-        duration: 0.7
-      }
-    }
-  };
+    transition: {
+      type: 'spring',
+      bounce: 0.4,
+      duration: 0.7,
+    },
+  },
+};
 
-function SplashAnimation({children}) {
-    // const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
-  
-    return (
-      <motion.div
-        className="card-container"
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true, amount: 0.8 }}
-      >
-        <div className="splash" style={{ background: "white" }} />
-        <motion.div className="card" variants={cardVariants}>
-          {children}
-        </motion.div>
+function SplashAnimation({ children }) {
+  // const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
+
+  return (
+    <motion.div
+      className="card-container"
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.8 }}
+    >
+      <div className="splash" />
+      <motion.div className="card" variants={cardVariants}>
+        {children}
       </motion.div>
-    );
-  }
-  
-  export default SplashAnimation
+    </motion.div>
+  );
+}
+
+export default SplashAnimation;
