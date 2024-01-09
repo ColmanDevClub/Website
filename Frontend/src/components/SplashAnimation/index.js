@@ -6,7 +6,7 @@ const cardVariants = {
   },
   onscreen: {
     y: 0,
-    //   rotate: -10,
+    rotate: 0,
     transition: {
       type: 'spring',
       bounce: 0.4,
@@ -16,8 +16,6 @@ const cardVariants = {
 };
 
 function SplashAnimation({ children }) {
-  // const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
-
   return (
     <motion.div
       className="card-container"

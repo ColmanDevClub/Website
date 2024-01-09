@@ -13,7 +13,6 @@ export const theme = createTheme({
       paper: '#0A0A1B',
     },
   },
-
   components: {
     MuiCard: {
       styleOverrides: {
@@ -43,6 +42,13 @@ export const theme = createTheme({
           borderColor: '#1F1F53',
           background: '#0A0A1B',
           color: '#fff',
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          border: '1px solid #1f1f53',
         },
       },
     },

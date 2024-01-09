@@ -16,13 +16,11 @@ const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route path="/" element={<Navbar />}>
-        <Route index element={<HomePage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/team" element={<TeamPage />} />
-      </Route>
-    </>
+    <Route path="/" element={<Navbar />}>
+      <Route index element={<HomePage />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/team" element={<TeamPage />} />
+    </Route>
   )
 );
 

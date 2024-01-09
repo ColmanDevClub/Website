@@ -129,7 +129,7 @@ function ResponsiveAppBar() {
           </Toolbar>
         </Container>
       </AppBar>
-      <main style={{ flex: '1' }}>{<Outlet />}</main>
+      <main>{<Outlet />}</main>
     </>
   );
 }

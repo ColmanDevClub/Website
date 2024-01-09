@@ -28,7 +28,7 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
         alignItems="center"
         justifyContent="space-around"
         padding={2}
-        height={{ xs: '350px', lg: '400px', xl: '500px' }}
+        height={{ xs: '350px', lg: '350px', xl: '400px' }}
       >
         <Avatar
           src={profileImage}

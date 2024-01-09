@@ -22,7 +22,7 @@ export default function DenseAppBar() {
     <AppBar
       position="static"
       color="secondary"
-      sx={{ paddingY: { xs: 2, md: 4, lg: 6 }, borderTop: '1px solid #1F1F53' }}
+      sx={{ paddingY: { xs: 2, md: 4, lg: 6 }, borderTop: '1px solid #1F1F53', marginTop: 'auto' }}
     >
       <Container maxWidth="xl">
         <Toolbar
