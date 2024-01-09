@@ -1,7 +1,6 @@
 import { Box, Grid, ImageListItem, Typography, styled } from '@mui/material';
 import React from 'react';
 import Photo from '../../assets/f77ca20b70b8ec4625f929fb85e567f4.png';
-import EntranceAnimation from '../../components/EntranceAnimation';
 
 export const SectionContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(4, 10),
