@@ -9,7 +9,7 @@ export const SectionContainer = styled(Box)(({ theme }) => ({
   },
 
   [theme.breakpoints.up('xl')]: {
-    padding: theme.spacing(4, 20),
+    padding: theme.spacing(8, 20),
   },
 }));
 
