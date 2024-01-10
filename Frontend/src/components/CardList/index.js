@@ -14,21 +14,8 @@ const CardList = ({
     <Grid container>
       {cards.map((card, index) => {
         return (
-          <Grid
-            key={card}
-            xs={12}
-            md={6}
-            lg={4}
-            style={{
-              padding: "1rem",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            <AnimationComponent
-              animationDelay={index * 0.1}
-              sx={{ justifyContent: "center", display: "flex", width: "100%" }}
-            >
+          <Grid key={card} xs={12} md={4} lg={3}>
+            <AnimationComponent animationDelay={index * 0.2}>
               <CardComponent {...card} />
             </AnimationComponent>
           </Grid>

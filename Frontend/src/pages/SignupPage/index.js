@@ -93,10 +93,10 @@ export default function CustomizedInputsStyleOverrides() {
         <div className={css["container"]}>
           <Box
             sx={{
-              display: "grid",
-              gridTemplateColumns: { sm: "1fr", md: "1fr 1fr" },
-              gap: 2,
-              marginBottom: "2rem",
+              display: 'grid',
+              gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' },
+              gap: { sm: '1rem', md: '2rem' },
+              marginBottom: '2rem',
             }}
           >
             {labels.map(({ type, label, key, options, validator }, index) => {
