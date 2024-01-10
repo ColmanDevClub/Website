@@ -28,10 +28,9 @@ function ResponsiveAppBar() {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: '#222222' }}>
+      <AppBar position="sticky" color="secondary" sx={{ borderBottom: '1px solid #1F1F53' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
             <Typography
               variant="h6"
               noWrap
@@ -81,18 +80,17 @@ function ResponsiveAppBar() {
                   <NavLink
                     style={{
                       textDecoration: 'none',
-                      color: 'black',
+                      color: 'inherit',
                     }}
                     to={page.path}
                   >
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <MenuItem key={page} onClick={handleCloseNavMenu} divider>
                       <Typography textAlign="center">{page.title}</Typography>
                     </MenuItem>
                   </NavLink>
                 ))}
               </Menu>
             </Box>
-            {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
             <Typography
               variant="h5"
               noWrap

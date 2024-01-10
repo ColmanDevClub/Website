@@ -1,24 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 
 import { Card, CardActions, CardContent, CardMedia, Typography, Tooltip, IconButton, Chip, Stack } from '@mui/material';
 
-import {
-  GitHub as GitHubIcon,
-  Language as LanguageIcon,
-} from "@mui/icons-material/";
+import { GitHub as GitHubIcon, Language as LanguageIcon } from '@mui/icons-material/';
 
-export default function MediaCard({
-  image_url,
-  title,
-  description,
-  github_url,
-  website_url,
-  language,
-}) {
+export default function MediaCard({ image_url, title, description, github_url, website_url, language }) {
   return (
     <Card sx={{ direction: 'rtl' }}>
       <CardMedia
-        sx={{ height: 225, objectFit: "cover" }}
+        sx={{ borderRadius: '8px', height: 225, objectFit: 'cover' }}
         image={image_url}
         title={`${title} image`}
       />

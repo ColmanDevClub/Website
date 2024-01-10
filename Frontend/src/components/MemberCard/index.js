@@ -3,7 +3,7 @@ import * as React from 'react';
 import { LinkedIn as LinkedInIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
-import { Button, Card, Stack, Typography } from '@mui/material';
+import { Avatar, Card, IconButton, Stack, Typography } from '@mui/material';
 
 export default function MemberCard({ profileImage, name, about, linkedin }) {
   const [isImgLoaded, setIsImgLoaded] = React.useState(false);
@@ -30,50 +30,37 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
         padding={2}
         height={{ xs: '350px', lg: '350px', xl: '400px' }}
       >
-        <img
+        <Avatar
           src={profileImage}
           alt={name}
           onLoad={() => setIsImgLoaded(true)}
-          style={{
-            borderRadius: '50%',
-            border: '0.75rem solid white',
-            width: '100%',
-            height: '100%',
-            maxHeight: '12rem',
-            maxWidth: '12rem',
-            marginLeft: 'auto',
-            marginRight: 'auto',
+          sx={{
+            width: { xs: '150px', lg: '150px' },
+            height: { xs: '150px', lg: '150px' },
+            borderWidth: { xs: '3px', lg: '5px' },
           }}
         />
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-          <Typography
-            component="h3"
-            sx={{
-              marginTop: '1.25rem',
-              fontSize: '1.5rem',
-              fontWeight: '600',
-              color: '#F6C927',
-            }}
-          >
-            {name}
-          </Typography>
-          <Typography
-            component="p"
-            sx={{
-              marginTop: '0.25rem',
-              fontSize: '1.1rem',
-              flex: '1',
-              color: '#999999',
-            }}
-          >
-            {about}
-          </Typography>
-          <Link to={linkedin} target="_blank" style={{ textDecoration: 'none' }}>
-            <Button sx={{ color: '#F6C927', marginTop: '1rem' }}>
-              <LinkedInIcon fontSize="large" />
-            </Button>
-          </Link>
-        </div>
+        <Typography variant="h5" fontWeight={900} color="primary">
+          {name}
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          // fontSize={{ xs: '.6rem', lg: '0.8rem', xl: '1.5rem' }}
+          textAlign={'center'}
+          sx={{
+            overflow: 'hidden',
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+          }}
+        >
+          {about}
+        </Typography>
+        <Link to={linkedin} target="_blank">
+          <IconButton>
+            <LinkedInIcon fontSize="large" color="primary" />
+          </IconButton>
+        </Link>
       </Stack>
     </Card>
   );

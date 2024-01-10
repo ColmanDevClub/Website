@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-
+import { motion } from 'framer-motion';
 
 const cardVariants = {
   offscreen: {
@@ -14,7 +13,7 @@ const cardVariants = {
       duration: 0.7,
     },
   },
-  };
+};
 
 function SplashAnimation({ children }) {
   return (
@@ -29,7 +28,7 @@ function SplashAnimation({ children }) {
         {children}
       </motion.div>
     </motion.div>
-    );
-  }
-  
-  export default SplashAnimation
+  );
+}
+
+export default SplashAnimation;
