@@ -10,7 +10,7 @@ import Button from '../../components/common/Button';
 import FormInputField from '../../components/common/FormInputField';
 import FormSelectField from '../../components/common/FormSelectField';
 import { allRules, errorMessages, labels } from '../../data';
-import { addUser } from '../../firebase/firebase-utils';
+import { addUser, fetchData } from '../../firebase/firebase-utils';
 import css from './style.module.css';
 
 const FIELDS_MAP = {
@@ -35,7 +35,7 @@ export default function CustomizedInputsStyleOverrides() {
     );
   }, []);
 
-  const onSignupHandler = () => {
+  const onSignupHandler = async () => {
     const validationState = labels.reduce((obj, { key, validator }) => {
       obj[key] = !validator(formValues[key]);
       return obj;
@@ -54,7 +54,11 @@ export default function CustomizedInputsStyleOverrides() {
       }
     }
     if (!rules) return;
-
+    if((await fetchData('users')).find((user)=>user.formValues.email === formValues['email']) ) { 
+      alert('משתמש קיים במערכת');
+      navigate('/');
+      return;
+    }
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
 
     addUser({ formValues });
