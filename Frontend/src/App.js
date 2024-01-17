@@ -12,6 +12,7 @@ import TeamPage from './pages/TeamPage';
 import Footer from './components/Footer';
 import { theme } from './theme';
 import SyllabusPage from './pages/SyllabusPage/SyllabusPage';
+import PrivateRoutes from './components/PrivateRoutes';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/team" element={<TeamPage />} />
       <Route path="/syllabus" element={<SyllabusPage />} />
+      <Route path="/private" element={<PrivateRoutes />} />
     </Route>
   )
 );
