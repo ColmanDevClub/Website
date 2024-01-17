@@ -12,6 +12,7 @@ const pages = [
   { title: 'Home', path: '/' },
   { title: 'The Team', path: '/team' },
   { title: 'Sign Up', path: '/Signup' },
+  { title: 'Syllabus', path: '/syllabus' },
 ];
 
 function ResponsiveAppBar() {

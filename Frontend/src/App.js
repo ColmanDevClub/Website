@@ -11,6 +11,7 @@ import SignupPage from './pages/SignupPage';
 import TeamPage from './pages/TeamPage';
 import Footer from './components/Footer';
 import { theme } from './theme';
+import SyllabusPage from './pages/SyllabusPage/SyllabusPage';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/team" element={<TeamPage />} />
+      <Route path="/syllabus" element={<SyllabusPage />} />
     </Route>
   )
 );

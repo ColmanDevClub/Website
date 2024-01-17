@@ -6,7 +6,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const LangCard = ({ link, icon, color, title, description }) => {
   return (
-    <StyledCard >
+    <StyledCard>
       <Stack direction={{ xs: 'row-reverse', md: 'column' }} alignItems={'center'} gap={{ xs: 2, md: 0 }}>
         <IconButton
           onClick={() => window.open(link, '_blank')}
@@ -27,7 +27,7 @@ const LangCard = ({ link, icon, color, title, description }) => {
         {description}
       </Typography>
       <div style={{ width: '100%' }}>
-        <IconButton>
+        <IconButton onClick={() => window.open(link, '_blank')}>
           <KeyboardBackspaceIcon color="primary" />
         </IconButton>
       </div>

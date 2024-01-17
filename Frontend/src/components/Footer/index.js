@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Container, AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { GitHub, LinkedIn } from '@mui/icons-material';
+import { GitHub, LinkedIn, Instagram } from '@mui/icons-material';
 
 import css from './style.module.css';
 
@@ -15,6 +15,10 @@ export default function DenseAppBar() {
     {
       href: 'https://www.linkedin.com/company/colman-devclub/',
       icon: <LinkedIn sx={iconStyle} />,
+    },
+    {
+      href: 'https://www.instagram.com/colmandevclub/',
+      icon: <Instagram sx={iconStyle} />,
     },
   ];
 

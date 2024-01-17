@@ -15,7 +15,7 @@ const ButtonWrapper = ({ children, onClick, ...rest }) => {
       {...rest}
     >
       {!rest.disabled && (
-        <Stack display={'grid'} gridTemplateColumns={'1fr 5fr 1fr'} alignItems={'center'}>
+        <Stack display={'grid'} gridTemplateColumns={'auto 5fr 1fr'} alignItems={'center'}>
           <span></span>
           {children}
           <Stack sx={{ background: '#040413', borderRadius: themeVariables.borderRadius, paddingX: 3, paddingY: 1.5 }}>
