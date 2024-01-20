@@ -5,12 +5,13 @@ const FormInputField = ({
   onChange,
   sx = { textAlign: "center" },
   error,
+  type = "text",
 }) => {
   return (
     <TextField
       sx={sx}
       label={label}
-      type="text"
+      type={type}
       onChange={onChange}
       error={error}
     />

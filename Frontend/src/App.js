@@ -1,18 +1,24 @@
-import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material/styles';
+import React from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
 
-import { QueryClientProvider, QueryClient } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import SignupPage from './pages/SignupPage';
-import TeamPage from './pages/TeamPage';
-import Footer from './components/Footer';
-import { theme } from './theme';
-import SyllabusPage from './pages/SyllabusPage/SyllabusPage';
-import PrivateRoutes from './components/PrivateRoutes';
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import SignupPage from "./pages/SignupPage";
+import TeamPage from "./pages/TeamPage";
+import Footer from "./components/Footer";
+import { theme } from "./theme";
+import SyllabusPage from "./pages/SyllabusPage/SyllabusPage";
+import PrivateRoutes from "./components/PrivateRoutes";
+import SigninPage from "./pages/SigninPage";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +29,7 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/team" element={<TeamPage />} />
       <Route path="/syllabus" element={<SyllabusPage />} />
+      <Route path="/signin" element={<SigninPage />} />
       <Route path="/private" element={<PrivateRoutes />} />
     </Route>
   )

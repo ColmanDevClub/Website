@@ -1,18 +1,22 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 
-import { Box, Checkbox, Container, Grid, Typography } from '@mui/material';
+import { Box, Checkbox, Container, Grid, Typography } from "@mui/material";
 
-import EntranceAnimation from '../../components/EntranceAnimation';
-import TransitionsModal from '../../components/Modal';
-import Button from '../../components/common/Button';
-import FormInputField from '../../components/common/FormInputField';
-import FormSelectField from '../../components/common/FormSelectField';
-import { allRules, errorMessages, labels } from '../../data';
-import { addUser } from '../../firebase/firebase-utils';
-import css from './style.module.css';
-
+import EntranceAnimation from "../../components/EntranceAnimation";
+import TransitionsModal from "../../components/Modal";
+import Button from "../../components/common/Button";
+import FormInputField from "../../components/common/FormInputField";
+import FormSelectField from "../../components/common/FormSelectField";
+import { allRules, errorMessages, labels } from "../../data";
+import { addUser } from "../../firebase/firebase-utils";
+import css from "./style.module.css";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../../firebase/firebase-config";
 const FIELDS_MAP = {
   TextField: FormInputField,
   Select: FormSelectField,
@@ -30,12 +34,12 @@ export default function CustomizedInputsStyleOverrides() {
   React.useEffect(() => {
     labels.forEach((label) =>
       setFormValues((prev) => {
-        return { ...prev, [label.key]: '' };
+        return { ...prev, [label.key]: "" };
       })
     );
   }, []);
 
-  const onSignupHandler = () => {
+  const onSignupHandler = async () => {
     const validationState = labels.reduce((obj, { key, validator }) => {
       obj[key] = !validator(formValues[key]);
       return obj;
@@ -45,8 +49,8 @@ export default function CustomizedInputsStyleOverrides() {
 
     if (Object.keys(validationState).length === 0) return;
     for (const key in validationState) {
-      if (key === 'experienceDetails' && formValues['experience'] !== 'כן') {
-        validationState[key] = validationState['experience'];
+      if (key === "experienceDetails" && formValues["experience"] !== "כן") {
+        validationState[key] = validationState["experience"];
       }
 
       if (validationState[key]) {
@@ -58,6 +62,24 @@ export default function CustomizedInputsStyleOverrides() {
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
 
     addUser({ formValues });
+    const { email, password } = formValues;
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(
+        auth,
+        formValues.email,
+        formValues.password
+      )
+        .then((userCredential) => {
+          localStorage.setItem(
+            "userToken",
+            JSON.stringify(userCredential._tokenResponse.idToken)
+          );
+        })
+        .catch((error) => {});
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const inputHandler = (validator, key, value) => {
@@ -73,40 +95,46 @@ export default function CustomizedInputsStyleOverrides() {
       <Container
         maxWidth="md"
         sx={{
-          paddingTop: '3rem',
-          paddingBottom: '3rem',
+          paddingTop: "3rem",
+          paddingBottom: "3rem",
           px: {
-            xs: '2rem',
-            md: '5rem',
+            xs: "2rem",
+            md: "5rem",
           },
         }}
       >
         <Typography
           variant="h3"
           sx={{
-            textAlign: 'center',
-            marginBottom: '2rem',
+            textAlign: "center",
+            marginBottom: "2rem",
             fontWeight: 700,
-            letterSpacing: '4px',
+            letterSpacing: "4px",
           }}
         >
-          <span className={css['text-yellow']}>Sign</span>up
+          <span className={css["text-yellow"]}>Sign</span>up
         </Typography>
-        <div className={css['container']}>
+        <div className={css["container"]}>
           <Box
             sx={{
-              display: 'grid',
-              gridTemplateColumns: { sm: '1fr', md: '1fr 1fr' },
-              gap: { sm: '1rem', md: '2rem' },
-              marginBottom: '2rem',
+              display: "grid",
+              gridTemplateColumns: { sm: "1fr", md: "1fr 1fr" },
+              gap: { sm: "1rem", md: "2rem" },
+              marginBottom: "2rem",
             }}
           >
             {labels.map(({ type, label, key, options, validator }, index) => {
               const FieldComponent = FIELDS_MAP[type];
-              return label === 'Experience Details' && formValues['experience'] !== 'כן' ? null : (
-                <EntranceAnimation animationDelay={label === 'Experience Details' ? 0 : index * 0.2}>
+              return label === "Experience Details" &&
+                formValues["experience"] !== "כן" ? null : (
+                <EntranceAnimation
+                  animationDelay={
+                    label === "Experience Details" ? 0 : index * 0.2
+                  }
+                >
                   <FieldComponent
-                    sx={{ width: '100%' }}
+                    type={key === "password" ? "password" : "text"}
+                    sx={{ width: "100%" }}
                     options={options}
                     label={label}
                     onChange={(event) => {
@@ -119,30 +147,30 @@ export default function CustomizedInputsStyleOverrides() {
                   />
                   <Typography
                     sx={{
-                      textAlign: 'start',
-                      color: '#f44336',
+                      textAlign: "start",
+                      color: "#f44336",
                     }}
                   >
-                    {validationErrors[key] ? errorMessages[key] : ''}
+                    {validationErrors[key] ? errorMessages[key] : ""}
                   </Typography>
                 </EntranceAnimation>
               );
             })}
           </Box>
-          <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid xs={12} md={6}>
               <TransitionsModal
                 openModal={openModal}
                 setOpenModal={setOpenModal}
-                title={'נרשמת בהצלחה'}
+                title={"נרשמת בהצלחה"}
                 closeOnOverlay={false}
                 btnText="מעבר לדף הבית"
-                btnOnClick={() => navigate('/')}
+                btnOnClick={() => navigate("/")}
               ></TransitionsModal>
               <TransitionsModal
                 openModal={openRulesModal}
                 setOpenModal={setOpenRulesModal}
-                title={'תקנון'}
+                title={"תקנון"}
                 closeOnOverlay={true}
                 btnText="סגור"
                 btnOnClick={() => setOpenRulesModal(false)}
@@ -154,18 +182,18 @@ export default function CustomizedInputsStyleOverrides() {
                 </ul>
                 <Container
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '100%',
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
                   }}
                 ></Container>
               </TransitionsModal>
               <Container
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'row-reverse',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <Checkbox
@@ -174,11 +202,14 @@ export default function CustomizedInputsStyleOverrides() {
                     setRules((prev) => !prev);
                     setOpenRulesModal(false);
                   }}
-                  sx={{ color: 'white' }}
+                  sx={{ color: "white" }}
                 />
                 <Typography>
-                  אני מאשר את תנאי{' '}
-                  <span className={css['terms']} onClick={() => setOpenRulesModal((prev) => !prev)}>
+                  אני מאשר את תנאי{" "}
+                  <span
+                    className={css["terms"]}
+                    onClick={() => setOpenRulesModal((prev) => !prev)}
+                  >
                     התקנון
                   </span>
                 </Typography>
@@ -186,7 +217,7 @@ export default function CustomizedInputsStyleOverrides() {
             </Grid>
           </Grid>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <Button disabled={!rules} onClick={onSignupHandler}>
             Signup
           </Button>

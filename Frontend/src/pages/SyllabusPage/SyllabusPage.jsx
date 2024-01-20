@@ -13,6 +13,7 @@ import ButtonWrapper from "../../components/common/Button";
 import useGoogleSheetsData from "../../hooks/useSheets";
 import Loader from "../../components/common/Loader";
 import Animation from "../../components/EntranceAnimation";
+import { auth } from "../../firebase/firebase-config";
 
 export const StyledBox = styled(Card)(({ theme }) => ({
   height: "auto",
@@ -32,7 +33,30 @@ const csvMap = {
 
 const SyllabusPage = () => {
   const { data, isLoading, error } = useGoogleSheetsData();
-  console.log("🚀 ~ SyllabusPage ~ data:", data);
+
+  React.useEffect(() => {
+    const userToken = localStorage.getItem("userToken");
+
+    // Check if the user is authenticated
+    if (!userToken) {
+      // If not authenticated, redirect to the login page
+      window.location.href = "/";
+      return;
+    }
+
+    // Verify the user token
+    // auth
+    //   .verifyIdToken(userToken)
+    //   .then((decodedToken) => {
+    //     console.log("decodedToken:", decodedToken);
+    //     // Continue loading the page or perform other actions
+    //   })
+    //   .catch((error) => {
+    //     // If the token is not valid, redirect to the login page
+    //     console.error("Token verification failed:", error);
+    //     window.location.href = "/Signup";
+    //   });
+  }, []);
 
   if (error) {
     console.log(error);
