@@ -12,6 +12,7 @@ import { YouTubeVideo } from "../../components/YouTubeVideo";
 import ButtonWrapper from "../../components/common/Button";
 import useGoogleSheetsData from "../../hooks/useSheets";
 import Loader from "../../components/common/Loader";
+import Animation from "../../components/EntranceAnimation";
 
 export const StyledBox = styled(Card)(({ theme }) => ({
   height: "auto",
@@ -30,8 +31,25 @@ const csvMap = {
 };
 
 const SyllabusPage = () => {
-  const { data, loading, error } = useGoogleSheetsData();
+  const { data, isLoading, error } = useGoogleSheetsData();
   console.log("🚀 ~ SyllabusPage ~ data:", data);
+
+  if (error) {
+    console.log(error);
+    return (
+      <Container>
+        <Typography variant="h2">Error</Typography>
+      </Container>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Loader isLoading={isLoading}></Loader>
+      </Container>
+    );
+  }
 
   const splicedData = data.slice(3, data.length - 2);
 
@@ -47,22 +65,13 @@ const SyllabusPage = () => {
     };
   });
 
-  if (error) {
-    console.log(error);
-    return (
-      <Container>
-        <Typography variant="h2">Error</Typography>
-      </Container>
-    );
-  }
-
   return (
     <Container>
-      <Loader isLoading={loading}>
-        <Grid container spacing={{ xs: 2, md: 3 }} px={{ xs: 0, md: 5 }} py={2}>
-          {csvData.map((lesson, index) => {
-            return (
-              <Grid item justifyContent={"center"}>
+      <Grid container spacing={{ xs: 2, md: 3 }} px={{ xs: 0, md: 5 }} py={2}>
+        {csvData.map((lesson, index) => {
+          return (
+            <Grid item justifyContent={"center"}>
+              <Animation animationDelay={index * 0.2}>
                 <StyledBox key={index}>
                   <Typography p={2} fontWeight={900} variant="h4">
                     Week {index + 1}
@@ -77,11 +86,11 @@ const SyllabusPage = () => {
                     </ButtonWrapper>
                   </Stack>
                 </StyledBox>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Loader>
+              </Animation>
+            </Grid>
+          );
+        })}
+      </Grid>
     </Container>
   );
 };
