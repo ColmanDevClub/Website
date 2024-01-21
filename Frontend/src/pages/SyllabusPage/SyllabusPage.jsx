@@ -1,24 +1,16 @@
-import {
-  Card,
-  Container,
-  Grid,
-  Skeleton,
-  Stack,
-  Typography,
-  styled,
-} from "@mui/material";
-import React from "react";
-import { YouTubeVideo } from "../../components/YouTubeVideo";
-import ButtonWrapper from "../../components/common/Button";
-import useGoogleSheetsData from "../../hooks/useSheets";
-import Loader from "../../components/common/Loader";
-import Animation from "../../components/EntranceAnimation";
-import { auth } from "../../firebase/firebase-config";
+import { Card, Container, Grid, Stack, Typography, styled } from '@mui/material';
+import React from 'react';
+import Animation from '../../components/EntranceAnimation';
+import { YouTubeVideo } from '../../components/YouTubeVideo';
+import ButtonWrapper from '../../components/common/Button';
+import Loader from '../../components/common/Loader';
+import useGoogleSheetsData from '../../hooks/useSheets';
+import { auth } from '../../firebase/firebase-config';
 
 export const StyledBox = styled(Card)(({ theme }) => ({
-  height: "auto",
-  width: "290px",
-  padding: "0",
+  height: 'auto',
+  width: '290px',
+  padding: '0',
 }));
 
 const csvMap = {
@@ -34,29 +26,38 @@ const csvMap = {
 const SyllabusPage = () => {
   const { data, isLoading, error } = useGoogleSheetsData();
 
-  React.useEffect(() => {
-    const userToken = localStorage.getItem("userToken");
+  const userToken = localStorage.getItem('userToken');
 
-    // Check if the user is authenticated
-    if (!userToken) {
-      // If not authenticated, redirect to the login page
-      window.location.href = "/";
-      return;
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      console.log('User is signed in');
+    } else {
+      console.log('User is signed out');
     }
+  });
 
-    // Verify the user token
-    // auth
-    //   .verifyIdToken(userToken)
-    //   .then((decodedToken) => {
-    //     console.log("decodedToken:", decodedToken);
-    //     // Continue loading the page or perform other actions
-    //   })
-    //   .catch((error) => {
-    //     // If the token is not valid, redirect to the login page
-    //     console.error("Token verification failed:", error);
-    //     window.location.href = "/Signup";
-    //   });
-  }, []);
+  // .verifyIdToken(userToken)
+  // .then((decodedToken) => {
+  //   console.log('decodedToken:', decodedToken);
+  //   // Continue loading the page or perform other actions
+  // })
+  // .catch((error) => {
+  //   // If the token is not valid, redirect to the login page
+  //   console.error('Token verification failed:', error);
+  //   window.location.href = '/Signup';
+  // });
+
+  // React.useEffect(() => {
+  //   const userToken = localStorage.getItem('userToken');
+
+  //   // Check if the user is authenticated
+  //   if (!userToken) {
+  //     // If not authenticated, redirect to the login page
+  //     window.location.href = '/';
+  //     return;
+  //   }
+
+  // }, []);
 
   if (error) {
     console.log(error);
@@ -82,7 +83,7 @@ const SyllabusPage = () => {
       id: row[csvMap.id],
       subject: row[csvMap.subject],
       presentation: row[csvMap.presentation],
-      youtube: row[csvMap.youtube]?.split("v=")[1]?.split("&")[0],
+      youtube: row[csvMap.youtube]?.split('v=')[1]?.split('&')[0],
       git: row[csvMap.git],
       exercise: row[csvMap.exercise],
       time: row[csvMap.time],
@@ -94,7 +95,7 @@ const SyllabusPage = () => {
       <Grid container spacing={{ xs: 2, md: 3 }} px={{ xs: 0, md: 5 }} py={2}>
         {csvData.map((lesson, index) => {
           return (
-            <Grid item justifyContent={"center"}>
+            <Grid item justifyContent={'center'}>
               <Animation animationDelay={index * 0.2}>
                 <StyledBox key={index}>
                   <Typography p={2} fontWeight={900} variant="h4">
