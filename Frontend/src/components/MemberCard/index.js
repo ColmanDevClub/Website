@@ -38,10 +38,10 @@ export default function MemberCard({ profileImage, name, about, linkedin }) {
           borderRadius: "10px",
           boxShadow: "0px 0px 2px 0px #F6C927",
           margin: "1rem",
+          transition: "transform 0.3s ease-in-out",
           ":hover": {
             boxShadow: "0px 0px 10px 0px #F6C927",
             transform: "scale(1.05)",
-            transition: "all 0.3s ease-in-out",
           },
         }}
       >
