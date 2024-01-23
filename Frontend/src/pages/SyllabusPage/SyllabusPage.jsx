@@ -1,16 +1,23 @@
-import { Card, Container, Grid, Stack, Typography, styled } from '@mui/material';
-import React from 'react';
-import Animation from '../../components/EntranceAnimation';
-import { YouTubeVideo } from '../../components/YouTubeVideo';
-import ButtonWrapper from '../../components/common/Button';
-import Loader from '../../components/common/Loader';
-import useGoogleSheetsData from '../../hooks/useSheets';
-import { auth } from '../../firebase/firebase-config';
+import {
+  Card,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+  styled,
+} from "@mui/material";
+import React from "react";
+import Animation from "../../components/EntranceAnimation";
+import { YouTubeVideo } from "../../components/YouTubeVideo";
+import ButtonWrapper from "../../components/common/Button";
+import Loader from "../../components/common/Loader";
+import useGoogleSheetsData from "../../hooks/useSheets";
+import { auth } from "../../firebase/firebase-config";
 
 export const StyledBox = styled(Card)(({ theme }) => ({
-  height: 'auto',
-  width: '290px',
-  padding: '0',
+  height: "auto",
+  width: "290px",
+  padding: "0",
 }));
 
 const csvMap = {
@@ -26,13 +33,13 @@ const csvMap = {
 const SyllabusPage = () => {
   const { data, isLoading, error } = useGoogleSheetsData();
 
-  const userToken = localStorage.getItem('userToken');
+  const userToken = localStorage.getItem("userToken");
 
   auth.onAuthStateChanged((user) => {
     if (user) {
-      console.log('User is signed in');
+      console.log("User is signed in");
     } else {
-      console.log('User is signed out');
+      console.log("User is signed out");
     }
   });
 
@@ -83,7 +90,7 @@ const SyllabusPage = () => {
       id: row[csvMap.id],
       subject: row[csvMap.subject],
       presentation: row[csvMap.presentation],
-      youtube: row[csvMap.youtube]?.split('v=')[1]?.split('&')[0],
+      youtube: row[csvMap.youtube]?.split("v=")[1]?.split("&")[0],
       git: row[csvMap.git],
       exercise: row[csvMap.exercise],
       time: row[csvMap.time],
@@ -92,10 +99,19 @@ const SyllabusPage = () => {
 
   return (
     <Container>
-      <Grid container spacing={{ xs: 2, md: 3 }} px={{ xs: 0, md: 5 }} py={2}>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+        spacing={{ xs: 2, md: 3 }}
+        px={{ xs: 0, md: 5 }}
+        py={2}
+      >
         {csvData.map((lesson, index) => {
           return (
-            <Grid item justifyContent={'center'}>
+            <Grid item justifyContent={"center"}>
               <Animation animationDelay={index * 0.2}>
                 <StyledBox key={index}>
                   <Typography p={2} fontWeight={900} variant="h4">
