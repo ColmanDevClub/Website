@@ -43,6 +43,11 @@ const idValidation = (idNumber) => {
   return controlDigit === calculatedControlDigit;
 };
 
+const passwordValidation = (password) => {
+  if (password.length < 6) return false;
+  return true;
+};
+
 const selectionValidation = (selectValue) => {
   return !validator.isEmpty(selectValue);
 };
@@ -53,4 +58,5 @@ export {
   numberValidation,
   selectionValidation,
   idValidation,
+  passwordValidation,
 };

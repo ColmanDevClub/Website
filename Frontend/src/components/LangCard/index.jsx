@@ -1,33 +1,50 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconButton, Stack, Typography } from '@mui/material';
-import { StyledCard } from './LangCard.style';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconButton, Stack, Typography } from "@mui/material";
+import { StyledCard } from "./LangCard.style";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 const LangCard = ({ link, icon, color, title, description }) => {
   return (
-    <StyledCard >
-      <Stack direction={{ xs: 'row-reverse', md: 'column' }} alignItems={'center'} gap={{ xs: 2, md: 0 }}>
+    <StyledCard
+      sx={{
+        transition: "transform 0.3s ease-in-out",
+        ":hover": {
+          boxShadow: "0px 0px 3px 0px #F6C927",
+          transform: "scale(1.05)",
+        },
+      }}
+    >
+      <Stack
+        direction={{ xs: "row-reverse", md: "column" }}
+        alignItems={"center"}
+        gap={{ xs: 2, md: 0 }}
+      >
         <IconButton
-          onClick={() => window.open(link, '_blank')}
+          onClick={() => window.open(link, "_blank")}
           sx={{
-            background: '#1F1F53',
-            width: '3.5rem',
-            height: '3.5rem',
-            marginBottom: '1rem',
+            background: "#1F1F53",
+            width: "3.5rem",
+            height: "3.5rem",
+            marginBottom: "1rem",
           }}
         >
           <FontAwesomeIcon icon={icon} color={color} />
         </IconButton>
-        <Typography variant="h5" color={'primary'} fontWeight={900} sx={{ direction: 'rtl', marginBottom: '.5rem' }}>
+        <Typography
+          variant="h5"
+          color={"primary"}
+          fontWeight={900}
+          sx={{ direction: "rtl", marginBottom: ".5rem" }}
+        >
           {title}
         </Typography>
       </Stack>
-      <Typography variant="body1" sx={{ direction: 'rtl' }}>
+      <Typography variant="body1" sx={{ direction: "rtl" }}>
         {description}
       </Typography>
-      <div style={{ width: '100%' }}>
-        <IconButton>
+      <div style={{ width: "100%" }}>
+        <IconButton onClick={() => window.open(link, "_blank")}>
           <KeyboardBackspaceIcon color="primary" />
         </IconButton>
       </div>
