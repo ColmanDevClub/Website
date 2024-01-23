@@ -132,19 +132,29 @@ export default function CustomizedInputsStyleOverrides() {
                     label === "Experience Details" ? 0 : index * 0.2
                   }
                 >
-                  <FieldComponent
-                    type={key === "password" ? "password" : "text"}
-                    sx={{ width: "100%" }}
-                    options={options}
-                    label={label}
-                    onChange={(event) => {
-                      setFormValues((prev) => {
-                        return { ...prev, [key]: event.target.value };
-                      });
-                      inputHandler(validator, key, event.target.value);
+                  <Box
+                    sx={{
+                      marginBottom: {
+                        xs: "0.75rem",
+                      },
                     }}
-                    error={validationErrors[key]}
-                  />
+                  >
+                    <FieldComponent
+                      type={key === "password" ? "password" : "text"}
+                      sx={{
+                        width: "100%",
+                      }}
+                      options={options}
+                      label={label}
+                      onChange={(event) => {
+                        setFormValues((prev) => {
+                          return { ...prev, [key]: event.target.value };
+                        });
+                        inputHandler(validator, key, event.target.value);
+                      }}
+                      error={validationErrors[key]}
+                    />
+                  </Box>
                   <Typography
                     sx={{
                       textAlign: "start",
