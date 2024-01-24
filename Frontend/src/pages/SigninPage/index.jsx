@@ -1,22 +1,25 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { theme } from '../../theme';
-import { auth } from '../../firebase/firebase-config';
-import TransitionsModal from '../../components/Modal';
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { theme } from "../../theme";
+import { auth } from "../../firebase/firebase-config";
+import TransitionsModal from "../../components/Modal";
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useNavigate } from "react-router";
 
 const defaultTheme = createTheme();
 
@@ -24,7 +27,7 @@ export default function SignIn() {
   const [formValues, setFormValues] = React.useState({});
   const [openModal, setOpenModal] = React.useState(false);
   const [emailSent, setEmailSent] = React.useState(false);
-  const [resetEmailValue, setResetEmailValue] = React.useState('');
+  const [resetEmailValue, setResetEmailValue] = React.useState("");
   const [error, setError] = React.useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
@@ -32,8 +35,11 @@ export default function SignIn() {
 
     signInWithEmailAndPassword(auth, formValues.email, formValues.password)
       .then((userCredential) => {
-        localStorage.setItem('userToken', JSON.stringify(userCredential._tokenResponse.idToken));
-        navigate('/syllabus');
+        localStorage.setItem(
+          "userToken",
+          JSON.stringify(userCredential._tokenResponse.idToken)
+        );
+        navigate("/syllabus");
       })
       .catch((error) => {
         setError(true);
@@ -47,18 +53,23 @@ export default function SignIn() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon sx={{ color: "white" }} />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -92,14 +103,19 @@ export default function SignIn() {
             {error && (
               <Typography
                 sx={{
-                  textAlign: 'start',
-                  color: '#f44336',
+                  textAlign: "start",
+                  color: "#f44336",
                 }}
               >
-                {'Email or password is incorrect'}
+                {"Email or password is incorrect"}
               </Typography>
             )}
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
               Sign In
             </Button>
             <Grid container>
@@ -127,10 +143,10 @@ export default function SignIn() {
               btnText="Reset Password"
               btnOnClick={async () => {
                 //TODO -> need to fix. not working
-                if (resetEmailValue !== '') {
+                if (resetEmailValue !== "") {
                   setEmailSent(true);
                   await sendPasswordResetEmail(auth, resetEmailValue);
-                  console.log('Password reset email sent');
+                  console.log("Password reset email sent");
                   setOpenModal(false);
                 }
               }}
@@ -147,7 +163,7 @@ export default function SignIn() {
                   onChange={(e) => setResetEmailValue(e.target.value)}
                 />
               ) : (
-                <Typography>{'Password reset email sent'}</Typography>
+                <Typography>{"Password reset email sent"}</Typography>
               )}
             </TransitionsModal>
           </Box>
