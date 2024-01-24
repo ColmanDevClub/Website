@@ -14,10 +14,11 @@ import Loader from "../../components/common/Loader";
 import useGoogleSheetsData from "../../hooks/useSheets";
 import { auth } from "../../firebase/firebase-config";
 
-export const StyledBox = styled(Card)(({ theme }) => ({
-  height: "auto",
-  width: "290px",
-  padding: "0",
+const StyledBox = styled(Card)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
 }));
 
 const csvMap = {
@@ -113,7 +114,16 @@ const SyllabusPage = () => {
           return (
             <Grid item justifyContent={"center"}>
               <Animation animationDelay={index * 0.2}>
-                <StyledBox key={index}>
+                <StyledBox
+                  key={index}
+                  sx={{
+                    transition: "all 0.3s",
+                    "&:hover": {
+                      boxShadow: "0px 0px 3px 0px #F6C927",
+                      transform: "scale(1.03)",
+                    },
+                  }}
+                >
                   <Typography p={2} fontWeight={900} variant="h4">
                     Week {index + 1}
                   </Typography>
