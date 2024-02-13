@@ -18,7 +18,7 @@ const HomePage = () => {
 
   return (
     <>
-      <button onClick={fetchAllUsers}>PO PO</button>
+      {/* <button onClick={fetchAllUsers}>PO PO</button> */}
       <EntranceAnimation>
         <SectionOne />
       </EntranceAnimation>

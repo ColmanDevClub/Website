@@ -66,8 +66,8 @@ export default function CustomizedInputsStyleOverrides() {
       return;
     }
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
-
-    addUser({ formValues });
+    const newUser = {...formValues, "date": new Date().toLocaleDateString()};
+    addUser({ newUser });
     const { email, password } = formValues;
     try {
       // await createUserWithEmailAndPassword(auth, email, password);
@@ -96,18 +96,18 @@ export default function CustomizedInputsStyleOverrides() {
       //     )
       //   })
       //   .catch((error) => {});
-      await sendDataToAgudaForm(
-                formValues.email,
-                formValues.fullName,
-                formValues.phoneNumber,
-                "הפקולטה למדעי המחשב",
-                "מועדון המפתחים",
-                "שנה " + formValues.schoolYear + "'",
-                "טובה מאוד",
-                "",
-                false,
-                false
-              )
+      // await sendDataToAgudaForm(
+      //           formValues.email,
+      //           formValues.fullName,
+      //           formValues.phoneNumber,
+      //           "הפקולטה למדעי המחשב",
+      //           "מועדון המפתחים",
+      //           "שנה " + formValues.schoolYear + "'",
+      //           "טובה מאוד",
+      //           "",
+      //           false,
+      //           false
+      //         )
     } catch (error) {
       console.log(error);
     }
