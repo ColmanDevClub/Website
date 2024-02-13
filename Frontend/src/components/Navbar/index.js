@@ -23,7 +23,7 @@ const pages = [
   { title: "Home", path: "/" },
   { title: "The Team", path: "/team" },
   { title: "Sign Up", path: "/Signup" },
-  { title: "Signin", path: "/signin" },
+  // { title: "Signin", path: "/signin" },
 ];
 
 function ResponsiveAppBar() {

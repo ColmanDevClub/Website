@@ -3,6 +3,8 @@ import { db } from './firebase-config';
 
 export const addUser = async (user) => {
   try {
+    // const userWithoutPassword = { ...user };
+    // delete userWithoutPassword.password;
     const docRef = await addDoc(collection(db, 'users'), user);
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {

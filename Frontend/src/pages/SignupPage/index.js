@@ -12,6 +12,8 @@ import FormSelectField from '../../components/common/FormSelectField';
 import { allRules, errorMessages, labels } from '../../data';
 import { addUser, fetchData } from '../../firebase/firebase-utils';
 import css from './style.module.css';
+
+import {sendDataToAgudaForm} from '../../utils/index';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -68,19 +70,44 @@ export default function CustomizedInputsStyleOverrides() {
     addUser({ formValues });
     const { email, password } = formValues;
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      await signInWithEmailAndPassword(
-        auth,
-        formValues.email,
-        formValues.password
-      )
-        .then((userCredential) => {
-          localStorage.setItem(
-            "userToken",
-            JSON.stringify(userCredential._tokenResponse.idToken)
-          );
-        })
-        .catch((error) => {});
+      // await createUserWithEmailAndPassword(auth, email, password);
+      // await signInWithEmailAndPassword(
+      //   auth,
+      //   formValues.email,
+      //   formValues.password
+      // )
+      //   .then((userCredential) => {
+      //     localStorage.setItem(
+      //       "userToken",
+      //       JSON.stringify(userCredential._tokenResponse.idToken)
+      //     ); 
+      //   }).then(()=>{
+      //     sendDataToAgudaForm(
+      //       formValues.email,
+      //       formValues.fullName,
+      //       formValues.phoneNumber,
+      //       "הפקולטה למדעי המחשב",
+      //       "מועדון המפתחים",
+      //       "שנה " + formValues.schoolYear + "'",
+      //       "טובה מאוד",
+      //       "",
+      //       false,
+      //       false
+      //     )
+      //   })
+      //   .catch((error) => {});
+      await sendDataToAgudaForm(
+                formValues.email,
+                formValues.fullName,
+                formValues.phoneNumber,
+                "הפקולטה למדעי המחשב",
+                "מועדון המפתחים",
+                "שנה " + formValues.schoolYear + "'",
+                "טובה מאוד",
+                "",
+                false,
+                false
+              )
     } catch (error) {
       console.log(error);
     }

@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import EntranceAnimation from '../../components/EntranceAnimation';
-import SectionOne from './SectionOne';
-import SectionTwo from './SectionTwo';
-import SectionThree from './SectionThree';
-import SectionFour from './SectionFour';
-import SplashAnimation from '../../components/SplashAnimation';
+import EntranceAnimation from "../../components/EntranceAnimation";
+import SectionOne from "./SectionOne";
+import SectionTwo from "./SectionTwo";
+import SectionThree from "./SectionThree";
+import SectionFour from "./SectionFour";
+import SplashAnimation from "../../components/SplashAnimation";
+import { fetchData } from "../../firebase/firebase-utils";
+import { fetchAllUsers } from "../../utils";
 
 const HomePage = () => {
   // React.useEffect(() => {
@@ -16,6 +18,7 @@ const HomePage = () => {
 
   return (
     <>
+      <button onClick={fetchAllUsers}>PO PO</button>
       <EntranceAnimation>
         <SectionOne />
       </EntranceAnimation>
