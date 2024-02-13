@@ -171,7 +171,7 @@ export default function CustomizedInputsStyleOverrides() {
                     }}
                   >
                     <FieldComponent
-                      type={key === "password" ? "password" : "text"}
+                      type="text"
                       sx={{
                         width: "100%",
                       }}
