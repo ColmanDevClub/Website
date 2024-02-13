@@ -12,6 +12,8 @@ import FormSelectField from '../../components/common/FormSelectField';
 import { allRules, errorMessages, labels } from '../../data';
 import { addUser, fetchData } from '../../firebase/firebase-utils';
 import css from './style.module.css';
+
+import {sendDataToAgudaForm} from '../../utils/index';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -64,23 +66,48 @@ export default function CustomizedInputsStyleOverrides() {
       return;
     }
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
-
-    addUser({ formValues });
+    const newUser = {...formValues, "date": new Date().toLocaleDateString()};
+    addUser({ newUser });
     const { email, password } = formValues;
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      await signInWithEmailAndPassword(
-        auth,
-        formValues.email,
-        formValues.password
-      )
-        .then((userCredential) => {
-          localStorage.setItem(
-            "userToken",
-            JSON.stringify(userCredential._tokenResponse.idToken)
-          );
-        })
-        .catch((error) => {});
+      // await createUserWithEmailAndPassword(auth, email, password);
+      // await signInWithEmailAndPassword(
+      //   auth,
+      //   formValues.email,
+      //   formValues.password
+      // )
+      //   .then((userCredential) => {
+      //     localStorage.setItem(
+      //       "userToken",
+      //       JSON.stringify(userCredential._tokenResponse.idToken)
+      //     ); 
+      //   }).then(()=>{
+      //     sendDataToAgudaForm(
+      //       formValues.email,
+      //       formValues.fullName,
+      //       formValues.phoneNumber,
+      //       "הפקולטה למדעי המחשב",
+      //       "מועדון המפתחים",
+      //       "שנה " + formValues.schoolYear + "'",
+      //       "טובה מאוד",
+      //       "",
+      //       false,
+      //       false
+      //     )
+      //   })
+      //   .catch((error) => {});
+      // await sendDataToAgudaForm(
+      //           formValues.email,
+      //           formValues.fullName,
+      //           formValues.phoneNumber,
+      //           "הפקולטה למדעי המחשב",
+      //           "מועדון המפתחים",
+      //           "שנה " + formValues.schoolYear + "'",
+      //           "טובה מאוד",
+      //           "",
+      //           false,
+      //           false
+      //         )
     } catch (error) {
       console.log(error);
     }
@@ -144,7 +171,7 @@ export default function CustomizedInputsStyleOverrides() {
                     }}
                   >
                     <FieldComponent
-                      type={key === "password" ? "password" : "text"}
+                      type="text"
                       sx={{
                         width: "100%",
                       }}

@@ -29,13 +29,13 @@ export const labels = [
     key: "email",
     validator: emailValidation,
   },
-  {
-    label: "Password",
-    type: "TextField",
-    showInput: "false",
-    key: "password",
-    validator: passwordValidation,
-  },
+  // {
+  //   label: "Password",
+  //   type: "TextField",
+  //   showInput: "false",
+  //   key: "password",
+  //   validator: passwordValidation,
+  // },
   {
     label: "Phone Number",
     type: "TextField",
