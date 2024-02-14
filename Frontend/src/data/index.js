@@ -102,5 +102,5 @@ export const errorMessages = {
   phoneNumber: "Phone number must contain 10 digits",
   email: "Email is not valid",
   fullName: "Name must be in English and must contain atleast 3 chars.",
-  password: "Password must contain atleast 6 chars.",
+  // password: "Password must contain atleast 6 chars.",
 };
