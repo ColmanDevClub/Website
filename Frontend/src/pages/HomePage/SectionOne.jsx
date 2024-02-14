@@ -57,6 +57,19 @@ const SectionOne = () => {
             ומתקדמות בשוק. זה מה שאנחנו שואפים אליו במועדון הפיתוח של המכללה
             למינהל. אנחנו לוקחים את הידע שלנו, ומנסים לדחוף אותו שלב אחד קדימה
             ולממש אותו.
+            <span style={{ display: "block" }}>
+              רוצה לשמוע על שאר המועדונים שלנו?{" "}
+              <a
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  fontWeight: "bold",
+                }}
+                href="https://colmanaguda.activetrail.biz/colmanclubs2024"
+              >
+                לחץ כאן
+              </a>
+            </span>
           </Typography>
           <Button variant="contained" onClick={() => navigate("/Signup")}>
             להרשמה לחצו כאן
