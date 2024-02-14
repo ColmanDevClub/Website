@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 import { CSVLink } from "react-csv";
 import { fetchData } from "../../firebase/firebase-utils";
@@ -35,7 +35,6 @@ const PrivateRoutes = () => {
   const test = async () => {
     if (!isAdmin) return;
     const usersArray = await fetchData("users");
-    console.log("usersArray ", usersArray);
     // first take the formValues, after it take the values from the enumCsvFields and map them to an array.
     const formattedData = usersArray.map(({ formValues }) => {
       //  Object.values(enumCsvFields) = ["email", "experience", "experienceDetails", "fieldOfStudy", "id", "phoneNumber", "program", "schoolYear"]
@@ -73,17 +72,22 @@ const PrivateRoutes = () => {
         </Box>
       )}
       {isAdmin && users && (
-        <CSVLink
-          style={{
-            textDecoration: "none",
-            color: "white",
-            fontWeight: "bold",
-            fontSize: "1.5rem",
-          }}
-          data={users}
-        >
-          Download me
-        </CSVLink>
+        <>
+          <Typography variant="h4" color="white" marginBottom={"2rem"}>
+            Total Registers: {users.length}
+          </Typography>
+          <CSVLink
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+            data={users}
+          >
+            Download me (CSV File)
+          </CSVLink>
+        </>
       )}
     </Box>
   );
