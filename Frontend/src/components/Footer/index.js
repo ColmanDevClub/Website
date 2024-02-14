@@ -13,6 +13,7 @@ import { GitHub, LinkedIn, Instagram } from "@mui/icons-material";
 
 import css from "./style.module.css";
 import Logo from "../../assets/‏‏logos.png";
+import LogoAguda from "../../assets/logoAcademicStudent.svg";
 
 export default function DenseAppBar() {
   const iconStyle = { fontSize: { xs: "1.5rem", lg: "1.75rem" } };
@@ -54,13 +55,19 @@ export default function DenseAppBar() {
             item
             xs={12}
             md={12}
-            lg={12}
-            sx={{ display: "flex", justifyContent: "center" }}
+            lg={6}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             <ImageListItem
               sx={{
-                width: { md: "20%", lg: "20%" },
-                display: "flex",
+                width: { xs: "50%", md: "15%", lg: "15%" },
+                display: { xs: "block", md: "flex" },
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <img
@@ -69,6 +76,12 @@ export default function DenseAppBar() {
                 alt="programmers"
                 loading="lazy"
               ></img>
+              <img
+                src={LogoAguda}
+                className={css["photo"]}
+                alt="programmers"
+                loading="lazy"
+              />
             </ImageListItem>
           </Grid>
           <Typography
