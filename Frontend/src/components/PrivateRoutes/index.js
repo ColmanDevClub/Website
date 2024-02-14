@@ -14,6 +14,7 @@ const enumCsvFields = {
   phoneNumber: "phoneNumber",
   program: "program",
   schoolYear: "schoolYear",
+  date: "date",
 };
 
 const PrivateRoutes = () => {
@@ -34,10 +35,12 @@ const PrivateRoutes = () => {
   const test = async () => {
     if (!isAdmin) return;
     const usersArray = await fetchData("users");
+    console.log("usersArray ", usersArray);
     // first take the formValues, after it take the values from the enumCsvFields and map them to an array.
     const formattedData = usersArray.map(({ formValues }) => {
       //  Object.values(enumCsvFields) = ["email", "experience", "experienceDetails", "fieldOfStudy", "id", "phoneNumber", "program", "schoolYear"]
       const valueArray = Object.values(enumCsvFields).map((key) => {
+        if (!formValues) return "";
         return formValues[key];
       });
       return valueArray;
