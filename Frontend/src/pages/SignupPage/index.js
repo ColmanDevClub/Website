@@ -2,18 +2,18 @@ import * as React from "react";
 
 import { useNavigate } from "react-router";
 
-import { Box, Checkbox, Container, Grid, Typography } from '@mui/material';
+import { Box, Checkbox, Container, Grid, Typography } from "@mui/material";
 
-import EntranceAnimation from '../../components/EntranceAnimation';
-import TransitionsModal from '../../components/Modal';
-import Button from '../../components/common/Button';
-import FormInputField from '../../components/common/FormInputField';
-import FormSelectField from '../../components/common/FormSelectField';
-import { allRules, errorMessages, labels } from '../../data';
-import { addUser, fetchData } from '../../firebase/firebase-utils';
-import css from './style.module.css';
+import EntranceAnimation from "../../components/EntranceAnimation";
+import TransitionsModal from "../../components/Modal";
+import Button from "../../components/common/Button";
+import FormInputField from "../../components/common/FormInputField";
+import FormSelectField from "../../components/common/FormSelectField";
+import { allRules, errorMessages, labels } from "../../data";
+import { addUser, fetchData } from "../../firebase/firebase-utils";
+import css from "./style.module.css";
 
-import {sendDataToAgudaForm} from '../../utils/index';
+import { sendDataToAgudaForm } from "../../utils/index";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -60,13 +60,17 @@ export default function CustomizedInputsStyleOverrides() {
       }
     }
     if (!rules) return;
-    if((await fetchData('users')).find((user)=>user.formValues.email === formValues['email']) ) { 
-      alert('משתמש קיים במערכת');
-      navigate('/');
+    if (
+      (await fetchData("users")).find(
+        (user) => user.formValues?.email === formValues["email"]
+      )
+    ) {
+      alert("משתמש קיים במערכת");
+      navigate("/");
       return;
     }
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
-    const newUser = {...formValues, "date": new Date().toLocaleDateString()};
+    const newUser = { ...formValues, date: new Date().toLocaleDateString() };
     addUser({ newUser });
     const { email, password } = formValues;
     try {
@@ -80,7 +84,7 @@ export default function CustomizedInputsStyleOverrides() {
       //     localStorage.setItem(
       //       "userToken",
       //       JSON.stringify(userCredential._tokenResponse.idToken)
-      //     ); 
+      //     );
       //   }).then(()=>{
       //     sendDataToAgudaForm(
       //       formValues.email,
