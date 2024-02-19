@@ -13,12 +13,12 @@ import { allRules, errorMessages, labels } from "../../data";
 import { addUser, fetchData } from "../../firebase/firebase-utils";
 import css from "./style.module.css";
 
-import { sendDataToAgudaForm } from "../../utils/index";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { auth } from "../../firebase/firebase-config";
+// import { sendDataToAgudaForm } from "../../utils/index";
+// import {
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+// } from "firebase/auth";
+// import { auth } from "../../firebase/firebase-config";
 const FIELDS_MAP = {
   TextField: FormInputField,
   Select: FormSelectField,
@@ -72,7 +72,7 @@ export default function CustomizedInputsStyleOverrides() {
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
     const newUser = { ...formValues, date: new Date().toLocaleDateString() };
     addUser({ newUser });
-    const { email, password } = formValues;
+    // const { email, password } = formValues;
     try {
       // await createUserWithEmailAndPassword(auth, email, password);
       // await signInWithEmailAndPassword(
