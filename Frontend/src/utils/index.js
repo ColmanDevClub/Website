@@ -1,5 +1,5 @@
-import validator from 'validator';
-import { fetchData } from '../firebase/firebase-utils';
+import validator from "validator";
+import { fetchData } from "../firebase/firebase-utils";
 // import axios from 'axios';
 
 const emailValidation = (email) => {
@@ -10,7 +10,7 @@ const emailValidation = (email) => {
 const stringValidation = (name) => {
   if (name.length < 3) return false;
   const newName = validator.trim(name);
-  const nameValidation = /^[a-zA-Z\u0590-\u05FF\s]+$/;
+  const nameValidation = /^[a-zA-Z\u0590-\u05FF,\s]+$/;
   return nameValidation.test(newName);
 };
 
@@ -22,17 +22,17 @@ const numberValidation = (number) => {
 };
 
 const idValidation = (idNumber) => {
-  if (typeof idNumber !== 'string') {
+  if (typeof idNumber !== "string") {
     return false;
   }
 
-  idNumber = idNumber.replace(/\D/g, '');
+  idNumber = idNumber.replace(/\D/g, "");
 
   if (idNumber.length !== 9) {
     return false;
   }
 
-  const idDigits = idNumber.split('').map(Number);
+  const idDigits = idNumber.split("").map(Number);
   const controlDigit = idDigits.pop();
   const sum = idDigits.reduce(function (acc, digit, index) {
     const weight = index % 2 === 0 ? 1 : 2;
@@ -55,19 +55,19 @@ const selectionValidation = (selectValue) => {
 };
 
 export const fetchAllUsers = async () => {
-  const users = await fetchData('users');
-  console.log('users[0] ', users[0].formValues);
+  const users = await fetchData("users");
+  console.log("users[0] ", users[0].formValues);
   // eslint-disable-next-line array-callback-return
   users.map((user) => {
     sendDataToAgudaForm(
       user.formValues.email,
       user.formValues.fullName,
       user.formValues.phoneNumber,
-      'הפקולטה למדעי המחשב',
-      'מועדון המפתחים',
-      'שנה ' + user.formValues.schoolYear + "'",
-      'טובה מאוד',
-      '',
+      "הפקולטה למדעי המחשב",
+      "מועדון המפתחים",
+      "שנה " + user.formValues.schoolYear + "'",
+      "טובה מאוד",
+      "",
       false,
       false
     );
@@ -87,19 +87,19 @@ export const sendDataToAgudaForm = async (
   ConfirmTerms
 ) => {
   const formData = new URLSearchParams();
-  formData.append('ConfirmEmails', ConfirmEmails);
-  formData.append('ConfirmTerms', ConfirmTerms);
-  formData.append('EncryptedUserId', 'zeetfzdwwh2d');
-  formData.append('EncryptedPageId', 'zfwwadd2ccup');
-  formData.append('Ext1', Ext1);
-  formData.append('Ext2', Ext2);
-  formData.append('Ext3', Ext3);
-  formData.append('Ext4', Ext4);
-  formData.append('Ext5', Ext5);
-  formData.append('FirstName', fullName.split(' ')[0]);
-  formData.append('LastName', fullName.split(' ')[1]);
-  formData.append('Phone1', phoneNumber);
-  formData.append('Email', email);
+  formData.append("ConfirmEmails", ConfirmEmails);
+  formData.append("ConfirmTerms", ConfirmTerms);
+  formData.append("EncryptedUserId", "zeetfzdwwh2d");
+  formData.append("EncryptedPageId", "zfwwadd2ccup");
+  formData.append("Ext1", Ext1);
+  formData.append("Ext2", Ext2);
+  formData.append("Ext3", Ext3);
+  formData.append("Ext4", Ext4);
+  formData.append("Ext5", Ext5);
+  formData.append("FirstName", fullName.split(" ")[0]);
+  formData.append("LastName", fullName.split(" ")[1]);
+  formData.append("Phone1", phoneNumber);
+  formData.append("Email", email);
 
   // const response = await axios.post('https://webapi.mymarketing.co.il/Customers/LeadHandler.ashx', formData, {
   //   headers: {
@@ -125,4 +125,11 @@ export const sendDataToAgudaForm = async (
   // });
 };
 
-export { emailValidation, stringValidation, numberValidation, selectionValidation, idValidation, passwordValidation };
+export {
+  emailValidation,
+  stringValidation,
+  numberValidation,
+  selectionValidation,
+  idValidation,
+  passwordValidation,
+};
