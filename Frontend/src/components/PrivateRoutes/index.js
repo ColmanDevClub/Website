@@ -10,6 +10,7 @@ const enumCsvFields = {
   experience: "experience",
   experienceDetails: "experienceDetails",
   fieldOfStudy: "fieldOfStudy",
+  fullName: "fullName",
   id: "id",
   phoneNumber: "phoneNumber",
   program: "program",
