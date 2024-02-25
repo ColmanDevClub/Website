@@ -59,6 +59,7 @@ export default function TransitionsModal({
                 <Button
                   variant="contained"
                   onClick={btnOnClick}
+                  style={{marginTop: "1rem"}}
                   className={css["button"]}
                 >
                   {btnText}
