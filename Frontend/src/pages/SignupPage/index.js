@@ -27,7 +27,7 @@ const FIELDS_MAP = {
 export default function CustomizedInputsStyleOverrides() {
   const navigate = useNavigate();
 
-  const [openModal, setOpenModal] = React.useState(true);
+  const [openModal, setOpenModal] = React.useState(false);
   const [formValues, setFormValues] = React.useState({});
   const [validationErrors, setValidationErrors] = React.useState({});
   const [openRulesModal, setOpenRulesModal] = React.useState(false);
@@ -212,16 +212,26 @@ export default function CustomizedInputsStyleOverrides() {
                 btnText="מעבר לדף הבית"
                 btnOnClick={() => navigate("/")}
               >
-              <Typography
-          variant="p"
-          sx={{
-            textAlign: "center",
-            marginBottom: "2rem",
-          }}
-        >
-          מוזמנים להצטרף לקבוצת הוואטספ שלנו
-        </Typography>
-        <a style={{textDecoration: "none", color: "white", fontWeight: "bold", marginRight: "1rem"}} href="https://chat.whatsapp.com/BSs6DSDRUiW8UHe4ZfrABt">לחץ כאן</a>
+                <Typography
+                  variant="p"
+                  sx={{
+                    textAlign: "center",
+                    marginBottom: "2rem",
+                  }}
+                >
+                  מוזמנים להצטרף לקבוצת הוואטספ שלנו
+                </Typography>
+                <a
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                    fontWeight: "bold",
+                    marginRight: "1rem",
+                  }}
+                  href="https://chat.whatsapp.com/BSs6DSDRUiW8UHe4ZfrABt"
+                >
+                  לחץ כאן
+                </a>
               </TransitionsModal>
 
               <TransitionsModal
