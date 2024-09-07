@@ -12,8 +12,6 @@ const fetchDataFromCsv = async () => {
 
     const csvData = await response.text();
     const parsedData = parseCsv(csvData);
-    console.log(parsedData);
-    
     return parsedData;
   } catch (error) {}
 };
