@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 const fetchDataFromCsv = async () => {
   try {
     const response = await fetch(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vREpjJuwTQHVPX0iaQDkdA_1avw2ncdYuzWA5dHQ4tYJQP8Nar88uP03tNO6cUtwVFUT-P9uTZYFu9M/pub?gid=0&single=true&output=csv"
+      "https://docs.google.com/spreadsheets/d/1zeDo4QaGobB9s4Qnibb9HJujpiFO9OfXSaqhEwv5CUQ/gviz/tq?tqx=out:csv&gid=0"
     );
 
     if (!response.ok) {
@@ -12,6 +12,8 @@ const fetchDataFromCsv = async () => {
 
     const csvData = await response.text();
     const parsedData = parseCsv(csvData);
+    console.log(parsedData);
+    
     return parsedData;
   } catch (error) {}
 };

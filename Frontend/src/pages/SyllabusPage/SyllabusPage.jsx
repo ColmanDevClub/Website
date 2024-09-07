@@ -21,14 +21,20 @@ const StyledBox = styled(Card)(({ theme }) => ({
   alignItems: "center",
 }));
 
+const strip = (str) => {
+  return str?.replace(/^\s+|\s+$|\"|\'/g, '');
+}
+
 const csvMap = {
   id: 0,
   subject: 1,
   presentation: 2,
   youtube: 3,
-  git: 4,
-  exercise: 5,
-  time: 6,
+  links: 4,
+  git: 5,
+  exercise: 6,
+  time: 7,
+  show: 8
 };
 
 const SyllabusPage = () => {
@@ -42,7 +48,7 @@ const SyllabusPage = () => {
     } else {
       console.log("User is signed out");
     }
-  });
+  });  
 
   // .verifyIdToken(userToken)
   // .then((decodedToken) => {
@@ -84,17 +90,17 @@ const SyllabusPage = () => {
     );
   }
 
-  const splicedData = data.slice(3, data.length - 2);
-
-  const csvData = splicedData.map((row) => {
+  const splicedData = data.slice(1, data.length);
+  const visibleDAta = splicedData?.filter(row => strip(row[csvMap.show]) === "TRUE");
+  const csvData = visibleDAta?.map((row) => {
     return {
-      id: row[csvMap.id],
-      subject: row[csvMap.subject],
-      presentation: row[csvMap.presentation],
-      youtube: row[csvMap.youtube]?.split("v=")[1]?.split("&")[0],
-      git: row[csvMap.git],
-      exercise: row[csvMap.exercise],
-      time: row[csvMap.time],
+      id: strip(row[csvMap.id]),
+      subject: strip(row[csvMap.subject]),
+      presentation: strip(row[csvMap.presentation]),
+      youtube: strip(row[csvMap.youtube])?.split("v=")[1]?.split("&")[0],
+      git: strip(row[csvMap.git]),
+      exercise: strip(row[csvMap.exercise]),
+      time: strip(row[csvMap.time]),
     };
   });
 
