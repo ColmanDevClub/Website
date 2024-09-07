@@ -20,6 +20,9 @@ import SyllabusPage from "./pages/SyllabusPage/SyllabusPage";
 import PrivateRoutes from "./components/PrivateRoutes";
 import SigninPage from "./pages/SigninPage";
 
+
+
+
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
@@ -29,11 +32,12 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/team" element={<TeamPage />} />
       <Route path="/syllabus" element={<SyllabusPage />} />
-      {/* <Route path="/signin" element={<SigninPage />} /> */}
+      { <Route path="/signin" element={<SigninPage />} /> }
       <Route path="/private" element={<PrivateRoutes />} />
     </Route>
   )
 );
+
 
 const App = () => {
   return (
@@ -44,6 +48,8 @@ const App = () => {
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </QueryClientProvider>
     </ThemeProvider>
+
+    
   );
 };
 

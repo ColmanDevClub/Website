@@ -1,18 +1,18 @@
-import { emailValidation, idValidation, numberValidation, selectionValidation, stringValidation } from '../utils';
+import { emailValidation, idValidation, numberValidation, selectionValidation, stringValidation , passwordValidation} from '../utils';
 
 export const labels = [
   {
-    label: 'ID',
+    label: 'First Name - (English)',
     type: 'TextField',
     showInput: 'true',
-    key: 'id',
-    validator: idValidation,
+    key: 'firstName',
+    validator: stringValidation,
   },
   {
-    label: 'Full Name - (English)',
+    label: 'Last Name - (English)',
     type: 'TextField',
     showInput: 'true',
-    key: 'fullName',
+    key: 'lastName',
     validator: stringValidation,
   },
   {
@@ -22,13 +22,6 @@ export const labels = [
     key: 'email',
     validator: emailValidation,
   },
-  // {
-  //   label: "Password",
-  //   type: "TextField",
-  //   showInput: "false",
-  //   key: "password",
-  //   validator: passwordValidation,
-  // },
   {
     label: 'Phone Number',
     type: 'TextField',
@@ -37,44 +30,21 @@ export const labels = [
     validator: numberValidation,
   },
   {
-    label: 'Field of Study',
-    type: 'Select',
-    showInput: 'true',
-    options: ['מדעי המחשב', 'מערכות מידע', 'מדעי הנתונים'],
-    key: 'fieldOfStudy',
-    validator: selectionValidation,
-  },
-  {
-    label: 'School Year',
-    type: 'Select',
-    showInput: 'true',
-    options: ['א', 'ב', 'ג', 'ד'],
-    key: 'schoolYear',
-    validator: selectionValidation,
-  },
-  {
-    label: 'Program',
-    type: 'Select',
-    showInput: 'true',
-    options: ['בוקר', 'ערב', 'אלצ', 'אבצ'],
-    key: 'program',
-    validator: selectionValidation,
-  },
-  {
-    label: 'Experience',
-    type: 'Select',
-    showInput: 'true',
-    options: ['כן', 'לא'],
-    key: 'experience',
-    validator: selectionValidation,
-  },
-  {
-    label: 'Experience Details',
-    type: 'TextField',
-    showInput: 'true',
-    key: 'experienceDetails',
-    validator: stringValidation,
-  },
+       label: "Password",
+      type: "TextField",
+      showInput: "False",
+       key: "password",
+      validator: passwordValidation,
+     },
+     {
+      label: "ConfirmPassword",
+     type: "TextField",
+     showInput: "False",
+      key: "ConfirmPassword",
+     validator: passwordValidation,
+    },
+  
+  
 ];
 
 export const allRules = [
@@ -86,14 +56,9 @@ export const allRules = [
 ];
 
 export const errorMessages = {
-  id: 'ID is not valid',
-  experienceDetails: 'Required Field',
-  experience: 'Required Field',
-  program: 'Required Field',
-  schoolYear: 'Required Field',
-  fieldOfStudy: 'Required Field',
   phoneNumber: 'Phone number must contain 10 digits',
   email: 'Email is not valid',
-  fullName: 'Name must be in English and must contain atleast 3 chars.',
-  // password: "Password must contain atleast 6 chars.",
+  firstName: 'Name must be in English and must contain atleast 3 chars.',
+  lastName: 'Name must be in English and must contain atleast 3 chars.',
+  password: "Password must contain atleast 6 chars.",
 };

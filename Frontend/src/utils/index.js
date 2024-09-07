@@ -76,7 +76,8 @@ export const fetchAllUsers = async () => {
 
 export const sendDataToAgudaForm = async (
   email,
-  fullName,
+  firstName,
+  lastName,
   phoneNumber,
   Ext2,
   Ext1,
@@ -84,7 +85,9 @@ export const sendDataToAgudaForm = async (
   Ext4,
   Ext5,
   ConfirmEmails,
-  ConfirmTerms
+  ConfirmTerms,
+  password,
+ 
 ) => {
   const formData = new URLSearchParams();
   formData.append("ConfirmEmails", ConfirmEmails);
@@ -96,10 +99,11 @@ export const sendDataToAgudaForm = async (
   formData.append("Ext3", Ext3);
   formData.append("Ext4", Ext4);
   formData.append("Ext5", Ext5);
-  formData.append("FirstName", fullName.split(" ")[0]);
-  formData.append("LastName", fullName.split(" ")[1]);
+  formData.append("FirstName", firstName.split(" ")[0]);
+  formData.append("LastName", lastName.split(" ")[0]);
   formData.append("Phone1", phoneNumber);
   formData.append("Email", email);
+  formData.append("Password", password);
 
   // const response = await axios.post('https://webapi.mymarketing.co.il/Customers/LeadHandler.ashx', formData, {
   //   headers: {

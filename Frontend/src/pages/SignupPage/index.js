@@ -12,6 +12,7 @@ import FormSelectField from "../../components/common/FormSelectField";
 import { allRules, errorMessages, labels } from "../../data";
 import { addUser, fetchData } from "../../firebase/firebase-utils";
 import css from "./style.module.css";
+import { Link } from 'react-router-dom'; 
 
 // import { sendDataToAgudaForm } from "../../utils/index";
 // import {
@@ -33,6 +34,7 @@ export default function CustomizedInputsStyleOverrides() {
   const [openRulesModal, setOpenRulesModal] = React.useState(false);
   const [rules, setRules] = React.useState(false);
 
+
   React.useEffect(() => {
     labels.forEach((label) =>
       setFormValues((prev) => {
@@ -40,6 +42,7 @@ export default function CustomizedInputsStyleOverrides() {
       })
     );
   }, []);
+  
 
   const onSignupHandler = async () => {
     const validationState = labels.reduce((obj, { key, validator }) => {
@@ -147,8 +150,21 @@ export default function CustomizedInputsStyleOverrides() {
             letterSpacing: "4px",
           }}
         >
-          <span className={css["text-yellow"]}>Sign</span>up
-        </Typography>
+         <span className={css["text-yellow"]}>Create New</span> Account
+</Typography>
+<Typography 
+  style={{ 
+    fontFamily: 'Poppins', 
+    fontSize: '24px', 
+    fontWeight: 300, 
+    lineHeight: '41.04px', 
+    textAlign: 'center' 
+  }}
+>
+  we have become specialists at turning new ideas into viable products for our client’s organizations. Some of the more rewarding projects we have had the honour to be involved.
+</Typography>
+<br></br>
+<br></br>
         <div className={css["container"]}>
           <Box
             sx={{
@@ -279,6 +295,7 @@ export default function CustomizedInputsStyleOverrides() {
                   >
                     התקנון
                   </span>
+                 
                 </Typography>
               </Container>
             </Grid>
@@ -286,9 +303,19 @@ export default function CustomizedInputsStyleOverrides() {
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button disabled={!rules} onClick={onSignupHandler}>
-            Signup
+            Create Account
           </Button>
         </div>
+         <div className="login-container" style={{display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+  /* Optional: Add margin or padding to control spacing */
+  margin:  "auto",
+  padding: "10px",}}>
+      <span className="member-text">Already Member?</span>
+      <Link to="/signin" className="login-link" style={{color:"yellow"}}>Login In</Link>
+    </div> 
       </Container>
     </EntranceAnimation>
   );
