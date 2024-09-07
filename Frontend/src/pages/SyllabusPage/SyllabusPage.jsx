@@ -91,8 +91,8 @@ const SyllabusPage = () => {
   }
 
   const splicedData = data.slice(1, data.length);
-  const visibleDAta = splicedData?.filter(row => strip(row[csvMap.show]) === "TRUE");
-  const csvData = visibleDAta?.map((row) => {
+  const visibleData = splicedData?.filter(row => strip(row[csvMap.show]) === "TRUE");
+  const csvData = visibleData?.map((row) => {
     return {
       id: strip(row[csvMap.id]),
       subject: strip(row[csvMap.subject]),
