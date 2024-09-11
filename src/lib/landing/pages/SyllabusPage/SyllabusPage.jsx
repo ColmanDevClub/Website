@@ -7,12 +7,13 @@ import {
   styled,
 } from "@mui/material";
 import React from "react";
-import Animation from "../../components/EntranceAnimation";
-import { YouTubeVideo } from "../../components/YouTubeVideo";
-import ButtonWrapper from "../../components/common/Button";
-import Loader from "../../components/common/Loader";
-import useGoogleSheetsData from "../../hooks/useSheets";
-import { auth } from "../../firebase/firebase-config";
+import Animation from "src/components/EntranceAnimation";
+// import ButtonWrapper from "../../components/common/Button";
+import { YouTubeVideo } from "src/components/YouTubeVideo";
+import { auth } from "src/firebase/firebase-config";
+import useGoogleSheetsData from "src/hooks/useSheets";
+import Loader from "src/components/common/Loader";
+import { ArrowButton } from "src/ui";
 
 const StyledBox = styled(Card)(({ theme }) => ({
   display: "flex",
@@ -136,11 +137,11 @@ const SyllabusPage = () => {
                   <YouTubeVideo videoId={lesson.youtube} />
                   <Stack p={2}>
                     <h2>{lesson.subject}</h2>
-                    <ButtonWrapper href={lesson.git} target="_blank">
+                    <ArrowButton href={lesson.git} target="_blank">
                       <Typography p={2} fontWeight={900} variant="body1">
                         Start Challenge
                       </Typography>
-                    </ButtonWrapper>
+                    </ArrowButton>
                   </Stack>
                 </StyledBox>
               </Animation>
