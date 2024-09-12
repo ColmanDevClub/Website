@@ -1,17 +1,13 @@
+import { Box, Checkbox, Container, css, Grid, Typography } from '@mui/material';
 import * as React from 'react';
-
-import { useNavigate } from 'react-router';
-
-import { Box, Checkbox, Container, Grid, Typography } from '@mui/material';
-
-import EntranceAnimation from '../../../../components/EntranceAnimation';
-import TransitionsModal from '../../../../components/Modal';
-import FormInputField from '../../../../components/common/FormInputField';
-import FormSelectField from '../../../../components/common/FormSelectField';
-import { allRules, errorMessages, labels } from '../../../../data';
-import { addUser, fetchData } from '../../../../firebase/firebase-utils';
-import css from './style.module.css';
-import { ArrowButton } from '../../../../components';
+import { useNavigate } from 'react-router-dom';
+import FormInputField from 'src/components/common/FormInputField';
+import FormSelectField from 'src/components/common/FormSelectField';
+import EntranceAnimation from 'src/components/EntranceAnimation';
+import TransitionsModal from 'src/components/Modal';
+import { allRules, errorMessages, labels } from 'src/data';
+import { addUser, fetchData } from 'src/firebase/firebase-utils';
+import { ArrowButton } from 'src/ui';
 
 // import { sendDataToAgudaForm } from "../../utils/index";
 // import {
