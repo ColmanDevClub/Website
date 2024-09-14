@@ -14,5 +14,16 @@ export const YouTubeVideo = ({ videoId }) => {
     },
   };
 
-  return <YouTube videoId={videoId} loading="lazy" opts={opts} onReady={onPlayerReady} />;
+  return <YouTube videoId={videoId} loading="lazy" opts={opts} onReady={onPlayerReady}  />
+
+  // return (
+  //   <iframe 
+  //     id="ytplayer" 
+  //     type="text/html" 
+  //     width="290" 
+  //     height="220"
+  //     src={`https://www.youtube.com/embed/${videoId}`}
+  //     frameborder="0" allowfullscreen>
+  //   </iframe>
+  // )
 };

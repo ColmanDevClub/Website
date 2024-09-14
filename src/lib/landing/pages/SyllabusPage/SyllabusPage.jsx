@@ -1,9 +1,7 @@
 import { Card, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import React from 'react';
 import Animation from 'src/components/EntranceAnimation';
-// import ButtonWrapper from "../../components/common/Button";
 import { YouTubeVideo } from 'src/components/YouTubeVideo';
-import { auth } from 'src/firebase/firebase-config';
 import useGoogleSheetsData from 'src/hooks/useSheets';
 import Loader from 'src/components/common/Loader';
 import { ArrowButton } from 'src/ui';
@@ -16,7 +14,7 @@ const StyledBox = styled(Card)(({ theme }) => ({
 }));
 
 const strip = (str) => {
-  return str?.replace(/^\s+|\s+$|\"|\'/g, '');
+  return str?.replace(/^\s+|\s+$|"|'/g, '');
 };
 
 const csvMap = {
@@ -33,39 +31,6 @@ const csvMap = {
 
 const SyllabusPage = () => {
   const { data, isLoading, error } = useGoogleSheetsData();
-
-  // const userToken = localStorage.getItem('userToken');
-
-  // auth.onAuthStateChanged((user) => {
-  //   if (user) {
-  //     console.log('User is signed in');
-  //   } else {
-  //     console.log('User is signed out');
-  //   }
-  // });
-
-  // .verifyIdToken(userToken)
-  // .then((decodedToken) => {
-  //   console.log('decodedToken:', decodedToken);
-  //   // Continue loading the page or perform other actions
-  // })
-  // .catch((error) => {
-  //   // If the token is not valid, redirect to the login page
-  //   console.error('Token verification failed:', error);
-  //   window.location.href = '/Signup';
-  // });
-
-  // React.useEffect(() => {
-  //   const userToken = localStorage.getItem('userToken');
-
-  //   // Check if the user is authenticated
-  //   if (!userToken) {
-  //     // If not authenticated, redirect to the login page
-  //     window.location.href = '/';
-  //     return;
-  //   }
-
-  // }, []);
 
   if (error) {
     console.log(error);
