@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import First from './pages/First';
 import Layout from './pages/Layout/Layout';
+import First from './pages/First';
 
 const ManageRouter = () => {
   return (

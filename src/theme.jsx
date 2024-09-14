@@ -86,14 +86,6 @@ export const theme = createTheme({
         },
       },
     },
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          background: '#1F1F53',
-          border: '1px solid #1F1F53',
-        },
-      },
-    },
     MuiTextField: {
       styleOverrides: {
         root: {

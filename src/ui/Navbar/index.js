@@ -16,7 +16,7 @@ const pages = [
   // { title: "Signin", path: "/signin" },
 ];
 
-function ResponsiveAppBar() {
+const Navbar = () => {
   const { pathname } = useLocation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -220,5 +220,5 @@ function ResponsiveAppBar() {
       <main>{<Outlet />}</main>
     </>
   );
-}
-export default ResponsiveAppBar;
+};
+export default Navbar;
