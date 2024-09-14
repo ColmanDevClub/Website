@@ -1,10 +1,10 @@
 import { Card, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import React from 'react';
-import Animation from '../../../../components/EntranceAnimation';
+import Animation from '../../../../animation/EntranceAnimation';
 import { YouTubeVideo } from '../../../../components/YouTubeVideo';
-import Loader from '../../../../components/common/Loader';
+import Loader from '../../../../ui/Loader';
 import useGoogleSheetsData from '../../../../hooks/useSheets';
-import { auth } from '../../../../firebase/firebase-config';
+import { auth } from '../../../../config/firebase-config';
 import { ArrowButton } from 'src/ui';
 
 const StyledBox = styled(Card)(({ theme }) => ({
@@ -26,39 +26,6 @@ const csvMap = {
 
 const SyllabusPage = () => {
   const { data, isLoading, error } = useGoogleSheetsData();
-
-  const userToken = localStorage.getItem('userToken');
-
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      console.log('User is signed in');
-    } else {
-      console.log('User is signed out');
-    }
-  });
-
-  // .verifyIdToken(userToken)
-  // .then((decodedToken) => {
-  //   console.log('decodedToken:', decodedToken);
-  //   // Continue loading the page or perform other actions
-  // })
-  // .catch((error) => {
-  //   // If the token is not valid, redirect to the login page
-  //   console.error('Token verification failed:', error);
-  //   window.location.href = '/Signup';
-  // });
-
-  // React.useEffect(() => {
-  //   const userToken = localStorage.getItem('userToken');
-
-  //   // Check if the user is authenticated
-  //   if (!userToken) {
-  //     // If not authenticated, redirect to the login page
-  //     window.location.href = '/';
-  //     return;
-  //   }
-
-  // }, []);
 
   if (error) {
     console.log(error);
@@ -105,6 +72,7 @@ const SyllabusPage = () => {
       >
         {csvData.map((lesson, index) => {
           return (
+            //TODO: get out to a component SyllabusCard
             <Grid item justifyContent={'center'}>
               <Animation animationDelay={index * 0.2}>
                 <StyledBox

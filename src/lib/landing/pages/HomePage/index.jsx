@@ -1,11 +1,11 @@
 import React from 'react';
 
-import EntranceAnimation from '../../../../components/EntranceAnimation';
+import EntranceAnimation from '../../../../animation/EntranceAnimation';
 import SectionOne from './SectionOne';
 import SectionTwo from './SectionTwo';
 import SectionThree from './SectionThree';
 import SectionFour from './SectionFour';
-import SplashAnimation from '../../../../components/SplashAnimation';
+import SplashAnimation from '../../../../animation/SplashAnimation';
 
 const HomePage = () => {
   // React.useEffect(() => {

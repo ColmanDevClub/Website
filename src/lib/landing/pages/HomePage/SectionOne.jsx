@@ -2,9 +2,9 @@ import { Grid, ImageListItem, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Photo from 'src/assets/ef1b7b898f8d650f0ecdcb6ad5b9baea.png';
-import EntranceAnimation from '../../../../components/EntranceAnimation';
+import EntranceAnimation from '../../../../animation/EntranceAnimation';
 import css from './style.module.css';
-import LangCard from '../../components/LangCard';
+import LangCard from '../../components/LangCard/LangCard';
 import { ArrowButton } from 'src/ui';
 import { typesCards } from '../../components/LangCard/data';
 

@@ -1,28 +1,18 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Container,
-  Button,
-  MenuItem,
-} from "@mui/material";
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
 
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
 
-import css from "./style.module.css";
-import { auth } from "../../firebase/firebase-config";
+import css from './style.module.css';
+import { auth } from '../../config/firebase-config';
 
 const pages = [
-  { title: "Home", path: "/" },
-  { title: "The Team", path: "/team" },
-  { title: "Sign Up", path: "/Signup" },
+  { title: 'Home', path: '/' },
+  { title: 'The Team', path: '/team' },
+  { title: 'Sign Up', path: '/Signup' },
   // { title: "Signin", path: "/signin" },
 ];
 
@@ -40,11 +30,7 @@ function ResponsiveAppBar() {
 
   return (
     <>
-      <AppBar
-        position="sticky"
-        color="secondary"
-        sx={{ borderBottom: "1px solid #1F1F53" }}
-      >
+      <AppBar position="sticky" color="secondary" sx={{ borderBottom: '1px solid #1F1F53' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -54,16 +40,16 @@ function ResponsiveAppBar() {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: 'none', md: 'flex' },
                 fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              Colman<span className={css["text-yellow"]}>Dev</span>Club
+              Colman<span className={css['text-yellow']}>Dev</span>Club
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -78,27 +64,26 @@ function ResponsiveAppBar() {
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
+                  vertical: 'top',
+                  horizontal: 'left',
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: { xs: 'block', md: 'none' },
                 }}
               >
                 {pages.map((page) =>
-                  (page.title === "Signin" || page.path === "/Signup") &&
-                  localStorage.getItem("userToken") ? null : (
+                  (page.title === 'Signin' || page.path === '/Signup') && localStorage.getItem('userToken') ? null : (
                     <NavLink
                       style={{
-                        textDecoration: "none",
-                        color: "inherit",
+                        textDecoration: 'none',
+                        color: 'inherit',
                       }}
                       to={page.path}
                     >
@@ -109,31 +94,27 @@ function ResponsiveAppBar() {
                   )
                 )}
 
-                {localStorage.getItem("userToken") && (
+                {localStorage.getItem('userToken') && (
                   <NavLink
                     style={{
-                      textDecoration: "none",
-                      color: "inherit",
+                      textDecoration: 'none',
+                      color: 'inherit',
                     }}
                     to="/syllabus"
                   >
-                    <MenuItem
-                      key="syllabus"
-                      onClick={handleCloseNavMenu}
-                      divider
-                    >
+                    <MenuItem key="syllabus" onClick={handleCloseNavMenu} divider>
                       <Typography textAlign="center">Syllabus</Typography>
                     </MenuItem>
                   </NavLink>
                 )}
-                {localStorage.getItem("userToken") && (
+                {localStorage.getItem('userToken') && (
                   <NavLink
                     style={{
-                      textDecoration: "none",
-                      color: "inherit",
+                      textDecoration: 'none',
+                      color: 'inherit',
                     }}
                     onClick={() => {
-                      localStorage.removeItem("userToken");
+                      localStorage.removeItem('userToken');
                     }}
                     to="/signin"
                   >
@@ -141,7 +122,7 @@ function ResponsiveAppBar() {
                       key="logout"
                       onClick={() => {
                         handleCloseNavMenu();
-                        localStorage.removeItem("userToken");
+                        localStorage.removeItem('userToken');
                         auth.signOut();
                       }}
                       divider
@@ -159,88 +140,73 @@ function ResponsiveAppBar() {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
                 fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              Colman<span className={css["text-yellow"]}>Dev</span>Club
+              Colman<span className={css['text-yellow']}>Dev</span>Club
             </Typography>
             <Box
               sx={{
                 flexGrow: 1,
-                display: { xs: "none", md: "flex" },
+                display: { xs: 'none', md: 'flex' },
               }}
             >
               {pages.map((page) =>
-                (page.title === "Signin" || page.path === "/Signup") &&
-                localStorage.getItem("userToken") ? null : (
-                  <NavLink
-                    key={page.title}
-                    style={{ textDecoration: "none", color: "white" }}
-                    to={page.path}
-                  >
+                (page.title === 'Signin' || page.path === '/Signup') && localStorage.getItem('userToken') ? null : (
+                  <NavLink key={page.title} style={{ textDecoration: 'none', color: 'white' }} to={page.path}>
                     <Button
                       key={page.title}
                       onClick={handleCloseNavMenu}
                       sx={{
-                        marginLeft: "0.25rem",
+                        marginLeft: '0.25rem',
                         my: 2,
-                        color: "white",
-                        display: "block",
-                        textTransform: "none",
+                        color: 'white',
+                        display: 'block',
+                        textTransform: 'none',
                       }}
-                      className={
-                        page.path === pathname ? css["text-yellow"] : ""
-                      }
+                      className={page.path === pathname ? css['text-yellow'] : ''}
                     >
                       {page.title}
                     </Button>
                   </NavLink>
                 )
               )}
-              {localStorage.getItem("userToken") && (
-                <NavLink
-                  key={"syllabus"}
-                  style={{ textDecoration: "none", color: "white" }}
-                  to={"/syllabus"}
-                >
+              {localStorage.getItem('userToken') && (
+                <NavLink key={'syllabus'} style={{ textDecoration: 'none', color: 'white' }} to={'/syllabus'}>
                   <Button
-                    key={"syllabus"}
+                    key={'syllabus'}
                     onClick={handleCloseNavMenu}
                     sx={{
-                      marginLeft: "0.25rem",
+                      marginLeft: '0.25rem',
                       my: 2,
-                      color: "white",
-                      display: "block",
-                      textTransform: "none",
+                      color: 'white',
+                      display: 'block',
+                      textTransform: 'none',
                     }}
                   >
                     Syllabus
                   </Button>
                 </NavLink>
               )}
-              {localStorage.getItem("userToken") && (
-                <NavLink
-                  key={"logout"}
-                  style={{ textDecoration: "none", color: "white" }}
-                  to={"/signin"}
-                >
+              {localStorage.getItem('userToken') && (
+                <NavLink key={'logout'} style={{ textDecoration: 'none', color: 'white' }} to={'/signin'}>
                   <Button
-                    key={"logout"}
+                    key={'logout'}
                     onClick={() => {
                       handleCloseNavMenu();
-                      localStorage.removeItem("userToken");
+                      localStorage.removeItem('userToken');
                       auth.signOut();
                     }}
                     sx={{
-                      marginLeft: "0.25rem",
+                      marginLeft: '0.25rem',
                       my: 2,
-                      color: "white",
-                      display: "block",
-                      textTransform: "none",
+                      color: 'white',
+                      display: 'block',
+                      textTransform: 'none',
                     }}
                   >
                     Logout

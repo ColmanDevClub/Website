@@ -1,13 +1,14 @@
 import * as React from 'react';
-
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '../../../../theme';
-import { auth } from '../../../../firebase/firebase-config';
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router';
-import { Box, Container, CssBaseline, Avatar, Typography, TextField, Button, Grid, Link } from '@mui/material';
-import TransitionsModal from 'src/components/Modal';
+
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+
+import { auth } from 'src/config/firebase-config';
+import { theme } from 'src/theme';
+import { TransitionsModal } from 'src/ui';
 
 const SignInPage = () => {
   const [formValues, setFormValues] = React.useState({});

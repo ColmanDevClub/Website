@@ -1,21 +1,24 @@
-import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
-import { QueryClientProvider, QueryClient } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import Navbar from './components/Navbar';
-import { theme } from './theme';
 import PrivateRoutes from './components/PrivateRoutes';
 import SignIn from './lib/auth/pages/SignInPage/SignInPage';
 import SignupPage from './lib/auth/pages/SignUpPage/SignUpPage';
-import HomePage from './lib/landing/pages/HomePage';
-import TeamPage from './lib/landing/pages/TeamPage';
-import SyllabusPage from './lib/landing/pages/SyllabusPage/SyllabusPage';
 import { Footer } from './lib/landing/components';
+import HomePage from './lib/landing/pages/HomePage';
+import SyllabusPage from './lib/landing/pages/SyllabusPage/SyllabusPage';
+import TeamPage from './lib/landing/pages/TeamPage';
+import Layout from './lib/management/pages/Layout/Layout';
+import ManageRouter from './lib/management/router';
+import { theme } from './theme';
+import Navbar from './ui/Navbar';
 
 const queryClient = new QueryClient();
+
+const manage = false;
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="/team" element={<TeamPage />} />
       <Route path="/syllabus" element={<SyllabusPage />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/manage" element={<Layout />} />
       <Route path="/private" element={<PrivateRoutes />} />
     </Route>
   )
@@ -34,8 +38,14 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <Footer />
+        {manage ? (
+          <ManageRouter />
+        ) : (
+          <>
+            <RouterProvider router={router} />
+            <Footer />
+          </>
+        )}
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </QueryClientProvider>
     </ThemeProvider>
