@@ -4,9 +4,12 @@
       "paths": {
         "ui/*": ["./ui/*"],
         "assets/*": ["./assets/*"],
-        "components/*": ["./components/*"]
+        "components/*": ["./components/*"],
+        "theme/*": ["./theme/*"],
+        "animations/*": ["./animations/*"],
+        "config/*": ["./config/*"]
       }
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "src/theme.jsx"],
     "exclude": ["node_modules"]
   }

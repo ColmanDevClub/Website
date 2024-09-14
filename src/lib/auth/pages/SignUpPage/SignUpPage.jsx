@@ -1,20 +1,18 @@
 import { Box, Checkbox, Container, css, Grid, Typography } from '@mui/material';
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
-import FormInputField from 'src/components/common/FormInputField';
-import FormSelectField from 'src/components/common/FormSelectField';
-import EntranceAnimation from 'src/components/EntranceAnimation';
-import TransitionsModal from 'src/components/Modal';
-import { allRules, errorMessages, labels } from 'src/data';
-import { addUser, fetchData } from 'src/firebase/firebase-utils';
-import { ArrowButton } from 'src/ui';
 
-// import { sendDataToAgudaForm } from "../../utils/index";
-// import {
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-// } from "firebase/auth";
-// import { auth } from "../../firebase/firebase-config";
+import { useNavigate } from 'react-router';
+
+import { Box, Checkbox, Container, Grid, Typography } from '@mui/material';
+
+import css from './style.module.css';
+import FormInputField from 'src/ui/FormInputField';
+import FormSelectField from 'src/ui/FormSelectField';
+import { allRules, errorMessages, labels } from 'src/data';
+import { addUser, fetchData } from 'src/config/firebase-utils';
+import { EntranceAnimation } from 'src/animation';
+import { ArrowButton, TransitionsModal } from 'src/ui';
+
 const FIELDS_MAP = {
   TextField: FormInputField,
   Select: FormSelectField,

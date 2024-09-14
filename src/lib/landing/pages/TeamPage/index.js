@@ -1,16 +1,14 @@
 import { Container, Typography } from '@mui/material';
 import { useQuery } from 'react-query';
-import { fetchData } from '../../../../firebase/firebase-utils';
-import CardList from '../../../../components/CardList';
-import Loader from '../../../../components/common/Loader';
+import { fetchData } from '../../../../config/firebase-utils';
+import CardList from '../../../../ui/CardList/CardList';
+import Loader from '../../../../ui/Loader';
 import { TeamMemberCard } from '../../components';
 import css from './style.module.css';
 
 //TODO: remove the using of css module
 export default function TeamPage() {
-  const { data: cards, isLoading } = useQuery('teamMembers', () =>
-    fetchData('team'),
-  );
+  const { data: cards, isLoading } = useQuery('teamMembers', () => fetchData('team'));
   return (
     <Container maxWidth="lg" sx={{ my: 2 }}>
       <Typography

@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from '@mui/material';
 
-import { CSVLink } from "react-csv";
-import { fetchData } from "../../firebase/firebase-utils";
+import { CSVLink } from 'react-csv';
+import { fetchData } from '../../config/firebase-utils';
 
 const enumCsvFields = {
-  email: "email",
-  experience: "experience",
-  experienceDetails: "experienceDetails",
-  fieldOfStudy: "fieldOfStudy",
-  id: "id",
-  phoneNumber: "phoneNumber",
-  program: "program",
-  schoolYear: "schoolYear",
-  date: "date",
+  email: 'email',
+  experience: 'experience',
+  experienceDetails: 'experienceDetails',
+  fieldOfStudy: 'fieldOfStudy',
+  id: 'id',
+  phoneNumber: 'phoneNumber',
+  program: 'program',
+  schoolYear: 'schoolYear',
+  date: 'date',
 };
 
 const PrivateRoutes = () => {
-  const [password, setPassword] = React.useState("");
+  const [password, setPassword] = React.useState('');
   const [isAdmin, setIsAdmin] = React.useState(false);
   const [users, setUsers] = React.useState([]);
 
@@ -34,7 +34,7 @@ const PrivateRoutes = () => {
 
   const test = async () => {
     if (!isAdmin) return;
-    const usersArray = await fetchData("users");
+    const usersArray = await fetchData('users');
     console.log(usersArray);
     // first take the formValues, after it take the values from the enumCsvFields and map them to an array.
     const formattedData = usersArray.map(({ formValues, newUser }) => {
@@ -42,7 +42,7 @@ const PrivateRoutes = () => {
       const valueArray = Object.values(enumCsvFields).map((key) => {
         if (formValues) return formValues[key];
         if (newUser) return newUser[key];
-        return "";
+        return '';
       });
       return valueArray;
     });
@@ -75,15 +75,15 @@ const PrivateRoutes = () => {
       )}
       {isAdmin && users && (
         <>
-          <Typography variant="h4" color="white" marginBottom={"2rem"}>
+          <Typography variant="h4" color="white" marginBottom={'2rem'}>
             Total Registers: {users.length}
           </Typography>
           <CSVLink
             style={{
-              textDecoration: "none",
-              color: "white",
-              fontWeight: "bold",
-              fontSize: "1.5rem",
+              textDecoration: 'none',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '1.5rem',
             }}
             data={users}
           >

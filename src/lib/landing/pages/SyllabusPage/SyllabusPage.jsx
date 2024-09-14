@@ -1,9 +1,10 @@
 import { Card, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import React from 'react';
-import Animation from 'src/components/EntranceAnimation';
-import { YouTubeVideo } from 'src/components/YouTubeVideo';
-import useGoogleSheetsData from 'src/hooks/useSheets';
-import Loader from 'src/components/common/Loader';
+import Animation from '../../../../animation/EntranceAnimation';
+import { YouTubeVideo } from '../../../../components/YouTubeVideo';
+import Loader from '../../../../ui/Loader';
+import useGoogleSheetsData from '../../../../hooks/useSheets';
+import { auth } from '../../../../config/firebase-config';
 import { ArrowButton } from 'src/ui';
 
 const StyledBox = styled(Card)(({ theme }) => ({
@@ -77,7 +78,8 @@ const SyllabusPage = () => {
       >
         {csvData.map((lesson, index) => {
           return (
-            <Grid item justifyContent={'center'} key={lesson.id}>
+            //TODO: get out to a component SyllabusCard
+            <Grid item justifyContent={'center'}>
               <Animation animationDelay={index * 0.2}>
                 <StyledBox
                   key={index}

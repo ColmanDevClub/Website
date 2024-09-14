@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-import { fetchData } from '../firebase/firebase-utils';
+import { fetchData } from '../config/firebase-utils';
 // import axios from 'axios';
 
 const emailValidation = (email) => {
