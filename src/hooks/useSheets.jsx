@@ -17,7 +17,7 @@ const fetchDataFromCsv = async () => {
 };
 
 const parseCsv = (csvData) => {
-  return csvData.split("\n").map((row) => row.split(","));
+  return csvData.split("\n").map((row) => row.split(/","/));
 };
 
 const useGoogleSheetsData = () => {
