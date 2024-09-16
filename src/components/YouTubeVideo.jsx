@@ -9,11 +9,10 @@ export const YouTubeVideo = ({ videoId }) => {
         type="text/html" 
         title="YouTube video player"
         width={"100%"}
-        height={"100%"}
+        height={"300px"}
         src={`https://www.youtube.com/embed/${videoId}`}
         frameborder="0" 
         allowfullscreen
-        loading='lazy'
       ></iframe>
     </Box>
   );
