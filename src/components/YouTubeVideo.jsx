@@ -1,20 +1,20 @@
+import { Box } from '@mui/material';
 import React from 'react';
-import YouTube from 'react-youtube';
 
 export const YouTubeVideo = ({ videoId }) => {
-  
-  const onPlayerReady = (event) => {
-    event.target.pauseVideo();
-  };
-
-  const opts = {
-    height: '220',
-    width: '290',
-    playerVars: {
-      autoplay: 0,
-    },
-  };
-
-  return <YouTube videoId={videoId} loading="lazy" opts={opts} onReady={onPlayerReady}  />
-
+  return (
+    <Box display={"flex"} justifyContent={"center"}>
+      <iframe 
+        id={`ytplayer-${videoId}`} 
+        type="text/html" 
+        title="YouTube video player"
+        width={"100%"}
+        height={"100%"}
+        src={`https://www.youtube.com/embed/${videoId}`}
+        frameborder="0" 
+        allowfullscreen
+        loading='lazy'
+      ></iframe>
+    </Box>
+  );
 };
