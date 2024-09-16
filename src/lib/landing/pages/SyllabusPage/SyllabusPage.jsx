@@ -1,4 +1,4 @@
-import { Container, Grid, Typography, styled } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import Loader from '../../../../ui/Loader';
 import useGoogleSheetsData from '../../../../hooks/useSheets';
@@ -12,16 +12,6 @@ const strip = (str) => {
 const getVideoId = (youtubeUrl) => {
   return youtubeUrl?.split('v=')[1]?.split('&')[0]
 }
-
-
-const carouselSettings = {
-  dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
-
 
 const csvMap = {
   id: 0,
@@ -75,22 +65,18 @@ const SyllabusPage = () => {
   });
 
   return (
-    <Container sx={{display: "flex", flexDirection: "column"}}>
-      <Grid
-        container
-        sx={{
-          display: 'flex',
-          flexWrap: "wrap",
-          flexDirection: "column",
-          justifyContent: 'center',
-        }}
-        spacing={{ xs: 1, md: 2 }}
-        px={{ xs: 0, md: 5 }}
+    <Container display="flex" flexDirection="column" width="100%">
+      <Grid 
+        container 
+        justifyContent={"center"} 
+        alignItems={"center"} 
+        rowSpacing={2}  
+        columnSpacing={{ xs: 2, sm: 2, md: 4 }} 
+        spacing={{ xs: 2, md: 2 }}
+        px={{ xs: 1,  sm: 1, md: 5 }}
         py={2}
       >
         {csvData.map((lesson, index) => {
-          console.log(lesson);
-          
           return (
             <SyllabusCard 
               key={lesson.id}
