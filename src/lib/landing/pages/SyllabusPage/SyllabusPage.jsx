@@ -29,7 +29,7 @@ const SyllabusPage = () => {
   const { data, isLoading, error } = useGoogleSheetsData();
 
   if (error) {
-    console.log(error);
+    console.error(error);
     return (
       <Container>
         <Typography variant="h2">Error</Typography>
@@ -45,7 +45,7 @@ const SyllabusPage = () => {
     );
   }
 
-  const splicedData = data.slice(1, data.length);
+  const splicedData = data?.slice(1, data?.length);
   const visibleData = splicedData?.filter((row) => strip(row[csvMap.show]) === 'TRUE');
   const csvData = visibleData?.map((row) => {
 
@@ -65,7 +65,7 @@ const SyllabusPage = () => {
   });
 
   return (
-    <Container display="flex" flexDirection="column" width="100%">
+    <Container display="flex"  width="100%">
       <Grid 
         container 
         justifyContent={"center"} 
@@ -76,7 +76,7 @@ const SyllabusPage = () => {
         px={{ xs: 1,  sm: 1, md: 5 }}
         py={2}
       >
-        {csvData.map((lesson, index) => {
+        {csvData?.map((lesson, index) => {
           return (
             <SyllabusCard 
               key={lesson.id}
