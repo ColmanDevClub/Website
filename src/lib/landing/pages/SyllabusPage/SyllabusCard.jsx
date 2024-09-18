@@ -1,21 +1,9 @@
-import { Box, Card, Grid, Stack, Typography, styled } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { YouTubeVideo } from "src/components/YouTubeVideo";
 import { Carousel } from "../../components";
 import { ArrowButton } from "src/ui";
-
-const StyledCard = styled(Card)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: "100%",
-  margin: "0 auto",
-  transition: 'all 0.3s',
-    '&:hover': {
-        boxShadow: '0px 0px 3px 0px #F6C927',
-        transform: 'scale(1.03)',
-    },
-}));
+import { StyledCard } from "./SyllbusPage.styles";
+import "./Carousel.css";
 
 const carouselSettings = {
     slidesToScroll: 1,
@@ -46,10 +34,10 @@ export const SyllabusCard = ({ youtubeVideoIDs, git, subject, index }) => {
                 }}
             >
                 <Carousel settings={carouselSettings}>
-                    {youtubeVideoIDs.map((videoId, idx) => (
-                        <Box key={idx} >
-                        <YouTubeVideo videoId={videoId} />
-                    </Box>
+                    {youtubeVideoIDs?.map((videoId, idx) => (
+                        <Box key={idx} style={{width: "100%"}}>
+                            <YouTubeVideo videoId={videoId} width={"100%"} height={"300px"}/>
+                        </Box>
                     ))}
                 </Carousel>
             </div>
