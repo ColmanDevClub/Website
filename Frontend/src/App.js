@@ -19,6 +19,7 @@ import { theme } from "./theme";
 import SyllabusPage from "./pages/SyllabusPage/SyllabusPage";
 import PrivateRoutes from "./components/PrivateRoutes";
 import SigninPage from "./pages/SigninPage";
+import StudentPage from "./pages/StudentsPage/StudentsPage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,8 @@ const router = createBrowserRouter(
       <Route path="/syllabus" element={<SyllabusPage />} />
       {/* <Route path="/signin" element={<SigninPage />} /> */}
       <Route path="/private" element={<PrivateRoutes />} />
+      <Route path="/studentspage" element={<StudentPage />} />
+
     </Route>
   )
 );
