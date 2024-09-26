@@ -7,7 +7,6 @@ import SyllabusPage from './pages/SyllabusPage/SyllabusPage';
 import { Footer } from './components';
 import { SignInPage, SignUpPage } from '../auth/pages';
 import { AuthContextProvider } from '../auth/authContext';
-import Logout from '../auth/pages/Logout/logout';
 import ProtectedRoute from 'src/utils/protectedRoutes';
 
 
@@ -18,18 +17,11 @@ const LandingRouter = () => {
         <Navbar />
         <Routes>
           <Route index element={<HomePage />} />
+          {/* an example of how to use the protected route */}
           <Route path="/team" element={<ProtectedRoute><TeamPage /> </ProtectedRoute>} />
           <Route path="/syllabus" element={<SyllabusPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/sign-in" element={<SignInPage />} />
-          <Route
-            path="/logout"
-            element={
-              <ProtectedRoute>
-                <Logout />
-              </ProtectedRoute>
-            }
-          />
         </Routes>
         <Footer />
       </AuthContextProvider>
