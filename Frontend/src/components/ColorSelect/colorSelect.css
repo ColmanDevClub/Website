@@ -1,0 +1,28 @@
+.color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.color-circle-option {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dropdown {
+    position: absolute;
+    top: 110%; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 150px;
+    border-radius:10px;
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.dropdown-option:hover {
+    background-color: #0e0e27;
+}

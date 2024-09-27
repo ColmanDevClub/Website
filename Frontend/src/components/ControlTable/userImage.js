@@ -1,4 +1,3 @@
-// UserIcon.js
 import React from 'react';
 
 const UserIcon = () => (

@@ -1,7 +1,8 @@
 import React from 'react';
-import ManagementTablePage from './ManagementTablePage'; // Import the reusable ManagementTablePage
+import ManagementTablePage from './ManagementTablePage';
 
 const StudentsPage = () => {
+  
   const studentsData = [
   {
     person: {
@@ -11,16 +12,16 @@ const StudentsPage = () => {
       img: '',
     },
     week1: {
-      tasks: 'completed',
-      presence: 'present',
+      tasks: 'didNotSubmit',
+      presence: 'arrived',
     },
     week2: {
-      tasks: 'incomplete',
-      presence: 'absent',
+      tasks: 'approved',
+      presence: 'missed',
     },
     week3: {
       tasks: 'completed',
-      presence: 'present',
+      presence: 'approved',
     },
   },
   {
@@ -31,16 +32,16 @@ const StudentsPage = () => {
       img: 'https://example.com/.jpg',
     },
     week1: {
-      tasks: 'completed',
-      presence: 'present',
+      tasks: 'waitForPR',
+      presence: 'approved',
     },
     week2: {
       tasks: 'completed',
-      presence: 'present',
+      presence: 'missed',
     },
     week3: {
-      tasks: 'incomplete',
-      presence: 'absent',
+      tasks: 'didNotSubmit',
+      presence: 'arrived',
     },
   },
 ];
@@ -48,7 +49,6 @@ const StudentsPage = () => {
   return (
     <div>
       <h1>Students Table</h1>
-      {/* Pass student data to the generic ManagementTablePage */}
       <ManagementTablePage data={studentsData} />
     </div>
   );

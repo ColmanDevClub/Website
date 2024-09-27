@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IconButton, Modal, Box } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import './mainColumnItem.css'; 
-import UserIcon from './userImage'; // Import the UserIcon component
+import UserIcon from './userImage'; 
 
 const MainColumnItem = ({data}) => {
   const [open, setOpen] = useState(false);
