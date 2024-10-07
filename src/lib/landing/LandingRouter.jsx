@@ -7,7 +7,7 @@ import SyllabusPage from './pages/SyllabusPage/SyllabusPage';
 import { Footer } from './components';
 import { SignInPage, SignUpPage } from '../auth/pages';
 import { AuthContextProvider } from '../auth/authContext';
-import ProtectedRoute from 'src/utils/protectedRoutes';
+import ProtectedRoute from 'src/utils/ProtectedRoutes';
 
 
 const LandingRouter = () => {

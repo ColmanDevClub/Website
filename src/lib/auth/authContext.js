@@ -12,24 +12,25 @@ const UserContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
-  //call from sign up
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  //call from sign in
    const signIn = (email, password) =>  {
     return signInWithEmailAndPassword(auth, email, password)
    }
 
-  //button logout (route /logout)
-  const logout = () => {
-      return signOut(auth)
-  }
+   const logout = async () => {
+    try {
+      await signOut(auth);
+      console.log("You have been logged out");
+    } catch (error) {
+      console.error("Logout error:", error.message);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
       setUser(currentUser);
     });
     return () => {

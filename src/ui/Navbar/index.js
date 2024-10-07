@@ -17,7 +17,6 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 import css from "./style.module.css";
-import { auth } from "../../config/firebase-config";
 import { UserAuth } from "src/lib/auth/authContext";
 
 const pages = [
@@ -42,13 +41,7 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    try {
       await logout();
-      navigate("/");
-      console.log("You have been logged out");
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
   };
 
   return (
