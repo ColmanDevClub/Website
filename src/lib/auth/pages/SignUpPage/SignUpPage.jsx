@@ -1,4 +1,3 @@
-import { Box, Checkbox, Container, css, Grid, Typography } from '@mui/material';
 import * as React from 'react';
 
 import { useNavigate } from 'react-router';
