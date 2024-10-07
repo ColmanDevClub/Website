@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 import {
   AppBar,
@@ -30,7 +30,6 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { user, logout } = UserAuth();
-  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
