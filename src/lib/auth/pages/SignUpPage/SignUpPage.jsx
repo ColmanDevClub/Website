@@ -1,17 +1,13 @@
-import { Box, Checkbox, Container, css, Grid, Typography } from '@mui/material';
 import * as React from 'react';
-
-import { useNavigate } from 'react-router';
-
 import { Box, Checkbox, Container, Grid, Typography } from '@mui/material';
-
-import css from './style.module.css';
+import { useNavigate } from 'react-router';
 import FormInputField from 'src/ui/FormInputField';
 import FormSelectField from 'src/ui/FormSelectField';
 import { allRules, errorMessages, labels } from 'src/data';
 import { addUser, fetchData } from 'src/config/firebase-utils';
 import { EntranceAnimation } from 'src/animation';
 import { ArrowButton, TransitionsModal } from 'src/ui';
+import styles from './style.module.css';
 
 const FIELDS_MAP = {
   TextField: FormInputField,
@@ -137,9 +133,9 @@ const SignUpPage = () => {
             letterSpacing: '4px',
           }}
         >
-          <span className={css['text-yellow']}>Sign</span>up
+          <span className={styles['text-yellow']}>Sign</span>up
         </Typography>
-        <div className={css['container']}>
+        <div className={styles['container']}>
           <Box
             sx={{
               display: 'grid',
@@ -258,7 +254,7 @@ const SignUpPage = () => {
                 />
                 <Typography>
                   אני מאשר את תנאי{' '}
-                  <span className={css['terms']} onClick={() => setOpenRulesModal((prev) => !prev)}>
+                  <span className={styles['terms']} onClick={() => setOpenRulesModal((prev) => !prev)}>
                     התקנון
                   </span>
                 </Typography>
