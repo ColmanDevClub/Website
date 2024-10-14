@@ -18,3 +18,8 @@ ul {
 li {
   margin-top: 0.5rem;
 }
+
+.facebook-icon{
+  display: flex;
+  background-color: #f6c927;
+}
