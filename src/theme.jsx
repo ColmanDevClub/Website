@@ -89,7 +89,7 @@ export const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          borderRadius: 2,
+          borderRadius: 10,
           borderColor: '#1F1F53',
           background: '#0A0A1B',
           color: '#fff',
@@ -115,7 +115,7 @@ export const theme = createTheme({
     MuiSelect: {
       styleOverrides: {
         root: {
-          borderRadius: 2,
+          borderRadius: 10,
           background: '#0A0A1B',
           color: '#fff',
         },
@@ -127,7 +127,7 @@ export const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          borderRadius: 2,
+          borderRadius: 10,
         },
         notchedOutline: {
           borderColor: '#1F1F53',

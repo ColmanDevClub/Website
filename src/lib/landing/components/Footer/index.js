@@ -57,13 +57,14 @@ export default function DenseAppBar() {
             <ImageListItem
               sx={{
                 width: { xs: '50%', md: '15%', lg: '15%' },
-                display: { xs: 'block', md: 'flex' },
+                display: { xs: 'flex', md: 'flex' },
                 justifyContent: 'center',
+                flexDirection: { xs: 'column', md: 'row' },
                 alignItems: 'center',
               }}
             >
-              <img src={Logo} className={css['photo']} alt="programmers" loading="lazy"></img>
-              <img src={LogoAguda} className={css['photo']} alt="programmers" loading="lazy" />
+              <img src={Logo} className={css['photo']} alt="programmers" loading="lazy" style={{width: '250px'}} ></img>
+              <img src={LogoAguda} className={css['photo']} alt="programmers" loading="lazy" style={{width: '150px'}} />
             </ImageListItem>
           </Grid>
           <Typography
