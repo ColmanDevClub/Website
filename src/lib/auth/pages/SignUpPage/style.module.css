@@ -1,5 +1,11 @@
 .container {
   text-align: center;
+
+}
+
+.container-signup{
+  display: flex;
+  justify-content: center;
 }
 
 .text-yellow {

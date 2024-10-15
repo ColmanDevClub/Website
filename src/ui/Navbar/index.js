@@ -12,7 +12,7 @@ import { auth } from '../../config/firebase-config';
 const pages = [
   { title: 'Home', path: '/' },
   { title: 'The Team', path: '/team' },
-  { title: 'Sign Up', path: '/Signup' },
+  { title: 'Join Us', path: '/Signup' },
   // { title: "Signin", path: "/signin" },
 ];
 

@@ -11,7 +11,6 @@ import { ArrowButton, TransitionsModal } from 'src/ui';
 import SignUpMethod from './components/SignUpMethod';
 import Avatar from '@mui/material/Avatar';
 
-
 const FIELDS_MAP = {
   TextField: FormInputField,
   Select: FormSelectField,
@@ -21,20 +20,13 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   const [openModal, setOpenModal] = React.useState(false);
-  const [formValues, setFormValues] = React.useState({});
+  const [formValues, setFormValues] = React.useState({}
+  );
   const [validationErrors, setValidationErrors] = React.useState({});
   const [openRulesModal, setOpenRulesModal] = React.useState(false);
   const [rules, setRules] = React.useState(false);
   const [methodClicked, setMethodClicked] = React.useState(false);
   const [profilePic, setProfilePic] = React.useState(null);
-
-  React.useEffect(() => {
-    labels.forEach((label) =>
-      setFormValues((prev) => {
-        return { ...prev, [label.key]: '' };
-      })
-    );
-  }, []);
 
   const onSignupHandler = async () => {
     const validationState = labels.reduce((obj, { key, validator }) => {
@@ -63,49 +55,6 @@ const SignUpPage = () => {
     setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
     const newUser = { ...formValues, date: new Date().toLocaleDateString() };
     addUser({ newUser });
-    // const { email, password } = formValues;
-    try {
-      // await createUserWithEmailAndPassword(auth, email, password);
-      // await signInWithEmailAndPassword(
-      //   auth,
-      //   formValues.email,
-      //   formValues.password
-      // )
-      //   .then((userCredential) => {
-      //     localStorage.setItem(
-      //       "userToken",
-      //       JSON.stringify(userCredential._tokenResponse.idToken)
-      //     );
-      //   }).then(()=>{
-      //     sendDataToAgudaForm(
-      //       formValues.email,
-      //       formValues.fullName,
-      //       formValues.phoneNumber,
-      //       "הפקולטה למדעי המחשב",
-      //       "מועדון המפתחים",
-      //       "שנה " + formValues.schoolYear + "'",
-      //       "טובה מאוד",
-      //       "",
-      //       false,
-      //       false
-      //     )
-      //   })
-      //   .catch((error) => {});
-      // await sendDataToAgudaForm(
-      //           formValues.email,
-      //           formValues.fullName,
-      //           formValues.phoneNumber,
-      //           "הפקולטה למדעי המחשב",
-      //           "מועדון המפתחים",
-      //           "שנה " + formValues.schoolYear + "'",
-      //           "טובה מאוד",
-      //           "",
-      //           false,
-      //           false
-      //         )
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   const inputHandler = (validator, key, value) => {
@@ -126,6 +75,7 @@ const SignUpPage = () => {
   return (
     <EntranceAnimation>
       <Container
+
         maxWidth="md"
         sx={{
           paddingTop: '3rem',
@@ -142,13 +92,15 @@ const SignUpPage = () => {
             textAlign: 'center',
             marginBottom: '2rem',
             fontWeight: 700,
-            letterSpacing: '4px',
+            letterSpacing: '2px',
           }}
         >
-          <span className={css['text-yellow']}>Sign</span>up
+          <span className={css['text-yellow']}>Submit</span> Application
         </Typography>
-        <div className={css['container']}>
+        <div className={css['container-signup']}>
           {!methodClicked && <SignUpMethod setMethodClicked={setMethodClicked} />}
+        </div>
+        <div className={css['container']}>
           {methodClicked && (<>
             <Grid container
               spacing={2}
@@ -157,8 +109,7 @@ const SignUpPage = () => {
               justifyContent="center"
               marginBottom={7}
               marginTop={2}>
-              <Avatar sx={{ bgcolor: '#ff5722', width: 150, height: 150, marginBottom: '15px' }}>
-                {profilePic ? <img src={URL.createObjectURL(profilePic)} alt="profile" style={{ width: '100%', height: '100%' }} /> : 'Profile'}
+              <Avatar sx={{ bgcolor: '#ff5722', width: 150, height: 150, marginBottom: '15px' }} src={profilePic ? URL.createObjectURL(profilePic) : 'Profile'}>
               </Avatar>
               <Box
                 component="label"

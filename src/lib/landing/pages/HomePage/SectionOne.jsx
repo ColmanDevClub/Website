@@ -45,25 +45,12 @@ const SectionOne = () => {
             sx={{ direction: 'rtl' }}
           >
             המועדון הפועל במסגרת אגודת הסטודנטים של המכללה למינהל, הוקם במטרה לסייע לסטודנטים וסטודנטיות לרכוש ידע
-            ולהתפתח בתחום ה- <b> FULLSTACK </b>. <br />
+            ולהתפתח בתחום ה- <b> FULLSTACK</b>. <br />
             ללמוד לפתח זה דבר אחד - לממש את הלמידה זה דבר אחר לגמרי. <br />
             השאיפה שלנו היא ללמוד לפתח טוב יותר, להתנסות ולהכיר את הטכנולוגיות הכי חדישות ומתקדמות בשוק. באמצעות
             המנטורים והכלים שתקבלו, תממשו את הידע שלכם ותיקחו אותו צעד אחד קדימה!
             <br />
             <br />
-            <span style={{ display: 'block' }}>
-              רוצה לשמוע על שאר המועדונים שלנו? &nbsp;
-              <a
-                style={{
-                  textDecoration: 'none',
-                  color: 'white',
-                  fontWeight: 'bold',
-                }}
-                href="https://colmanaguda.activetrail.biz/colmanclubs2024"
-              >
-                לחץ כאן
-              </a>
-            </span>
           </Typography>
           <ArrowButton onClick={() => navigate('/Signup')}>להרשמה לחצו כאן</ArrowButton>
         </Stack>
