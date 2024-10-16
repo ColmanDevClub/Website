@@ -116,7 +116,7 @@ const SignUpPage = () => {
                 justifyContent="center"
                 marginBottom={7}
                 marginTop={2}>
-                <Avatar sx={{ bgcolor: '#ff5722', width: 150, height: 150, marginBottom: '15px', bgcolor: "grey" }} src={profilePic ? URL.createObjectURL(profilePic) : 'Profile'}>
+                <Avatar sx={{ bgcolor: '#ff5722', width: 150, height: 150, marginBottom: '15px'}} src={profilePic ? URL.createObjectURL(profilePic) : 'Profile'}>
                 </Avatar>
                 <Box
                   component="label"

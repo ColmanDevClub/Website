@@ -5,22 +5,29 @@ import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import SyllabusPage from './pages/SyllabusPage/SyllabusPage';
 import { Footer } from './components';
-import { SignUpPage } from '../auth/pages';
+import { SignInPage, SignUpPage } from '../auth/pages';
+import { AuthContextProvider } from '../auth/authContext';
+import ProtectedRoute from 'src/utils/protectedRoutes';
+
 
 const LandingRouter = () => {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route index element={<HomePage />} />
-        <Route path="/team" element={<TeamPage />} />
-        <Route path="/syllabus" element={<SyllabusPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-
-      </Routes>
-      <Footer />
+      <AuthContextProvider>
+        <Navbar />
+        <Routes>
+          <Route index element={<HomePage />} />
+          {/* an example of how to use the protected route */}
+          <Route path="/team" element={<ProtectedRoute><TeamPage /> </ProtectedRoute>} />
+          <Route path="/syllabus" element={<SyllabusPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
+        </Routes>
+        <Footer />
+      </AuthContextProvider>
     </BrowserRouter>
   );
 };
+
 
 export default LandingRouter;
