@@ -20,10 +20,10 @@ import css from "./style.module.css";
 import { UserAuth } from "src/lib/auth/authContext";
 
 const pages = [
-  { title: "Home", path: "/" },
-  { title: "The Team", path: "/team" },
-  //{ title: 'Sign Up', path: '/Sign-up' },
-  //{ title: "Signin", path: "/signin" },
+  { title: 'Home', path: '/' },
+  { title: 'The Team', path: '/team' },
+  { title: 'Join Us', path: '/Signup' },
+  // { title: "Signin", path: "/signin" },
 ];
 
 const Navbar = () => {
@@ -52,6 +52,17 @@ const Navbar = () => {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
+            <Box
+              component="img"
+              sx={{
+                height: 25,
+                maxHeight: { xs: 233, md: 167 },
+                maxWidth: { xs: 350, md: 250 },
+                marginRight: 1,
+              }}
+              alt="The house from the offer."
+              src="LogoBig-WhiteNoTextSmall.png"
+            />
             <Typography
               variant="h6"
               noWrap

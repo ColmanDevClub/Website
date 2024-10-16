@@ -61,6 +61,14 @@ export const theme = createTheme({
           padding: '.5rem',
         },
       },
+      variants: [
+        {
+          props: { variant: 'filled' },
+          style: {
+            background: '#0e0e27',
+          },
+        },
+      ],
     },
     MuiButton: {
       styleOverrides: {
@@ -85,11 +93,29 @@ export const theme = createTheme({
           padding: '0.25rem 0.5rem',
         },
       },
+      variants: [
+        {
+          props: { variant: 'outlined' },
+          style: {
+            background: '#0A0A1B',
+            color: '#fff',
+            borderColor: '#1F1F53',
+            fontSize: 16,
+            fontWeight: 200,
+            textTransform: 'none',
+            padding: '0.5rem 2rem',
+            '&:hover': {
+              background: '#1F1F53',
+              borderColor: '#1F1F53',
+            },
+          },
+        },
+      ],
     },
     MuiTextField: {
       styleOverrides: {
         root: {
-          borderRadius: 2,
+          borderRadius: 10,
           borderColor: '#1F1F53',
           background: '#0A0A1B',
           color: '#fff',
@@ -115,7 +141,7 @@ export const theme = createTheme({
     MuiSelect: {
       styleOverrides: {
         root: {
-          borderRadius: 2,
+          borderRadius: 10,
           background: '#0A0A1B',
           color: '#fff',
         },
@@ -127,7 +153,7 @@ export const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          borderRadius: 2,
+          borderRadius: 10,
         },
         notchedOutline: {
           borderColor: '#1F1F53',

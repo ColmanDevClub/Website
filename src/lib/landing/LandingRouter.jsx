@@ -20,8 +20,8 @@ const LandingRouter = () => {
           {/* an example of how to use the protected route */}
           <Route path="/team" element={<ProtectedRoute><TeamPage /> </ProtectedRoute>} />
           <Route path="/syllabus" element={<SyllabusPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
         </Routes>
         <Footer />
       </AuthContextProvider>
