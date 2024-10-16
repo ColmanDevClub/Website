@@ -21,7 +21,7 @@ const parseCsv = (csvData) => {
 };
 
 const useGoogleSheetsData = () => {
-  return useQuery('googleSheetsData', fetchDataFromCsv);
+  return useQuery({queryKey:'googleSheetsData',queryFn: fetchDataFromCsv});
 };
 
 export default useGoogleSheetsData;

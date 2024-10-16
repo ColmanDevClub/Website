@@ -138,7 +138,7 @@ const Navbar = () => {
                 )}
                 {!user && (
                   <NavLink
-                    to="/sign-in"
+                    to="/signin"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
                     <MenuItem onClick={handleCloseNavMenu}>
@@ -231,7 +231,7 @@ const Navbar = () => {
               ) : (
                 // Only show Sign In when user is not logged in
                 <NavLink
-                  to="/sign-in"
+                  to="/signin"
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   <Button

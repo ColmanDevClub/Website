@@ -8,7 +8,8 @@ import css from './style.module.css';
 
 //TODO: remove the using of css module
 export default function TeamPage() {
-  const { data: cards, isLoading } = useQuery('teamMembers', () => fetchData('team'));
+  const { data: cards, isLoading } = useQuery({queryKey:'teamMembers',queryFn: () => fetchData('team')});
+
   return (
     <Container maxWidth="lg" sx={{ my: 2 }}>
       <Typography

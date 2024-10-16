@@ -9,7 +9,7 @@ import css from './style.module.css';
 import { ProjectCard } from '../../components';
 
 const SectionFour = () => {
-  const { data: cards, isLoading } = useQuery('projects', () => fetchData('projects'));
+  const { data: cards, isLoading } = useQuery({queryKey:'projects',queryFn: () => fetchData('projects')});
 
   return (
     <SectionContainer
