@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import Carousel from '../../components/Carousel';
 import Loader from '../../../../ui/Loader';
 import { fetchData } from '../../../../config/firebase-utils';
