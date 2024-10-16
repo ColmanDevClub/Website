@@ -1,11 +1,3 @@
-.container {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  margin-top: 100px;
-
-}
-
 .text-yellow {
   color: #f6c927;
 }
