@@ -39,6 +39,7 @@ const Navbar = () => {
                 height: 25,
                 maxHeight: { xs: 233, md: 167 },
                 maxWidth: { xs: 350, md: 250 },
+                display: { xs: 'none', md: 'flex' },
                 marginRight: 1,
               }}
               alt="The house from the offer."
