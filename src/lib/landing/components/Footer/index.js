@@ -63,11 +63,11 @@ export default function DenseAppBar() {
                 alignItems: 'center',
               }}
             >
-              <img src={Logo} className={css['photo']} alt="programmers" loading="lazy" style={{width: '250px'}} ></img>
-              <img src={LogoAguda} className={css['photo']} alt="programmers" loading="lazy" style={{width: '150px'}} />
+              <img src={Logo} className={css['photo']} alt="programmers" loading="lazy" style={{ width: '250px' }} ></img>
+              <img src={LogoAguda} className={css['photo']} alt="programmers" loading="lazy" style={{ width: '150px' }} />
             </ImageListItem>
           </Grid>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="a"
@@ -81,7 +81,18 @@ export default function DenseAppBar() {
             }}
           >
             Colman<span className={css['text-yellow']}>Dev</span>Club
-          </Typography>
+          </Typography> */}
+          <Box
+            component="img"
+            sx={{
+              height: 150,
+              maxHeight: { xs: 233, md: 167 },
+              maxWidth: { xs: 350, md: 250 },
+              marginBottom: 1
+            }}
+            alt="The house from the offer."
+            src="LogoBig-WhiteTrimed.png"
+          />
           <Box sx={{ display: 'flex' }} gap="0.75rem">
             {iconsLink.map((icon) => {
               return (

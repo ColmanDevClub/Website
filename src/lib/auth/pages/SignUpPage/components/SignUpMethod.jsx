@@ -1,62 +1,32 @@
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import css from './style.module.css';
 import { EmailRounded } from '@mui/icons-material';
-import { Box } from '@mui/material';
+import { Button, Card, Stack } from '@mui/material';
 
 const SignUpMethod = ({ setMethodClicked }) => {
-    return (
-        <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                gap: '50px',
-                backgroundColor: '#0e0e27',
-                width: { xs: '100%', },
-                maxWidth: '500px',
-                margin: 'auto',
-                padding: '60px 0px 60px 0px ',
-                borderRadius: '10px',
-                border: '1px solid #1F1F53'
-            }}
+  return (
+    <Card variant="filled" sx={{ height: '30svh', width: '35svw' }}>
+      <Stack p={5} gap={5}>
+        <Button
+          variant="outlined"
+          endIcon={<FacebookRoundedIcon />}
+          fullWidth
+          sx={{ justifyContent: 'space-between' }}
+          onClick={() => setMethodClicked(true)}
         >
-            <Box
-                onClick={() => setMethodClicked(true)}
-                className={css['options-button']}
-                sx={{
-                    width: {
-                        xs: '90%',
-                        lg: '350px'
-                    }
-                }}
-            >
-                <Box sx={{ textAlign: 'center' }}>
-                    Submit using Facebook
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <FacebookRoundedIcon sx={{ fontSize: '35px' }} />
-                </Box>
-            </Box>
-            <Box
-                onClick={() => setMethodClicked(true)}
-                className={css['options-button']}
-                sx={{
-                    width: {
-                        xs: '90%',
-                        lg: '350px'
-                    }
-                }}
-            >
-                <Box sx={{ textAlign: 'center' }}>
-                    Submit using Email
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <EmailRounded sx={{ fontSize: '35px' }} />
-                </Box>
-            </Box>
-        </Box>
-    );
-}
+          Submit using Facebook
+        </Button>
+        <Button
+          variant="outlined"
+          fullWidth
+          sx={{ justifyContent: 'space-between' }}
+          onClick={() => setMethodClicked(true)}
+          endIcon={<EmailRounded />}
+        >
+          Submit using Email
+        </Button>
+      </Stack>
+    </Card>
+  );
+};
 
 export default SignUpMethod;
