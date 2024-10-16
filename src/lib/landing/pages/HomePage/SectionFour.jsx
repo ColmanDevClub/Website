@@ -9,7 +9,7 @@ import css from './style.module.css';
 import { ProjectCard } from '../../components';
 
 const SectionFour = () => {
-  const { data: cards, isLoading } = useQuery({queryKey:'projects',queryFn: () => fetchData('projects')});
+  const { data: cards, isLoading } = useQuery({ queryKey: ['projects'], queryFn: () => fetchData('projects') });
 
   return (
     <SectionContainer
@@ -42,7 +42,7 @@ const SectionFour = () => {
           >
             {cards.map((card) => {
               return (
-                <div className={css['slide']}>
+                <div key={card.title} className={css['slide']}>
                   <ProjectCard {...card} />
                 </div>
               );
