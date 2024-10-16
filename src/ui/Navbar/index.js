@@ -1,23 +1,13 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Container,
-  Button,
-  MenuItem,
-} from "@mui/material";
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
 
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
 
-import css from "./style.module.css";
-import { UserAuth } from "src/lib/auth/authContext";
+import css from './style.module.css';
+import { UserAuth } from 'src/lib/auth/authContext';
 
 const pages = [
   { title: 'Home', path: '/' },
@@ -40,16 +30,12 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-      await logout();
+    await logout();
   };
 
   return (
     <>
-      <AppBar
-        position="sticky"
-        color="secondary"
-        sx={{ borderBottom: "1px solid #1F1F53" }}
-      >
+      <AppBar position="sticky" color="secondary" sx={{ borderBottom: '1px solid #1F1F53' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box
@@ -70,16 +56,16 @@ const Navbar = () => {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: 'none', md: 'flex' },
                 fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              Colman<span className={css["text-yellow"]}>Dev</span>Club
+              Colman<span className={css['text-yellow']}>Dev</span>Club
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -94,37 +80,31 @@ const Navbar = () => {
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
+                  vertical: 'top',
+                  horizontal: 'left',
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: { xs: 'block', md: 'none' },
                 }}
               >
                 {pages.map((page) => (
-                  <NavLink
-                    key={page.title}
-                    to={page.path}
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
+                  <NavLink key={page.title} to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <MenuItem onClick={handleCloseNavMenu}>
                       <Typography textAlign="center">{page.title}</Typography>
                     </MenuItem>
                   </NavLink>
                 ))}
                 {user && (
-                  <>
+                  <Box>
                     <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">
-                        Hello, {user.email}
-                      </Typography>
+                      <Typography textAlign="center">Hello, {user.email}</Typography>
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
@@ -134,13 +114,10 @@ const Navbar = () => {
                     >
                       <Typography textAlign="center">Logout</Typography>
                     </MenuItem>
-                  </>
+                  </Box>
                 )}
                 {!user && (
-                  <NavLink
-                    to="/signin"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
+                  <NavLink to="/signin" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <MenuItem onClick={handleCloseNavMenu}>
                       <Typography textAlign="center">Sign In</Typography>
                     </MenuItem>
@@ -155,38 +132,34 @@ const Navbar = () => {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
                 fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              Colman<span className={css["text-yellow"]}>Dev</span>Club
+              Colman<span className={css['text-yellow']}>Dev</span>Club
             </Typography>
             <Box
               sx={{
                 flexGrow: 1,
-                display: { xs: "none", md: "flex" },
+                display: { xs: 'none', md: 'flex' },
               }}
             >
               {pages.map((page) => (
-                <NavLink
-                  key={page.title}
-                  to={page.path}
-                  style={{ textDecoration: "none", color: "white" }}
-                >
+                <NavLink key={page.title} to={page.path} style={{ textDecoration: 'none', color: 'white' }}>
                   <Button
                     key={page.title}
                     onClick={handleCloseNavMenu}
                     sx={{
-                      marginLeft: "0.25rem",
+                      marginLeft: '0.25rem',
                       my: 2,
-                      color: "white",
-                      display: "block",
-                      textTransform: "none",
+                      color: 'white',
+                      display: 'block',
+                      textTransform: 'none',
                     }}
-                    className={page.path === pathname ? css["text-yellow"] : ""}
+                    className={page.path === pathname ? css['text-yellow'] : ''}
                   >
                     {page.title}
                   </Button>
@@ -197,18 +170,18 @@ const Navbar = () => {
                   <Box
                     sx={{
                       flexGrow: 1,
-                      display: "flex",
-                      justifyContent: "flex-end",
+                      display: 'flex',
+                      justifyContent: 'flex-end',
                     }}
                   ></Box>
                   <Button
                     sx={{
-                      color: "white",
-                      textTransform: "none",
-                      cursor: "default",
-                      "&:hover": {
-                        backgroundColor: "transparent",
-                        boxShadow: "none",
+                      color: 'white',
+                      textTransform: 'none',
+                      cursor: 'default',
+                      '&:hover': {
+                        backgroundColor: 'transparent',
+                        boxShadow: 'none',
                       },
                     }}
                   >
@@ -217,11 +190,11 @@ const Navbar = () => {
                   <Button
                     onClick={handleLogout}
                     sx={{
-                      marginLeft: "0.25rem",
+                      marginLeft: '0.25rem',
                       my: 2,
-                      color: "white",
-                      display: "block",
-                      textTransform: "none",
+                      color: 'white',
+                      display: 'block',
+                      textTransform: 'none',
                     }}
                   >
                     Logout
@@ -230,17 +203,14 @@ const Navbar = () => {
                 </>
               ) : (
                 // Only show Sign In when user is not logged in
-                <NavLink
-                  to="/signin"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
+                <NavLink to="/signin" style={{ textDecoration: 'none', color: 'white' }}>
                   <Button
                     sx={{
-                      marginLeft: "0.25rem",
+                      marginLeft: '0.25rem',
                       my: 2,
-                      color: "white",
-                      display: "block",
-                      textTransform: "none",
+                      color: 'white',
+                      display: 'block',
+                      textTransform: 'none',
                     }}
                   >
                     Sign In
