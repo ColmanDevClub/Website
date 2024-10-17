@@ -1,5 +1,4 @@
 
-// tableUtils.js
 import React from 'react';
 import MainColumnItem from './MainColumnItem';
 

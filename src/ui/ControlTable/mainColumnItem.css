@@ -1,17 +1,10 @@
-main-column-container {
+.main-column-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
   }
   
-  .main-column-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #ffffff;
-  }
   
   .main-column-text {
     display: flex;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ControlTable from '../../components/ControlTable/ControlTable'; 
+import ControlTable from '../../../../ui/ControlTable/ControlTable'; 
 
 const StudentsManagementTable = ( {data}) => {
 

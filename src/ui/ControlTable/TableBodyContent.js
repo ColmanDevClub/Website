@@ -1,7 +1,6 @@
 
-// TableBodyContent.js
 import React from 'react';
-//import StyledTableCell from './StyledTableCell';
+import StyledTableCell from './styledTableCell';
 import { TableRow } from '@mui/material';
 import ColorSelect from '../ColorSelect/ColorSelect';
 
