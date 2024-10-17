@@ -13,7 +13,7 @@ const StudentsPage = () => {
     },
     week1: {
       tasks: 'didNotSubmit',
-      presence: 'arrived',
+      presence: 'missed',
     },
     week2: {
       tasks: 'approved',
@@ -21,7 +21,7 @@ const StudentsPage = () => {
     },
     week3: {
       tasks: 'completed',
-      presence: 'approved',
+      presence: 'missed',
     },
   },
   {

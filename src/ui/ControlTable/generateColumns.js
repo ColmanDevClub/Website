@@ -1,8 +1,15 @@
-
 import React from 'react';
 import MainColumnItem from './MainColumnItem';
 
-export const generateColumns = (data) => {
+const TotalRowComponent = ({ data }) => {
+  return (
+    <div>
+      <strong>Total Count: {data.totalCount}</strong>
+    </div>
+  );
+};
+
+export const generateColumns = (data,totalColCriteria) => {
   const firstRow = data[0];
   const mainColumnKey = Object.keys(firstRow)[0];
 
@@ -12,10 +19,14 @@ export const generateColumns = (data) => {
     width: 330,
     renderCell: (row) => {
       const mainColumnData = row[mainColumnKey];
-      return <MainColumnItem data={mainColumnData} />;
+      if (row.id === 'total') {
+        return <TotalRowComponent data={mainColumnData} />;
+      } else {
+        return <MainColumnItem data={mainColumnData} />;
+      }
     },
   };
-
+  
   const columns = [mainColumn];
 
   Object.keys(firstRow).forEach((key) => {
@@ -44,32 +55,17 @@ export const generateColumns = (data) => {
     }
   });
 
+  const totalColumn = {
+    headerName: 'Total',
+    subColumns: Object.entries(totalColCriteria).map(([key]) => ({
+      field: `total_${key}`,
+      headerName: `Total ${key}`,
+      width: 150,
+    })),
+    width: Object.keys(totalColCriteria).length * 150,
+  };
+
+  columns.push(totalColumn);
+
   return columns;
 };
-
-export const generateRows = (data) => {
-  const mainColumnKey = Object.keys(data[0])[0];
-
-  return data.map((rowData, index) => {
-    const row = {
-      id: index + 1,
-      [mainColumnKey]: rowData[mainColumnKey],
-    };
-
-    Object.keys(rowData).forEach((key) => {
-      if (key !== mainColumnKey) {
-        const subColumns = rowData[key];
-        if (typeof subColumns === 'object') {
-          Object.keys(subColumns).forEach((subKey) => {
-            row[`${key}_${subKey}`] = subColumns[subKey];
-          });
-        } else {
-          row[key] = rowData[key];
-        }
-      }
-    });
-
-    return row;
-  });
-};
-

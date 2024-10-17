@@ -1,7 +1,8 @@
 // ControlTable.js
 import React, { useState, useEffect } from 'react';
 import { TableContainer, Table, TableHead, TableBody, Paper } from '@mui/material';
-import { generateColumns, generateRows } from './tableUtils';
+import { generateRows } from './generateRows';
+import { generateColumns } from './generateColumns';
 import TableHeader from './TableHeader.js';
 import TableBodyContent from './TableBodyContent.js';
 
@@ -11,8 +12,8 @@ const ControlTable = (props) => {
 
   useEffect(() => {
     if (Array.isArray(props.data) && props.data.length > 0) {
-      const newColumns = generateColumns(props.data);
-      const newRows = generateRows(props.data);
+      const newColumns = generateColumns(props.data, props.totalColCriteria, props.totalRowCriteria);
+      const newRows = generateRows(props.data, props.totalColCriteria, props.totalRowCriteria);
       setColumns(newColumns);
       setRows(newRows);
     }

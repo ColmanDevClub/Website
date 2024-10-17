@@ -20,10 +20,19 @@ const columnColorsMap = {
     tasks: tasksColorsMap,
     presence: presenceColorsMap
 };
+
+const totalColCriteria = {
+  tasks: 'didNotSubmit',
+  presence: 'missed',
+};
+const totalRowCriteria = {
+  tasks: 'completed',
+  presence: 'arrived',
+};
   return (
     <div style={{ padding: '20px' }}>
       <h1>Management Table</h1>
-      <ControlTable data={data} columnColorsMap={columnColorsMap}/>
+      <ControlTable data={data} columnColorsMap={columnColorsMap} totalColCriteria={totalColCriteria}  totalRowCriteria={totalRowCriteria}/>
     </div>
   );
 };
