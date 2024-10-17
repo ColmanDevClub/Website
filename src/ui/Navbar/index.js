@@ -12,7 +12,7 @@ import { auth } from '../../config/firebase-config';
 const pages = [
   { title: 'Home', path: '/' },
   { title: 'The Team', path: '/team' },
-  { title: 'Join Us', path: '/Signup' },
+  { title: 'Join Us', path: '/signup' },
   // { title: "Signin", path: "/signin" },
 ];
 
@@ -93,6 +93,7 @@ const Navbar = () => {
                 {pages.map((page) =>
                   (page.title === 'Signin' || page.path === '/Signup') && localStorage.getItem('userToken') ? null : (
                     <NavLink
+                      key={page.title}
                       style={{
                         textDecoration: 'none',
                         color: 'inherit',

@@ -4,11 +4,21 @@ import { fetchData } from '../config/firebase-utils';
 // import axios from 'axios';
 
 const emailValidation = (email) => {
+  if (typeof email !== 'string') return false;
   const test = validator.trim(email);
   return validator.isEmail(test);
 };
 
 const stringValidation = (name) => {
+  if (typeof name !== 'string') return false;
+  if (name.length < 3) return false;
+  const newName = validator.trim(name);
+  const nameValidation = /^[a-zA-Z\u0590-\u05FF,\s]+$/;
+  return nameValidation.test(newName);
+};
+
+const experienceValidation = (name) => {
+  if (typeof name !== 'string') return false;
   if (name.length < 3) return false;
   const newName = validator.trim(name);
   const nameValidation = /^[a-zA-Z\u0590-\u05FF,\s]+$/;
@@ -16,6 +26,7 @@ const stringValidation = (name) => {
 };
 
 const numberValidation = (number) => {
+  if (typeof number !== 'string') return false;
   const newNumber = validator.trim(number);
   if (!validator.isNumeric(newNumber)) return false;
   if (newNumber.length !== 10) return false;
@@ -52,7 +63,9 @@ const passwordValidation = (password) => {
 };
 
 const selectionValidation = (selectValue) => {
-  return !validator.isEmpty(selectValue);
+  if (typeof selectValue !== 'string') return false;
+  console.log('selectValue ', selectValue);
+  return !(validator.isEmpty(selectValue));
 };
 
 export const fetchAllUsers = async () => {
@@ -126,4 +139,4 @@ export const sendDataToAgudaForm = async (
   // });
 };
 
-export { emailValidation, stringValidation, numberValidation, selectionValidation, idValidation, passwordValidation };
+export { emailValidation, stringValidation, experienceValidation, numberValidation, selectionValidation, idValidation, passwordValidation };

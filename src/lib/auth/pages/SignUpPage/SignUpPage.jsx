@@ -18,18 +18,20 @@ const FIELDS_MAP = {
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-
   const [openModal, setOpenModal] = React.useState(false);
-  const [formValues, setFormValues] = React.useState({}
-  );
+  const [formValues, setFormValues] = React.useState({});
   const [validationErrors, setValidationErrors] = React.useState({});
   const [openRulesModal, setOpenRulesModal] = React.useState(false);
   const [rules, setRules] = React.useState(false);
   const [methodClicked, setMethodClicked] = React.useState(false);
   const [profilePic, setProfilePic] = React.useState(null);
+  const [email, setEmail] = React.useState('');
+  const [name, setName] = React.useState('');
 
   const onSignupHandler = async () => {
+    console.log(formValues);
     const validationState = labels.reduce((obj, { key, validator }) => {
+      console.log(key);
       obj[key] = !validator(formValues[key]);
       return obj;
     }, {});
@@ -52,7 +54,7 @@ const SignUpPage = () => {
       navigate('/');
       return;
     }
-    setOpenModal(true); //TODO --> If we want to test it again, move to line 151. after testing return to line 163.
+    setOpenModal(true);
     const newUser = { ...formValues, date: new Date().toLocaleDateString() };
     addUser({ newUser });
   };
@@ -79,7 +81,7 @@ const SignUpPage = () => {
         sx={{
           paddingTop: '3rem',
           paddingBottom: '3rem',
-          
+
         }}
       >
         <Typography
@@ -94,7 +96,7 @@ const SignUpPage = () => {
           <span className={css['text-yellow']}>Submit</span> Application
         </Typography>
         <div className={css['container-signup']}>
-          {!methodClicked && <SignUpMethod setMethodClicked={setMethodClicked} />}
+          {!methodClicked && <SignUpMethod setMethodClicked={setMethodClicked} setProfilePic={setProfilePic} setEmail={setEmail} setName={setName} setFormValues={setFormValues} />}
         </div>
 
         <div className={css['container']}>
@@ -116,7 +118,7 @@ const SignUpPage = () => {
                 justifyContent="center"
                 marginBottom={7}
                 marginTop={2}>
-                <Avatar sx={{ bgcolor: '#ff5722', width: 150, height: 150, marginBottom: '15px', bgcolor: "grey" }} src={profilePic ? URL.createObjectURL(profilePic) : 'Profile'}>
+                <Avatar sx={{ width: 150, height: 150, marginBottom: '15px', bgcolor: "grey" }} src={profilePic}>
                 </Avatar>
                 <Box
                   component="label"
@@ -152,7 +154,7 @@ const SignUpPage = () => {
                 {labels.map(({ type, label, key, options, validator }, index) => {
                   const FieldComponent = FIELDS_MAP[type];
                   return label === 'Experience Details' && formValues['experience'] !== 'כן' ? null : (
-                    <EntranceAnimation animationDelay={label === 'Experience Details' ? 0 : index * 0.2}>
+                    <EntranceAnimation key={index} animationDelay={label === 'Experience Details' ? 0 : index * 0.2}>
                       <Box
                         sx={{
                           marginBottom: {
@@ -171,8 +173,11 @@ const SignUpPage = () => {
                           }}
                           options={options}
                           label={label}
+                          email={email}
+                          name={name}
                           onChange={(event) => {
                             setFormValues((prev) => {
+                              console.log(prev);
                               return { ...prev, [key]: event.target.value };
                             });
                             inputHandler(validator, key, event.target.value);
@@ -193,14 +198,17 @@ const SignUpPage = () => {
                 })}
               </Box>
               <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Grid xs={12} md={6}>
+                <Grid item xs={12} md={6}>
                   <TransitionsModal
                     openModal={openModal}
                     setOpenModal={setOpenModal}
                     title={'נרשמת בהצלחה'}
                     closeOnOverlay={false}
                     btnText="מעבר לדף הבית"
-                    btnOnClick={() => navigate('/')}
+                    btnOnClick={() => {
+                      navigate('/');
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     <Typography
                       variant="p"
@@ -234,7 +242,7 @@ const SignUpPage = () => {
                   >
                     <ul>
                       {allRules.map((rule) => {
-                        return <li>{rule}</li>;
+                        return <li key={rule}>{rule}</li>;
                       })}
                     </ul>
                     <Container
