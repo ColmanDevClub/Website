@@ -5,11 +5,11 @@ import css from './style.module.css';
 import FormInputField from 'src/ui/FormInputField';
 import FormSelectField from 'src/ui/FormSelectField';
 import { allRules, errorMessages, labels } from 'src/data';
-import { addUser, fetchData } from 'src/config/firebase-utils';
 import { EntranceAnimation } from 'src/animation';
 import { ArrowButton, TransitionsModal } from 'src/ui';
 import SignUpMethod from './components/SignUpMethod';
 import Avatar from '@mui/material/Avatar';
+import { useCreateUser } from 'src/hooks/firebase.hooks';
 
 const FIELDS_MAP = {
   TextField: FormInputField,
@@ -54,7 +54,7 @@ const SignUpPage = () => {
     }
     setOpenModal(true);
     const newUser = { ...formValues, date: new Date().toLocaleDateString() };
-    addUser({ newUser });
+    createUser.mutate(newUser);
   };
 
   const inputHandler = (validator, key, value) => {
@@ -289,7 +289,6 @@ const SignUpPage = () => {
             </Box>
           </>)}
         </div>
-
       </Container>
     </EntranceAnimation>
   );

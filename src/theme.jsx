@@ -110,6 +110,29 @@ export const theme = createTheme({
             },
           },
         },
+        {
+          props: { variant: 'navlink' },
+          style: {
+            textTransform: 'none',
+            fontSize: 18,
+            '&:hover': {
+              color: '#fff !important',
+            },
+          },
+        },
+        {
+          props: { variant: 'navlink-secondary' },
+          style: {
+            border: '1px solid #F6C927',
+            color: '#F6C927 !important',
+            textTransform: 'none',
+            fontSize: 18,
+            '&:hover': {
+              color: '#fff !important',
+              background: '#F6C927',
+            },
+          },
+        },
       ],
     },
     MuiTextField: {

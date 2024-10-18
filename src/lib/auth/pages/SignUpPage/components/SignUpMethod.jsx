@@ -1,5 +1,5 @@
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import { EmailRounded } from '@mui/icons-material';
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import { Button, Card, Stack } from '@mui/material';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, facebookProvider } from 'src/config/firebase-config';
