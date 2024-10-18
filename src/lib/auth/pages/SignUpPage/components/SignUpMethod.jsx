@@ -9,15 +9,10 @@ const SignUpMethod = ({ setMethodClicked, setProfilePic, setEmail, setName, setF
     const handleFacebookSignIn = async () => {
         try {
             const result = await signInWithPopup(auth, facebookProvider);
-            console.log(result.user);
-            console.log(result.user['displayName']);
-            console.log(result.user['email']);
-            console.log(result.user['photoURL']);
             setName(result.user['displayName']);
             setEmail(result.user['email']);
             setProfilePic(result.user['photoURL']);
             setFormValues((prev) => {
-                console.log(prev);
                 return {
                     ...prev, fullName: result.user['displayName'],
                     email: result.user['email'],

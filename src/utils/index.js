@@ -13,7 +13,7 @@ const stringValidation = (name) => {
   if (typeof name !== 'string') return false;
   if (name.length < 3) return false;
   const newName = validator.trim(name);
-  const nameValidation = /^[a-zA-Z\u0590-\u05FF,\s]+$/;
+  const nameValidation = /^[a-zA-Z,\s]+$/;
   return nameValidation.test(newName);
 };
 
@@ -23,6 +23,13 @@ const experienceValidation = (name) => {
   const newName = validator.trim(name);
   const nameValidation = /^[a-zA-Z\u0590-\u05FF,\s]+$/;
   return nameValidation.test(newName);
+};
+
+const checkEnglishName = (name) => {
+  if (name.match(/^[a-zA-Z ]+$/)) {
+    return name;
+  }
+  return "";
 };
 
 const numberValidation = (number) => {
@@ -64,13 +71,12 @@ const passwordValidation = (password) => {
 
 const selectionValidation = (selectValue) => {
   if (typeof selectValue !== 'string') return false;
-  console.log('selectValue ', selectValue);
   return !(validator.isEmpty(selectValue));
 };
 
 export const fetchAllUsers = async () => {
   const users = await fetchData('users');
-  console.log('users[0] ', users[0].formValues);
+  // console.log('users[0] ', users[0].formValues);
   // eslint-disable-next-line array-callback-return
   users.map((user) => {
     sendDataToAgudaForm(
@@ -139,4 +145,4 @@ export const sendDataToAgudaForm = async (
   // });
 };
 
-export { emailValidation, stringValidation, experienceValidation, numberValidation, selectionValidation, idValidation, passwordValidation };
+export { emailValidation, stringValidation, experienceValidation, numberValidation, selectionValidation, idValidation, passwordValidation, checkEnglishName };

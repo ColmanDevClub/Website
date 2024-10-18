@@ -29,9 +29,7 @@ const SignUpPage = () => {
   const [name, setName] = React.useState('');
 
   const onSignupHandler = async () => {
-    console.log(formValues);
     const validationState = labels.reduce((obj, { key, validator }) => {
-      console.log(key);
       obj[key] = !validator(formValues[key]);
       return obj;
     }, {});
@@ -72,6 +70,11 @@ const SignUpPage = () => {
     if (file) {
       setProfilePic(file);
     }
+  };
+
+  const goHome = () => {
+    navigate('/');
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -177,7 +180,6 @@ const SignUpPage = () => {
                           name={name}
                           onChange={(event) => {
                             setFormValues((prev) => {
-                              console.log(prev);
                               return { ...prev, [key]: event.target.value };
                             });
                             inputHandler(validator, key, event.target.value);
@@ -205,10 +207,7 @@ const SignUpPage = () => {
                     title={'נרשמת בהצלחה'}
                     closeOnOverlay={false}
                     btnText="מעבר לדף הבית"
-                    btnOnClick={() => {
-                      navigate('/');
-                      window.scrollTo(0, 0);
-                    }}
+                    btnOnClick={goHome}
                   >
                     <Typography
                       variant="p"
