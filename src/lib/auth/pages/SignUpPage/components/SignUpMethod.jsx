@@ -1,29 +1,38 @@
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import { EmailRounded } from '@mui/icons-material';
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import { Button, Card, Stack } from '@mui/material';
+
+const options = [
+  {
+    label: 'Submit using Facebook',
+    icon: <FacebookRoundedIcon />,
+  },
+  {
+    label: 'Submit using Email',
+    icon: <EmailRounded />,
+  },
+];
 
 const SignUpMethod = ({ setMethodClicked }) => {
   return (
-    <Card variant="filled" sx={{ height: '30svh', width: '35svw' }}>
-      <Stack p={5} gap={5}>
-        <Button
-          variant="outlined"
-          endIcon={<FacebookRoundedIcon />}
-          fullWidth
-          sx={{ justifyContent: 'space-between' }}
-          onClick={() => setMethodClicked(true)}
-        >
-          Submit using Facebook
-        </Button>
-        <Button
-          variant="outlined"
-          fullWidth
-          sx={{ justifyContent: 'space-between' }}
-          onClick={() => setMethodClicked(true)}
-          endIcon={<EmailRounded />}
-        >
-          Submit using Email
-        </Button>
+    <Card variant="filled">
+      <Stack
+        p={{ xs: 2, md: 5 }}
+        gap={{ xs: 3, md: 5 }}
+        height={{ xs: 'auto', md: '30svh' }}
+        width={{ xs: '35svh', md: '45svh' }}
+      >
+        {options.map((option) => (
+          <Button
+            variant="outlined"
+            endIcon={option.icon}
+            fullWidth
+            sx={{ justifyContent: 'space-between' }}
+            onClick={() => setMethodClicked(true)}
+          >
+            {option.label}
+          </Button>
+        ))}
       </Stack>
     </Card>
   );
